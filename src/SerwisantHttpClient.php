@@ -29,6 +29,8 @@ class SerwisantHttpClient
       curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, 5);
       curl_setopt($this->curl, CURLOPT_TIMEOUT, 5);
       curl_setopt($this->curl, CURLOPT_USERAGENT, sprintf("%s: %s", self::UA, self::VERSION));
+      curl_setopt($this->curl, CURLOPT_SSL_VERIFYPEER, false);
+      curl_setopt($this->curl, CURLOPT_SSL_VERIFYHOST, false)
     }
   }
 
