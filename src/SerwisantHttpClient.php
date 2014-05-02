@@ -7,7 +7,7 @@ class SerwisantHttpClientException extends Exception
 
 class SerwisantHttpClient
 {
-  const BASE_URL = 'http://serwisant-online.pl';
+  const BASE_URL = 'https://serwisant-online.pl';
 
   const UA = 'serwisant-php-sdk';
   const VERSION = '1.0';
