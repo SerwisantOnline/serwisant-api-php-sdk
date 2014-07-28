@@ -6,6 +6,7 @@ class SerwisantOrder
   
   private $data_fetched = false;
   private $data;
+  private $errors;
   
   public function setToken($token)
   {
@@ -27,18 +28,28 @@ class SerwisantOrder
       $json = $client->getResponse();
       
       if (trim($json) && ($data = json_decode($json))) {
-        $this->data = $data;
+        if (isset($data->errors)) {
+          $this->errors = $data->errors;
+        }
+        else {
+          $this->data = $data;
+        }
       }
     }
     catch (Exception $e) {
-    
+      $this->errors = array($e->getMessage());
     }
   }
   
   public function found()
   {
     $this->get();
-    return $this->data !== null;
+    return $this->data !== null && $this->errors === null;
+  }
+  
+  public function errors()
+  {
+    return $this->errors;
   }
   
   public function __get($prop)
