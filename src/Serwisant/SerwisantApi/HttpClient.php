@@ -41,7 +41,7 @@ class HttpClient
 
   public function get($path, array $params = array())
   {
-    $url = self::BASE_URL . $path . (count($params) > 0 ? http_build_query($params) : '');
+    $url = self::BASE_URL . $path . (count($params) > 0 ? ('?' . http_build_query($params)) : '');
     $this->exec($url, array(), self::HTTP_GET);
     return $this;
   }

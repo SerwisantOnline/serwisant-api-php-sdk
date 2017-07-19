@@ -6,7 +6,7 @@ class ConsumerAnonymous extends Consumer
 {
   private $client;
 
-  public function __construct($key = '', $secret = '')
+  public function __construct()
   {
     $this->client = new HttpClient();
   }
@@ -14,6 +14,11 @@ class ConsumerAnonymous extends Consumer
   protected function getClient()
   {
     return $this->client;
+  }
+
+  protected function getLang()
+  {
+    return 'pl';
   }
 
   public function getOrder($code)

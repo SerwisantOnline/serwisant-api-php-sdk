@@ -41,13 +41,13 @@ var_dump($consumer->getOrder('7yttt9'));
 
 Dostęp do rozszerzonego API mają klienci z subskrypcją 'all-in-one'
 
+Dostęp autoryzowany jest za pomocą OAuth, wymagane jest abyś otrzymał lub wygenerował samodzielnie Key i Secret.
+
 Key i Secret możesz utworzyć na tej stronie: [https://serwisant-online.pl/oauth_credentials](https://serwisant-online.pl/oauth_credentials).
 
 Rozszerzone API zwraca dane osobowe - wyniki zwrócone przez API powinny być zabezpieczone przed publicznym dostępem.
 
-Dostęp do dowolnego udokumentowanego endpointu metodą GET:
-
-Dostęp autoryzowany jest za pomocą OAuth, wymagane jest abyś otrzymał lub wygenerował samodzielnie Key i Secret.
+Dostęp do dowolnego udokumentowanego endpointu metodą GET - zwracana jest surowa tablica asocjacyjna utworzona z danych JSON:
 
 ```php
 include 'vendor/autoload.php';
@@ -55,7 +55,7 @@ include 'vendor/autoload.php';
 use Serwisant\SerwisantApi;
 
 $consumer = new SerwisantApi\ConsumerOauth('<key>', '<secret>');
-var_dump($consumer->get('/orders'));
+var_dump($consumer->get('/orders', ['page' => 1 'filter' => 'open']));
 var_dump($consumer->get('/orders/123'));
 ```
 
