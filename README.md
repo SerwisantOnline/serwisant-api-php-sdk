@@ -34,7 +34,8 @@ include 'vendor/autoload.php';
 use Serwisant\SerwisantApi;
 
 $consumer = new SerwisantApi\ConsumerAnonymous();
-var_dump($consumer->getOrder('7yttt9'));
+$order = $consumer->getOrder('7yttt9');
+var_dump($order->get('display_name'));
 ```
 
 ## Rozszerzone API
@@ -55,8 +56,8 @@ include 'vendor/autoload.php';
 use Serwisant\SerwisantApi;
 
 $consumer = new SerwisantApi\ConsumerOauth('<key>', '<secret>');
-var_dump($consumer->get('/orders', ['page' => 1 'filter' => 'open']));
-var_dump($consumer->get('/orders/123'));
+var_dump($consumer->get('/api/v1/orders/1425'));
+var_dump($consumer->get('/api/v1/orders', ['page' => 1, 'filter' => 'open']));
 ```
 
 Informacja o adresie klienta dla konkretnej naprawy:
@@ -68,6 +69,5 @@ use Serwisant\SerwisantApi;
 
 $consumer = new SerwisantApi\ConsumerOauth('<key>', '<secret>');
 $order = $consumer->getOrder(123));
-
 var_dump($order->get('customer.main_address.display_name'));
 ```
