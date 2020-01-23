@@ -4,14 +4,14 @@ namespace Serwisant\SerwisantApi;
 
 class SchemaInternal extends Graphql
 {
-    protected function schemaPath()
-    {
-      return 'internal';
-    }
+  protected function schemaPath()
+  {
+    return 'internal';
+  }
 
-    public function repairByToken($token)
-    {
-        $query = 'query repairByToken($token: String!) {
+  public function repairByToken($token)
+  {
+    $query = 'query repairByToken($token: String!) {
                     repairByToken(token: $token) {
                       serviceSupplier {
                         displayName
@@ -99,22 +99,22 @@ class SchemaInternal extends Graphql
                       }
                     }
                   }';
-        return $this->call_single('repairByToken', $query, ['token' => $token]);
-    }
+    return $this->call_single('repairByToken', $query, ['token' => $token]);
+  }
 
-    public function credentialsCookie($cookie)
-    {
-        $query = 'query credentialsCookie($cookie: String) {
+  public function credentialsCookie($cookie)
+  {
+    $query = 'query credentialsCookie($cookie: String) {
                       credentialsCookie(cookie: $cookie) {
                         userClass
                       }
                     }';
-        return $this->call_single('credentialsCookie', $query, ['cookie' => $cookie]);
-    }
+    return $this->call_single('credentialsCookie', $query, ['cookie' => $cookie]);
+  }
 
-    public function createDemoAccess($email)
-    {
-        $query = 'mutation CreateDemoAccess($email: String!) {
+  public function createDemoAccess($email)
+  {
+    $query = 'mutation CreateDemoAccess($email: String!) {
                     createDemoAccess(email: $email) {
                       errors {
                         argument
@@ -123,12 +123,12 @@ class SchemaInternal extends Graphql
                       }
                     }
                   }';
-        return $this->call_single('createDemoAccess', $query, ['email' => $email]);
-    }
+    return $this->call_single('createDemoAccess', $query, ['email' => $email]);
+  }
 
-    public function createContactMessage($message)
-    {
-        $query = 'mutation CreateContactMessage($message: ContactMessage!) {
+  public function createContactMessage($message)
+  {
+    $query = 'mutation CreateContactMessage($message: ContactMessage!) {
                     createContactMessage(message: $message) {
                       errors {
                         argument
@@ -137,12 +137,12 @@ class SchemaInternal extends Graphql
                       }
                     }
                   }';
-        return $this->call_single('createContactMessage', $query, ['message' => $message]);
-    }
+    return $this->call_single('createContactMessage', $query, ['message' => $message]);
+  }
 
-    public function activateSubscriber($token, $partner_cookie = null)
-    {
-        $query = 'mutation ActivateSubscriber($token: String!, $partner_cookie: String) {
+  public function activateSubscriber($token, $partner_cookie = null)
+  {
+    $query = 'mutation ActivateSubscriber($token: String!, $partner_cookie: String) {
                     activateSubscriber(activationToken: $token, salesPartnerCookie: $partner_cookie) {
                       errors {
                         argument
@@ -155,15 +155,15 @@ class SchemaInternal extends Graphql
                       }
                     }
                   }';
-        return $this->call_single('activateSubscriber', $query, [
-            'token' => $token,
-            'partner_cookie' => $partner_cookie
-        ]);
-    }
+    return $this->call_single('activateSubscriber', $query, [
+      'token' => $token,
+      'partner_cookie' => $partner_cookie
+    ]);
+  }
 
-    public function createSubscriber($subscriber, $activation_url)
-    {
-        $query = 'mutation CreateSubscriber($subscriber: SubscriberInput!, $url: String!) {
+  public function createSubscriber($subscriber, $activation_url)
+  {
+    $query = 'mutation CreateSubscriber($subscriber: SubscriberInput!, $url: String!) {
                     createSubscriber(subscriber: $subscriber, activationUrl: $url) {
                       errors {
                         argument
@@ -177,15 +177,15 @@ class SchemaInternal extends Graphql
                       }
                     }
                   }';
-        return $this->call_single('createSubscriber', $query, [
-            'subscriber' => $subscriber,
-            'url' => $activation_url
-        ]);
-    }
+    return $this->call_single('createSubscriber', $query, [
+      'subscriber' => $subscriber,
+      'url' => $activation_url
+    ]);
+  }
 
-    public function subscriberAgreements($filter = [], $with_content = false)
-    {
-        $query = 'query subscriberAgreements($filter: SubscriberAgreementsFilter, $withContent: Boolean!) {
+  public function subscriberAgreements($filter = [], $with_content = false)
+  {
+    $query = 'query subscriberAgreements($filter: SubscriberAgreementsFilter, $withContent: Boolean!) {
                     subscriberAgreements(filter: $filter) {
                       ID
                       title
@@ -203,12 +203,12 @@ class SchemaInternal extends Graphql
                       }
                     }
                   }';
-        return $this->call_single('subscriberAgreements', $query, ['filter' => $filter, 'withContent' => $with_content]);
-    }
+    return $this->call_single('subscriberAgreements', $query, ['filter' => $filter, 'withContent' => $with_content]);
+  }
 
-    public function subscriptionLevels()
-    {
-        $query = 'query {
+  public function subscriptionLevels()
+  {
+    $query = 'query {
                   subscriptionLevels {
                     title
                     priceNet
@@ -223,6 +223,6 @@ class SchemaInternal extends Graphql
                     }
                   }
                 }';
-        return $this->call_single('subscriptionLevels', $query);
-    }
+    return $this->call_single('subscriptionLevels', $query);
+  }
 }

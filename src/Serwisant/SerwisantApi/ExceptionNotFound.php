@@ -2,6 +2,7 @@
 
 namespace Serwisant\SerwisantApi;
 
-class ExceptionNotFound extends Exception {
+class ExceptionNotFound extends Exception
+{
 
 }

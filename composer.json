@@ -15,8 +15,8 @@
     }
   ],
   "autoload": {
-    "psr-0" : {
-      "Serwisant\\SerwisantApi" : "src"
+    "psr-0": {
+      "Serwisant\\SerwisantApi": "src"
     }
   }
 }
