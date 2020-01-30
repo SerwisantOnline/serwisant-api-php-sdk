@@ -48,7 +48,7 @@ class AccessTokenOauthOnion implements AccessToken
   private function access_token_inner()
   {
     if ($this->access_token_inner === null) {
-      $internal_schema = new \Serwisant\SerwisantApi\SchemaInternal($this->access_token_outer, $this->api_url);
+      $internal_schema = new SchemaInternal($this->access_token_outer, $this->api_url);
       $token = $internal_schema->token($this->secret_token);
 
       $this->access_token_inner = new AccessTokenOauth(
