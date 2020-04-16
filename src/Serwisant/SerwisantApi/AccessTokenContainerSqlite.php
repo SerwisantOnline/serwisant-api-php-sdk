@@ -11,6 +11,11 @@ class AccessTokenContainerSqlite implements AccessTokenContainer
   private $access_token;
   private $expiry_timestamp;
 
+  /**
+   * @param $db_name
+   * @param string $namespace
+   * @throws Exception
+   */
   public function __construct($db_name, $namespace = 'default')
   {
     $dir = dirname($db_name);

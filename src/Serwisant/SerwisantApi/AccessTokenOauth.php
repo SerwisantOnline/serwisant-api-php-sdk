@@ -2,6 +2,8 @@
 
 namespace Serwisant\SerwisantApi;
 
+use GuzzleHttp\Client;
+
 class AccessTokenOauth implements AccessToken
 {
   const URL = 'https://serwisant.online/oauth/token';
@@ -14,10 +16,17 @@ class AccessTokenOauth implements AccessToken
 
   private $access_token;
 
+  /**
+   * @param string $client_id
+   * @param string $client_secret
+   * @param string $scope
+   * @param AccessTokenContainer|null $container
+   * @param string $url
+   */
   public function __construct($client_id, $client_secret, $scope = '', AccessTokenContainer $container = null, $url = null)
   {
     if (is_null($url)) {
-      $this->url = URL;
+      $this->url = self::URL;
     } else {
       $this->url = $url;
     }
@@ -27,6 +36,10 @@ class AccessTokenOauth implements AccessToken
     $this->container = $container;
   }
 
+  /**
+   * @return string
+   * @throws Exception
+   */
   public function get()
   {
     if ($this->access_token === null) {
@@ -35,6 +48,9 @@ class AccessTokenOauth implements AccessToken
     return $this->access_token;
   }
 
+  /**
+   * @throws Exception
+   */
   private function fetch()
   {
     if ($this->container instanceof AccessTokenContainer && $this->container->get_expiry_timestamp() > time()) {
@@ -46,6 +62,9 @@ class AccessTokenOauth implements AccessToken
     }
   }
 
+  /**
+   * @throws Exception
+   */
   public function refresh()
   {
     $token_data = $this->fetch_http();
@@ -58,6 +77,10 @@ class AccessTokenOauth implements AccessToken
     }
   }
 
+  /**
+   * @return array
+   * @throws Exception
+   */
   private function fetch_http()
   {
     $params = [
@@ -73,16 +96,18 @@ class AccessTokenOauth implements AccessToken
       'form_params' => $params
     ];
 
-    $client = new \GuzzleHttp\Client();
+    $client = new Client();
 
     $res = $client->request('POST', $this->url, $client_params);
     $code = $res->getStatusCode();
 
     if ($code === 200) {
-      $data = json_decode($res->getBody()->getContents(), true);
+      $contents = $res->getBody()->getContents();
+      $data = json_decode($contents, true);
+
       return [
         'access_token' => $data['access_token'],
-        'expiry' => ($data['created_at'] + $data['expires_in'])
+        'expiry' => ($data['ts'] + $data['expires_in'])
       ];
     } else {
       throw new Exception("Unable to fetch an access token, HTTP code was '{$code}'");

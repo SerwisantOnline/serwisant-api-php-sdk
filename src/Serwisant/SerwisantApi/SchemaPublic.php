@@ -66,15 +66,20 @@ query repairByToken($token: String!) {
       daysFromStart
       finishDateEstimated
       timeStatus
+      isDiagnosed
+      isFinished
+      isCanceledOrRejected
+      isSummedUp
+      isConfirmed
     }
     costs {
       proposedNet
       proposedGross
       estimatedNet
       estimatedGross
-      confirmed
       finalNet
       finalGross
+      payment
     }
     diagnosis {
       publicRemarks
@@ -101,6 +106,18 @@ query repairByToken($token: String!) {
   }
 }
 QUERY;
-    return $this->call_single('repairByToken', $query, ['token' => $token]);
+    return $this->callSingle('repairByToken', $query, ['token' => $token]);
+  }
+
+  function configByToken($token)
+  {
+    $query = <<<'QUERY'
+query configByToken($token: String!) {
+  configByToken(token: $token) {
+    showOrderProgressInfo
+  }
+}
+QUERY;
+    return $this->callSingle('configByToken', $query, ['token' => $token]);
   }
 }

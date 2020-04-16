@@ -40,7 +40,7 @@ class Graphql
     return $this;
   }
 
-  protected function call_single($root_field, $query, $variables = null)
+  protected function callSingle($root_field, $query, $variables = null)
   {
     $result = $this->call($query, $variables);
 
@@ -53,7 +53,7 @@ class Graphql
 
   protected function call($query, $variables = null, $is_retry = false)
   {
-    $res = $this->client->request('POST', $this->url, $this->client_options($query, $variables));
+    $res = $this->client->request('POST', $this->url, $this->clientOptions($query, $variables));
     $code = $res->getStatusCode();
 
     if ($code === 200) {
@@ -89,7 +89,7 @@ class Graphql
     }
   }
 
-  private function client_options($query, $variables = null)
+  private function clientOptions($query, $variables = null)
   {
     $headers = [
       'Authorization' => 'Bearer ' . $this->access_token->get()
@@ -103,7 +103,7 @@ class Graphql
     }
 
     $params = [
-      'query' => $this->query_format($query),
+      'query' => $this->queryFormat($query),
       'variables' => ($variables !== null ? json_encode($variables) : null),
       'operationName' => null
     ];
@@ -117,7 +117,7 @@ class Graphql
     ];
   }
 
-  private function query_format($query)
+  private function queryFormat($query)
   {
     return preg_replace('/\s+/', ' ', $query);
   }

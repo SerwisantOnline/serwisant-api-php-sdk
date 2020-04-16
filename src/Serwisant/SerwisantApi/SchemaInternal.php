@@ -18,7 +18,7 @@ query credentialsCookie($cookie: String) {
   }
 }
 QUERY;
-    return $this->call_single('credentialsCookie', $query, ['cookie' => $cookie]);
+    return $this->callSingle('credentialsCookie', $query, ['cookie' => $cookie]);
   }
 
   public function createDemoAccess($email)
@@ -34,7 +34,7 @@ mutation CreateDemoAccess($email: String!) {
   }
 }
 QUERY;
-    return $this->call_single('createDemoAccess', $query, ['email' => $email]);
+    return $this->callSingle('createDemoAccess', $query, ['email' => $email]);
   }
 
   public function createContactMessage($message)
@@ -50,7 +50,7 @@ mutation CreateContactMessage($message: ContactMessage!) {
   }
 }
 QUERY;
-    return $this->call_single('createContactMessage', $query, ['message' => $message]);
+    return $this->callSingle('createContactMessage', $query, ['message' => $message]);
   }
 
   public function activateSubscriber($token, $partner_cookie = null)
@@ -70,7 +70,7 @@ mutation ActivateSubscriber($token: String!, $partner_cookie: String) {
   }
 }
 QUERY;
-    return $this->call_single('activateSubscriber', $query, [
+    return $this->callSingle('activateSubscriber', $query, [
       'token' => $token,
       'partner_cookie' => $partner_cookie
     ]);
@@ -94,7 +94,7 @@ mutation CreateSubscriber($subscriber: SubscriberInput!, $url: String!) {
   }
 }
 QUERY;
-    return $this->call_single('createSubscriber', $query, [
+    return $this->callSingle('createSubscriber', $query, [
       'subscriber' => $subscriber,
       'url' => $activation_url
     ]);
@@ -122,7 +122,7 @@ query subscriberAgreements($filter: SubscriberAgreementsFilter, $withContent: Bo
   }
 }
 QUERY;
-    return $this->call_single('subscriberAgreements', $query, ['filter' => $filter, 'withContent' => $with_content]);
+    return $this->callSingle('subscriberAgreements', $query, ['filter' => $filter, 'withContent' => $with_content]);
   }
 
   public function subscriptionLevels()
@@ -144,7 +144,7 @@ query {
   }
 }
 QUERY;
-    return $this->call_single('subscriptionLevels', $query);
+    return $this->callSingle('subscriptionLevels', $query);
   }
 
   public function token($token)
@@ -159,6 +159,6 @@ query SecretToken($token: String!) {
   }
 }
 QUERY;
-    return $this->call_single('secretToken', $query, ['token' => $token]);
+    return $this->callSingle('secretToken', $query, ['token' => $token]);
   }
 }
