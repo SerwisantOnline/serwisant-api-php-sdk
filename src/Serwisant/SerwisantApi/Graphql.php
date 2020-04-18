@@ -2,30 +2,20 @@
 
 namespace Serwisant\SerwisantApi;
 
+use GuzzleHttp\Client;
+
 class Graphql
 {
-  const URL = 'https://serwisant-online.pl/graphql';
-
   private $url;
   private $access_token;
   private $client;
   private $ip;
   private $lang;
 
-  public function __construct(AccessToken $access_token, $url = null)
+  public function __construct(AccessToken $access_token = null)
   {
-    if (!$url) {
-      $this->url = URL . '/' . $this->schemaPath();
-    } else {
-      $this->url = $url . '/' . $this->schemaPath();
-    }
     $this->access_token = $access_token;
-    $this->client = new \GuzzleHttp\Client();
-  }
-
-  protected function schemaPath()
-  {
-    throw new Exception('Schema must define own path');
+    $this->client = new Client();
   }
 
   public function setIp($ip)
@@ -40,32 +30,31 @@ class Graphql
     return $this;
   }
 
-  protected function callSingle($root_field, $query, $variables = null)
+  /**
+   * @param $url
+   * @param $query
+   * @param $variables
+   * @param array $options
+   * @param bool $is_retry
+   * @return array
+   * @throws Exception
+   * @throws ExceptionNotFound
+   */
+  public function call($url, $query, $variables, array $options = [], $is_retry = false)
   {
-    $result = $this->call($query, $variables);
-
-    if ($result) {
-      $result = $result[$root_field];
-    }
-
-    return $result;
-  }
-
-  protected function call($query, $variables = null, $is_retry = false)
-  {
-    $res = $this->client->request('POST', $this->url, $this->clientOptions($query, $variables));
+    $res = $this->client->request('POST', $url, $this->clientOptions($query, $variables));
     $code = $res->getStatusCode();
 
     if ($code === 200) {
       $result = json_decode($res->getBody()->getContents(), true);
       if (array_key_exists('errors', $result)) {
-        return $this->handleErrors($result['errors']);
+        $this->handleErrors($result['errors']);
       } else {
         return $result['data'];
       }
     } elseif ($code === 401 && $is_retry === false) {
       $this->access_token->refresh();
-      return $this->call($query, $variables, true);
+      return $this->call($url, $query, $variables, $options, true);
     } else {
       throw new Exception("Unable to execute a query or mutation, HTTP code was '{$code}'");
     }
@@ -91,9 +80,11 @@ class Graphql
 
   private function clientOptions($query, $variables = null)
   {
-    $headers = [
-      'Authorization' => 'Bearer ' . $this->access_token->get()
-    ];
+    $headers = [];
+
+    if ($this->access_token) {
+      $headers['Authorization'] = 'Bearer ' . $this->access_token->get();
+    }
 
     if (trim((string)$this->ip) !== '') {
       $headers['X-Real-IP'] = $this->ip;

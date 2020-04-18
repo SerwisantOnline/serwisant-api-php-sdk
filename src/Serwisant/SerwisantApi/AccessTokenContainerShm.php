@@ -25,23 +25,23 @@ class AccessTokenContainerShm implements AccessTokenContainer
     }
   }
 
-  public function get_access_token()
+  public function getAccessToken()
   {
     if ($this->access_token === null) {
-      $this->fetch_shm();
+      $this->fetchShm();
     }
     return $this->access_token;
   }
 
-  public function get_expiry_timestamp()
+  public function getExpiryTimestamp()
   {
     if ($this->expiry_timestamp === null) {
-      $this->fetch_shm();
+      $this->fetchShm();
     }
     return (int)$this->expiry_timestamp;
   }
 
-  private function fetch_shm()
+  private function fetchShm()
   {
     $shm_id = @shmop_open($this->shm_key, 'a', 0, 0);
 

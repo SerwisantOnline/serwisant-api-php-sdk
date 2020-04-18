@@ -2,11 +2,16 @@
 
 namespace Serwisant\SerwisantApi;
 
-class SchemaInternal extends Graphql
+class SchemaInternal extends GraphqlRequest
 {
   protected function schemaPath()
   {
     return 'internal';
+  }
+
+  protected function schemaNamespace()
+  {
+    return 'SchemaInternal';
   }
 
   public function credentialsCookie($cookie)
@@ -18,7 +23,7 @@ query credentialsCookie($cookie: String) {
   }
 }
 QUERY;
-    return $this->callSingle('credentialsCookie', $query, ['cookie' => $cookie]);
+    return $this->call($query, ['cookie' => $cookie]);
   }
 
   public function createDemoAccess($email)
@@ -34,7 +39,7 @@ mutation CreateDemoAccess($email: String!) {
   }
 }
 QUERY;
-    return $this->callSingle('createDemoAccess', $query, ['email' => $email]);
+    return $this->call($query, ['email' => $email]);
   }
 
   public function createContactMessage($message)
@@ -50,7 +55,7 @@ mutation CreateContactMessage($message: ContactMessage!) {
   }
 }
 QUERY;
-    return $this->callSingle('createContactMessage', $query, ['message' => $message]);
+    return $this->call($query, ['message' => $message]);
   }
 
   public function activateSubscriber($token, $partner_cookie = null)
@@ -70,7 +75,7 @@ mutation ActivateSubscriber($token: String!, $partner_cookie: String) {
   }
 }
 QUERY;
-    return $this->callSingle('activateSubscriber', $query, [
+    return $this->call($query, [
       'token' => $token,
       'partner_cookie' => $partner_cookie
     ]);
@@ -94,7 +99,7 @@ mutation CreateSubscriber($subscriber: SubscriberInput!, $url: String!) {
   }
 }
 QUERY;
-    return $this->callSingle('createSubscriber', $query, [
+    return $this->call($query, [
       'subscriber' => $subscriber,
       'url' => $activation_url
     ]);
@@ -122,7 +127,7 @@ query subscriberAgreements($filter: SubscriberAgreementsFilter, $withContent: Bo
   }
 }
 QUERY;
-    return $this->callSingle('subscriberAgreements', $query, ['filter' => $filter, 'withContent' => $with_content]);
+    return $this->call($query, ['filter' => $filter, 'withContent' => $with_content]);
   }
 
   public function subscriptionLevels()
@@ -144,21 +149,6 @@ query {
   }
 }
 QUERY;
-    return $this->callSingle('subscriptionLevels', $query);
-  }
-
-  public function token($token)
-  {
-    $query = <<<'QUERY'
-query SecretToken($token: String!) {
-  secretToken(token: $token) {
-    subjectType
-    oauthClientId
-    oauthClientSecret
-    oauthScopes
-  }
-}
-QUERY;
-    return $this->callSingle('secretToken', $query, ['token' => $token]);
+    return $this->call($query);
   }
 }

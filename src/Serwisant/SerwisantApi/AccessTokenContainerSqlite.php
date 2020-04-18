@@ -43,23 +43,23 @@ class AccessTokenContainerSqlite implements AccessTokenContainer
     $stmt->execute();
   }
 
-  public function get_access_token()
+  public function getAccessToken()
   {
     if ($this->access_token === null) {
-      $this->fetch_sqlite();
+      $this->fetchSqlite();
     }
     return $this->access_token;
   }
 
-  public function get_expiry_timestamp()
+  public function getExpiryTimestamp()
   {
     if ($this->expiry_timestamp === null) {
-      $this->fetch_sqlite();
+      $this->fetchSqlite();
     }
     return (int)$this->expiry_timestamp;
   }
 
-  private function fetch_sqlite()
+  private function fetchSqlite()
   {
     $stmt = $this->db->prepare('SELECT token, expiry FROM access_token WHERE namespace = :namespace LIMIT 1');
     $stmt->bindParam(':namespace', $this->namespace);

@@ -53,8 +53,8 @@ class AccessTokenOauth implements AccessToken
    */
   private function fetch()
   {
-    if ($this->container instanceof AccessTokenContainer && $this->container->get_expiry_timestamp() > time()) {
-      $this->access_token = $this->container->get_access_token();
+    if ($this->container instanceof AccessTokenContainer && $this->container->getExpiryTimestamp() > time()) {
+      $this->access_token = $this->container->getAccessToken();
     }
 
     if ($this->access_token === null) {
