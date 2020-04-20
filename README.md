@@ -14,7 +14,7 @@ use Serwisant\SerwisantApi;
 /* get own client and secret by creating an application via webpage */
 $access_token = new SerwisantApi\AccessTokenOauth('client', 'secret', 'public');
 
-$api = new SerwisantApi\Api($client);
+$api = new SerwisantApi\Api();
 $api->setAccessToken($access_token);
 
 /* please note __typename at each type - it's required for proper typecast */
@@ -30,7 +30,7 @@ $query = 'query($token: String!) {
 }';
 
 /* @var SerwisantApi\Types\SchemaPublic\Repair $repair */
-$repair = $api->preparePublic()->set($query, ['token' => 'abc-def'])->execute()->fetch();
+$repair = $api->publicQuery()->newRequest()->set($query, ['token' => 'abc-def'])->execute()->fetch();
  
 echo $repair->displayName;
 echo $repair->status->displayName;
