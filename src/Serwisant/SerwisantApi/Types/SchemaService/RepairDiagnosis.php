@@ -2,9 +2,10 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class RepairDiagnosis extends Types\Obj
+class RepairDiagnosis extends Types\Type
 {
   /**
    * @var string
@@ -16,4 +17,8 @@ class RepairDiagnosis extends Types\Obj
   */
   public $publicRemarks;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

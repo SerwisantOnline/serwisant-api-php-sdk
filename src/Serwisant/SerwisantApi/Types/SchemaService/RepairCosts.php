@@ -2,9 +2,10 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class RepairCosts extends Types\Obj
+class RepairCosts extends Types\Type
 {
   /**
    * @var float
@@ -47,4 +48,8 @@ no price given durring diagnosis or sepatate offers for this repair exists - see
   */
   public $proposedNet;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

@@ -2,6 +2,7 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
 class RepairsFilterType extends Types\Enum
@@ -36,4 +37,8 @@ class RepairsFilterType extends Types\Enum
   */
   const SEARCH = 'SEARCH';
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

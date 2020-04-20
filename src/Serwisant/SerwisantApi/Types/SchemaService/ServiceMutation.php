@@ -2,31 +2,61 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class ServiceMutation extends Types\Obj
+class ServiceMutation extends Types\RootType
 {
   /**
-   * @var CustomerCreationResult
    * Create a new customer account
-  */
-  public $createCustomer;
+   * @param CustomerInput $customer
+   * @param CustomerAgreementInput[] $agreements
+   * @param AddressInput[] $addresses
+   * @param FileInput[] $files
+   * @return CustomerCreationResult
+   */
+  public function createCustomer(CustomerInput $customer, array $agreements, array $addresses, array $files)
+  {
+     return $this->inputArgs('createCustomer', ['customer' => $customer, 'agreements' => $agreements, 'addresses' => $addresses, 'files' => $files]);
+  }
 
   /**
-   * @var FileCreationResult
-  */
-  public $createFile;
+   * @param string $subject
+   * @param FileSubjectType $subjectType
+   * @param FileInput $file
+   * @return FileCreationResult
+   */
+  public function createFile(string $subject, FileSubjectType $subjectType, FileInput $file)
+  {
+     return $this->inputArgs('createFile', ['subject' => $subject, 'subjectType' => $subjectType, 'file' => $file]);
+  }
 
   /**
-   * @var RepairCreationResult
    * Create a repair order with some of dependencies
-  */
-  public $createRepair;
+   * @param string $customer
+   * @param RepairInput $repair
+   * @param RepairItemInput[] $additionalItems
+   * @param FileInput[] $files
+   * @return RepairCreationResult
+   */
+  public function createRepair(string $customer, RepairInput $repair, array $additionalItems, array $files)
+  {
+     return $this->inputArgs('createRepair', ['customer' => $customer, 'repair' => $repair, 'additionalItems' => $additionalItems, 'files' => $files]);
+  }
 
   /**
-   * @var RepairStatusUpdateResult
    * Update repair status. Before update check valid statuses in Repair.status.nextPossibleStatus
-  */
-  public $updateRepairStatus;
+   * @param string $repair
+   * @param RepairState $status
+   * @return RepairStatusUpdateResult
+   */
+  public function updateRepairStatus(string $repair, RepairState $status)
+  {
+     return $this->inputArgs('updateRepairStatus', ['repair' => $repair, 'status' => $status]);
+  }
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

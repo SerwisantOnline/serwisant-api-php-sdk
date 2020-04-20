@@ -2,6 +2,7 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
 class RepairTransportType extends Types\Enum
@@ -21,4 +22,8 @@ class RepairTransportType extends Types\Enum
   */
   const INTERNAL = 'INTERNAL';
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaPublic';
+  }
 }

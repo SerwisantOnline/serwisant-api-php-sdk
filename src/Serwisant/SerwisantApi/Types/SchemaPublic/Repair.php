@@ -2,9 +2,10 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Repair extends Types\Obj
+class Repair extends Types\Type
 {
   /**
    * @var float
@@ -123,4 +124,8 @@ class Repair extends Types\Obj
   */
   public $warrantyPurchaseDocument;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaPublic';
+  }
 }

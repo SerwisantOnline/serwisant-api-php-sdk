@@ -2,9 +2,10 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Subscriber extends Types\Obj
+class Subscriber extends Types\Type
 {
   /**
    * @var string
@@ -31,4 +32,8 @@ class Subscriber extends Types\Obj
   */
   public $number;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

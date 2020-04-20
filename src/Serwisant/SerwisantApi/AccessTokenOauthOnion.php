@@ -2,39 +2,40 @@
 
 namespace Serwisant\SerwisantApi;
 
+use Serwisant\SerwisantApi\Types\SchemaInternal;
+
 class AccessTokenOauthOnion implements AccessToken
 {
+  private $internal_access_token;
   private $service_or_object_token;
-  private $container_inner;
+  private $service_container;
   private $oauth_url;
   private $api_url;
 
-  private $access_token_outer;
-  private $access_token_inner;
-  private $service_or_object_token_subject;
+  private $service_access_token;
+  private $secret_token;
 
   /**
    * @param string $service_or_object_token
-   * @param string $client_id_outer
-   * @param string $client_secret_outer
-   * @param string $scope_outer
-   * @param AccessTokenContainer|null $container_outer
-   * @param AccessTokenContainer|null $container_inner
+   * @param string $internal_client_id
+   * @param string $internal_secret
+   * @param string $internal_scope
+   * @param AccessTokenContainer|null $internal_container
+   * @param AccessTokenContainer|null $service_container
    * @param string $oauth_url
    * @param string $api_url
    */
-  public function __construct($service_or_object_token, $client_id_outer, $client_secret_outer, $scope_outer, AccessTokenContainer $container_outer = null, AccessTokenContainer $container_inner = null, $oauth_url = null, $api_url = null)
+  public function __construct($service_or_object_token, $internal_client_id, $internal_secret, $internal_scope, AccessTokenContainer $internal_container = null, AccessTokenContainer $service_container = null, $oauth_url = null, $api_url = null)
   {
-    $this->access_token_outer = new AccessTokenOauth(
-      $client_id_outer,
-      $client_secret_outer,
-      $scope_outer,
-      $container_outer,
+    $this->internal_access_token = new AccessTokenOauth(
+      $internal_client_id,
+      $internal_secret,
+      $internal_scope,
+      $internal_container,
       $oauth_url);
 
     $this->service_or_object_token = $service_or_object_token;
-    $this->container_inner = $container_inner;
-
+    $this->service_container = $service_container;
     $this->oauth_url = $oauth_url;
     $this->api_url = $api_url;
   }
@@ -42,72 +43,71 @@ class AccessTokenOauthOnion implements AccessToken
   /**
    * @return string
    * @throws Exception
+   * @throws ExceptionNotFound
+   * @throws Types\Exception
    */
   public function get()
   {
-    return $this->accessTokenInner()->get();
+    return $this->serviceAccessToken()->get();
   }
 
   /**
    * @throws Exception
+   * @throws ExceptionNotFound
+   * @throws Types\Exception
    */
   public function refresh()
   {
-    $this->accessTokenOuter()->refresh();
-    $this->accessTokenInner()->refresh();
+    $this->internalAccessToken()->refresh();
+    $this->serviceAccessToken()->refresh();
   }
 
   /**
-   * @return string
+   * @return Types\SchemaInternal\SecretToken
    * @throws Exception
+   * @throws ExceptionNotFound
+   * @throws Types\Exception
    */
-  public function subject()
+  public function secretToken()
   {
     $this->get();
-    return $this->service_or_object_token_subject;
+    return $this->secret_token;
   }
 
   /**
    * @return AccessTokenOauth
    */
-  private function accessTokenOuter()
+  private function internalAccessToken()
   {
-    return $this->access_token_outer;
+    return $this->internal_access_token;
   }
 
   /**
    * @return AccessTokenOauth
    */
-  private function accessTokenInner()
+  private function serviceAccessToken()
   {
-    if ($this->access_token_inner === null) {
-      $token = $this->lookupToken();
-      $this->service_or_object_token_subject = $token['subjectType'];
-      $this->access_token_inner = new AccessTokenOauth(
-        $token['oauthClientId'],
-        $token['oauthClientSecret'],
-        $token['oauthScopes'],
-        $this->container_inner,
+    if ($this->service_access_token === null) {
+      $this->secret_token = $this->getSecretTokenUsingOuterAccessToken();
+
+      $this->service_access_token = new AccessTokenOauth(
+        $this->secret_token->oauthClientId,
+        $this->secret_token->oauthClientSecret,
+        $this->secret_token->oauthScopes,
+        $this->service_container,
         $this->oauth_url
       );
     }
-    return $this->access_token_inner;
+    return $this->service_access_token;
   }
 
-  private function lookupToken()
+  /**
+   * @return SchemaInternal\SecretToken
+   */
+  private function getSecretTokenUsingOuterAccessToken()
   {
-    $query = <<<'QUERY'
-query SecretToken($token: String!) {
-  secretToken(token: $token) {
-    subjectType
-    oauthClientId
-    oauthClientSecret
-    oauthScopes
-  }
-}
-QUERY;
-    $client = new Graphql($this->accessTokenOuter());
-    $result = $client->call("{$this->api_url}/internal", $query, ['token' => $this->service_or_object_token]);
-    return $result['secretToken'];
+    $client = new GraphqlClient($this->internalAccessToken());
+    $query = new SchemaInternal\InternalQuery($client, $this->api_url);
+    return $query->secretToken($this->service_or_object_token);
   }
 }

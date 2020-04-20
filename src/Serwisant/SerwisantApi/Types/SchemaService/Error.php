@@ -2,9 +2,10 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Error extends Types\Obj
+class Error extends Types\Type
 {
   /**
    * @var string
@@ -21,4 +22,8 @@ class Error extends Types\Obj
   */
   public $message;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

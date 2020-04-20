@@ -2,12 +2,13 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class RepairOffer extends Types\Obj
+class RepairOffer extends Types\Type
 {
   /**
-   * @var HashID
+   * @var string
   */
   public $ID;
 
@@ -47,4 +48,8 @@ class RepairOffer extends Types\Obj
   */
   public $title;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaPublic';
+  }
 }

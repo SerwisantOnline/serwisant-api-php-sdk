@@ -2,9 +2,10 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaInternal;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class SecretToken extends Types\Obj
+class SecretToken extends Types\Type
 {
   /**
    * @var string
@@ -26,4 +27,8 @@ class SecretToken extends Types\Obj
   */
   public $subjectType;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaInternal';
+  }
 }

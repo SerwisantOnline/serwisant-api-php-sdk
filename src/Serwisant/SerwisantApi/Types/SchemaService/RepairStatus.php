@@ -2,26 +2,42 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class RepairStatus extends Types\Obj
+class RepairStatus extends Types\Type
 {
+  /**
+   * @var bool
+  */
+  public $canceledOrRejected;
+
+  /**
+   * @var bool
+  */
+  public $confirmed;
+
   /**
    * @var DateTime
   */
   public $createdAt;
 
   /**
-   * @var Int
+   * @var int
    * Business days passed from startedAt date
   */
   public $daysFromStart;
 
   /**
-   * @var Int
+   * @var int
    * Business days to end of repair
   */
   public $daysToEnd;
+
+  /**
+   * @var bool
+  */
+  public $diagnosed;
 
   /**
    * @var string
@@ -35,33 +51,8 @@ class RepairStatus extends Types\Obj
 
   /**
    * @var bool
-   * if true repair was unsuccessful
   */
-  public $isCanceledOrRejected;
-
-  /**
-   * @var bool
-   * true means repair costs from diagnosis was at some point confirmed by customer
-  */
-  public $isConfirmed;
-
-  /**
-   * @var bool
-   * true says repair has a diagnosis and service marked diagnosis as complete
-  */
-  public $isDiagnosed;
-
-  /**
-   * @var bool
-   * true says repair is finished and can be collected or will be/was passed to remote delivery
-  */
-  public $isFinished;
-
-  /**
-   * @var bool
-   * true means repair has a summary with public description and a final price
-  */
-  public $isSummedUp;
+  public $finished;
 
   /**
    * @var RepairState[]
@@ -77,6 +68,11 @@ List depends on current status and strategy settings.
   public $progress;
 
   /**
+   * @var bool
+  */
+  public $requireCustomerAccept;
+
+  /**
    * @var string
    * Date when repair was started, for repair delivered by parcel this will differ from createdAt
   */
@@ -88,8 +84,17 @@ List depends on current status and strategy settings.
   public $status;
 
   /**
+   * @var bool
+  */
+  public $summedUp;
+
+  /**
    * @var OrderTimeStatus
   */
   public $timeStatus;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

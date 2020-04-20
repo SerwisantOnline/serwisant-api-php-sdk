@@ -2,6 +2,7 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
 class RepairState extends Types\Enum
@@ -74,4 +75,8 @@ class RepairState extends Types\Enum
   */
   const SCRAPPED = 'SCRAPPED';
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaPublic';
+  }
 }

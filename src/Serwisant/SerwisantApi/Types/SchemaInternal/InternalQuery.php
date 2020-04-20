@@ -2,31 +2,51 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaInternal;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class InternalQuery extends Types\Obj
+class InternalQuery extends Types\RootType
 {
   /**
-   * @var CredentialsCookie
    * Return information related to user\'s credential cookie
-  */
-  public $credentialsCookie;
+   * @param string $cookie
+   * @return CredentialsCookie
+   */
+  public function credentialsCookie(string $cookie = null)
+  {
+     return $this->inputArgs('credentialsCookie', ['cookie' => $cookie]);
+  }
 
   /**
-   * @var SecretToken
-  */
-  public $secretToken;
+   * @param string $token
+   * @return SecretToken
+   */
+  public function secretToken(string $token)
+  {
+     return $this->inputArgs('secretToken', ['token' => $token]);
+  }
 
   /**
-   * @var SubscriberAgreement[]
    * Agreements to accept when creating a new account
-  */
-  public $subscriberAgreements;
+   * @param SubscriberAgreementsFilter $filter
+   * @return SubscriberAgreement[]
+   */
+  public function subscriberAgreements(SubscriberAgreementsFilter $filter = null)
+  {
+     return $this->inputArgs('subscriberAgreements', ['filter' => $filter]);
+  }
 
   /**
-   * @var SubscriptionLevel[]
    * Subscription levels available for sale
-  */
-  public $subscriptionLevels;
+   * @return SubscriptionLevel[]
+   */
+  public function subscriptionLevels()
+  {
+     return $this->inputArgs('subscriptionLevels', []);
+  }
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaInternal';
+  }
 }

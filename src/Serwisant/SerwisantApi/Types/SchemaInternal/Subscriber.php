@@ -2,12 +2,13 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaInternal;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Subscriber extends Types\Obj
+class Subscriber extends Types\Type
 {
   /**
-   * @var Int
+   * @var int
   */
   public $ID;
 
@@ -36,4 +37,8 @@ class Subscriber extends Types\Obj
   */
   public $number;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaInternal';
+  }
 }

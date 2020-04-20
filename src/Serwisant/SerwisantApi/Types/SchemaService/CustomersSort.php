@@ -2,6 +2,7 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
 class CustomersSort extends Types\Enum
@@ -22,4 +23,8 @@ class CustomersSort extends Types\Enum
   */
   const EMAIL = 'EMAIL';
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

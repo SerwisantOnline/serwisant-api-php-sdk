@@ -2,12 +2,13 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Customer extends Types\Obj
+class Customer extends Types\Type
 {
   /**
-   * @var HashID
+   * @var string
   */
   public $ID;
 
@@ -93,4 +94,8 @@ class Customer extends Types\Obj
   */
   public $type;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

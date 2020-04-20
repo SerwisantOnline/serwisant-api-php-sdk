@@ -2,6 +2,7 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
 class DictionaryType extends Types\Enum
@@ -26,4 +27,8 @@ class DictionaryType extends Types\Enum
   */
   const CUSTOMER_GROUP = 'CUSTOMER_GROUP';
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

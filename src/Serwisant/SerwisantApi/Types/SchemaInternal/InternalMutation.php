@@ -2,32 +2,55 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaInternal;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class InternalMutation extends Types\Obj
+class InternalMutation extends Types\RootType
 {
   /**
-   * @var SubscriberActivationResult
    * Activate new account
-  */
-  public $activateSubscriber;
+   * @param string $activationToken
+   * @param string $salesPartnerCookie
+   * @return SubscriberActivationResult
+   */
+  public function activateSubscriber(string $activationToken, string $salesPartnerCookie = null)
+  {
+     return $this->inputArgs('activateSubscriber', ['activationToken' => $activationToken, 'salesPartnerCookie' => $salesPartnerCookie]);
+  }
 
   /**
-   * @var ContactMessageResult
    * Submit a contact message
-  */
-  public $createContactMessage;
+   * @param ContactMessage $message
+   * @return ContactMessageResult
+   */
+  public function createContactMessage(ContactMessage $message)
+  {
+     return $this->inputArgs('createContactMessage', ['message' => $message]);
+  }
 
   /**
-   * @var DemoAccessResult
    * Create access to demo version
-  */
-  public $createDemoAccess;
+   * @param string $email
+   * @return DemoAccessResult
+   */
+  public function createDemoAccess(string $email)
+  {
+     return $this->inputArgs('createDemoAccess', ['email' => $email]);
+  }
 
   /**
-   * @var SubscriberCreationResult
    * Sign-up for a new account
-  */
-  public $createSubscriber;
+   * @param SubscriberInput $subscriber
+   * @param string $activationUrl
+   * @return SubscriberCreationResult
+   */
+  public function createSubscriber(SubscriberInput $subscriber, string $activationUrl)
+  {
+     return $this->inputArgs('createSubscriber', ['subscriber' => $subscriber, 'activationUrl' => $activationUrl]);
+  }
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaInternal';
+  }
 }

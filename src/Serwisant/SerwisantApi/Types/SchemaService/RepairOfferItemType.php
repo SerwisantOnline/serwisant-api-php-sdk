@@ -2,6 +2,7 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
 class RepairOfferItemType extends Types\Enum
@@ -16,4 +17,8 @@ class RepairOfferItemType extends Types\Enum
   */
   const DIAGNOSIS = 'DIAGNOSIS';
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

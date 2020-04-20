@@ -2,9 +2,10 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class AcceptOrRejectRepairResult extends Types\Obj
+class AcceptOrRejectRepairResult extends Types\Type
 {
   /**
    * @var Error[]
@@ -15,4 +16,8 @@ class AcceptOrRejectRepairResult extends Types\Obj
   */
   public $success;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaPublic';
+  }
 }

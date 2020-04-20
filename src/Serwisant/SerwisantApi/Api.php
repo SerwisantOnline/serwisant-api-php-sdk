@@ -61,13 +61,14 @@ class Api
     return $this;
   }
 
-  /**
-   * @return SchemaPublic
-   * @throws Exception
-   */
-  public function preparePublic()
+  public function publicMutation()
   {
-    return new SchemaPublic($this->client(), $this->url, $this->load_paths);
+    return new Types\SchemaPublic\PublicMutation($this->client(), $this->url, $this->load_paths);
+  }
+
+  public function publicQuery()
+  {
+    return new Types\SchemaPublic\PublicQuery($this->client(), $this->url, $this->load_paths);
   }
 
   /**
@@ -83,13 +84,13 @@ class Api
   }
 
   /**
-   * @return Graphql
+   * @return GraphqlClient
    * @throws Exception
    */
   private function client()
   {
     if (!$this->client) {
-      $this->client = new Graphql($this->accessToken());
+      $this->client = new GraphqlClient($this->accessToken());
     }
     $this->client->setIp($this->ip)->setLang($this->lang);
     return $this->client;

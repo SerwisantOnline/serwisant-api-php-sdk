@@ -2,12 +2,13 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class CustomField extends Types\Obj
+class CustomField extends Types\Type
 {
   /**
-   * @var HashID
+   * @var string
   */
   public $ID;
 
@@ -45,4 +46,8 @@ class CustomField extends Types\Obj
   */
   public $type;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

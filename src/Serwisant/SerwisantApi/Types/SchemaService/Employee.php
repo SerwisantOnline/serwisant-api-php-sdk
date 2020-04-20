@@ -2,9 +2,10 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Employee extends Types\Obj
+class Employee extends Types\Type
 {
   /**
    * @var string
@@ -16,4 +17,8 @@ class Employee extends Types\Obj
   */
   public $subscriber;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

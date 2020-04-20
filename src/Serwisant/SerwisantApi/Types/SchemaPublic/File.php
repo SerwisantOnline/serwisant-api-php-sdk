@@ -2,9 +2,10 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class File extends Types\Obj
+class File extends Types\Type
 {
   /**
    * @var string
@@ -21,4 +22,8 @@ class File extends Types\Obj
   */
   public $url;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaPublic';
+  }
 }

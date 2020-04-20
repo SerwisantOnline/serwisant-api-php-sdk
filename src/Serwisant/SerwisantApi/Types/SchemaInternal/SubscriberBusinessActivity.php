@@ -2,6 +2,7 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaInternal;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
 class SubscriberBusinessActivity extends Types\Enum
@@ -26,4 +27,8 @@ class SubscriberBusinessActivity extends Types\Enum
   */
   const HOUSEHOLD_EQUIPMENT = 'HOUSEHOLD_EQUIPMENT';
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaInternal';
+  }
 }

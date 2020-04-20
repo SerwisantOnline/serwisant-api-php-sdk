@@ -2,9 +2,10 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaInternal;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class SubscriberActivationResult extends Types\Obj
+class SubscriberActivationResult extends Types\Type
 {
   /**
    * @var Error[]
@@ -15,4 +16,8 @@ class SubscriberActivationResult extends Types\Obj
   */
   public $subscriber;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaInternal';
+  }
 }

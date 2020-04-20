@@ -2,9 +2,10 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Address extends Types\Obj
+class Address extends Types\Type
 {
   /**
    * @var string
@@ -36,4 +37,8 @@ class Address extends Types\Obj
   */
   public $type;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaPublic';
+  }
 }

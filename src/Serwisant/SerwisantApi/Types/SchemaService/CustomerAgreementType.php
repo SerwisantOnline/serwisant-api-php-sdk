@@ -2,6 +2,7 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
 class CustomerAgreementType extends Types\Enum
@@ -34,4 +35,8 @@ class CustomerAgreementType extends Types\Enum
   */
   const CUSTOM_4 = 'CUSTOM_4';
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

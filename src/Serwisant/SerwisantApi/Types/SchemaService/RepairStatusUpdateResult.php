@@ -2,9 +2,10 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class RepairStatusUpdateResult extends Types\Obj
+class RepairStatusUpdateResult extends Types\Type
 {
   /**
    * @var Error[]
@@ -15,4 +16,8 @@ class RepairStatusUpdateResult extends Types\Obj
   */
   public $repair;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

@@ -2,6 +2,7 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaInternal;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
 class SecretTokenSubject extends Types\Enum
@@ -14,4 +15,8 @@ class SecretTokenSubject extends Types\Enum
   */
   const REPAIR = 'REPAIR';
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaInternal';
+  }
 }

@@ -2,32 +2,35 @@
 
 namespace Serwisant\SerwisantApi;
 
-abstract class GraphqlRequest
+class GraphqlRequest
 {
   const URL = 'https://serwisant.online/graphql';
 
   private $client;
+  private $schema_path;
+  private $schema_namespace;
   private $url;
   private $load_paths;
   private $query;
   private $variables = [];
   private $results = [];
 
-  public function __construct(Graphql $client, $url = null, $load_paths = [])
+  public function __construct(GraphqlClient $client, $schema_path, $schema_namespace, $url = null, $load_paths = [])
   {
     $this->client = $client;
+    $this->schema_path = $schema_path;
+    $this->schema_namespace = $schema_namespace;
+
     if ($url) {
       $this->url = $url;
     } else {
       $this->url = GraphqlRequest::URL;
     }
+
     $this->load_paths = $load_paths;
     $this->load_paths[] = __DIR__ . '/../../../queries';
+    $this->load_paths[] = __DIR__ . "/../../../queries/{$schema_namespace}";
   }
-
-  abstract protected function schemaPath();
-
-  abstract protected function schemaNamespace();
 
   /**
    * @return array
@@ -63,7 +66,7 @@ abstract class GraphqlRequest
     $graphql_file = null;
 
     $possible_files = array_map(function ($path) use ($file) {
-      return "{$path}/{$file}";
+      return realpath($path) . "/{$file}";
     }, $this->load_paths);
 
     array_unshift($possible_files, $file);
@@ -76,7 +79,7 @@ abstract class GraphqlRequest
     }
 
     if (!$graphql_file) {
-      throw new Exception("Query file {$file} is missing");
+      throw new Exception("GraphQL file {$file} is missing, searched files: " . join(', ', $possible_files));
     }
 
     $query = join(' ', file($graphql_file));
@@ -91,7 +94,7 @@ abstract class GraphqlRequest
    */
   public function execute()
   {
-    $this->results = $this->client->call("{$this->url}/{$this->schemaPath()}", $this->query, $this->variables);
+    $this->results = $this->client->call("{$this->url}/{$this->schema_path}", $this->query, $this->variables);
     return $this;
   }
 
@@ -104,9 +107,10 @@ abstract class GraphqlRequest
   public function fetch($id = null)
   {
     if (!$id) {
-      return Types\Obj::spawn($this->schemaNamespace(), array_values($this->results)[0]);
-    } elseif (array_key_exists($id, $this->results)) {
-      return Types\Obj::spawn($this->schemaNamespace(), $this->results[$id]);
+      $id = array_keys($this->results)[0];
+    }
+    if (array_key_exists($id, $this->results)) {
+      return Types\Type::spawn($this->schema_namespace, $this->results[$id], $id);
     }
     throw new Exception("No result for id {$id}");
   }

@@ -2,9 +2,10 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class RepairOfferItem extends Types\Obj
+class RepairOfferItem extends Types\Type
 {
   /**
    * @var string
@@ -31,4 +32,8 @@ class RepairOfferItem extends Types\Obj
   */
   public $vat;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaPublic';
+  }
 }

@@ -2,6 +2,7 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
 class RepairsSort extends Types\Enum
@@ -35,4 +36,8 @@ class RepairsSort extends Types\Enum
   */
   const DAYS_REMAINING = 'DAYS_REMAINING';
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

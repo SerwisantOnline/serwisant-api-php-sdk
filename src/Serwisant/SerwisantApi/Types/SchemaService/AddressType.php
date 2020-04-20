@@ -2,6 +2,7 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
 class AddressType extends Types\Enum
@@ -22,4 +23,8 @@ class AddressType extends Types\Enum
   */
   const BILLING = 'BILLING';
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

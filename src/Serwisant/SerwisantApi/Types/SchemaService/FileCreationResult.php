@@ -2,9 +2,10 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class FileCreationResult extends Types\Obj
+class FileCreationResult extends Types\Type
 {
   /**
    * @var Error[]
@@ -15,4 +16,8 @@ class FileCreationResult extends Types\Obj
   */
   public $file;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

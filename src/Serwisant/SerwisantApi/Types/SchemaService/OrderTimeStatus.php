@@ -2,6 +2,7 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
 class OrderTimeStatus extends Types\Enum
@@ -21,4 +22,8 @@ class OrderTimeStatus extends Types\Enum
   */
   const DELAYED = 'DELAYED';
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

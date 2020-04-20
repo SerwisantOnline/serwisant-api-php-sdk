@@ -2,6 +2,7 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaInternal;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
 class LicenceHolderAgreementType extends Types\Enum
@@ -30,4 +31,8 @@ class LicenceHolderAgreementType extends Types\Enum
   */
   const SUB_PROCESSORS = 'SUB_PROCESSORS';
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaInternal';
+  }
 }

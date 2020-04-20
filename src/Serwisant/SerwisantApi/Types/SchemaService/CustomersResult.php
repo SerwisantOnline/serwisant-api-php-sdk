@@ -2,9 +2,10 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class CustomersResult extends Types\Obj
+class CustomersResult extends Types\Type
 {
   /**
    * @var Customer[]
@@ -12,8 +13,12 @@ class CustomersResult extends Types\Obj
   public $items;
 
   /**
-   * @var Int
+   * @var int
   */
   public $pages;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

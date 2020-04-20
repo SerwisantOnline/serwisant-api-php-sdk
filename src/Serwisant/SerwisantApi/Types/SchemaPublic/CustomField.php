@@ -2,9 +2,10 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class CustomField extends Types\Obj
+class CustomField extends Types\Type
 {
   /**
    * @var string
@@ -21,4 +22,8 @@ class CustomField extends Types\Obj
   */
   public $type;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaPublic';
+  }
 }

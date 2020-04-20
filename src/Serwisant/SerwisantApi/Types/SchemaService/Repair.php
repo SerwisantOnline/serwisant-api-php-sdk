@@ -2,12 +2,13 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Repair extends Types\Obj
+class Repair extends Types\Type
 {
   /**
-   * @var HashID
+   * @var string
   */
   public $ID;
 
@@ -138,4 +139,8 @@ class Repair extends Types\Obj
   */
   public $warrantyPurchaseDocument;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

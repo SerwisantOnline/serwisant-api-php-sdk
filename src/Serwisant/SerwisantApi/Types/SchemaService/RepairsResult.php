@@ -2,9 +2,10 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class RepairsResult extends Types\Obj
+class RepairsResult extends Types\Type
 {
   /**
    * @var Repair[]
@@ -12,8 +13,12 @@ class RepairsResult extends Types\Obj
   public $items;
 
   /**
-   * @var Int
+   * @var int
   */
   public $pages;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

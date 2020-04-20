@@ -2,6 +2,7 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaService;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
 class CustomerType extends Types\Enum
@@ -16,4 +17,8 @@ class CustomerType extends Types\Enum
   */
   const BUSINESS = 'BUSINESS';
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaService';
+  }
 }

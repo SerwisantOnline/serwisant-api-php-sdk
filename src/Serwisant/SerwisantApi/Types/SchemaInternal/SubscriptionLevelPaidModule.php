@@ -2,9 +2,10 @@
 
 namespace Serwisant\SerwisantApi\Types\SchemaInternal;
 
+use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class SubscriptionLevelPaidModule extends Types\Obj
+class SubscriptionLevelPaidModule extends Types\Type
 {
   /**
    * @var string
@@ -36,4 +37,8 @@ class SubscriptionLevelPaidModule extends Types\Obj
   */
   public $vat;
 
+  protected function schemaNamespace()
+  {
+    return 'SchemaInternal';
+  }
 }
