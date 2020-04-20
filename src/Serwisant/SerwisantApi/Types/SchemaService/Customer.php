@@ -90,6 +90,12 @@ class Customer extends Types\Type
   public $taxPrefix;
 
   /**
+   * @var string
+   * Time zone of customer, all times wisible for customer should be represented in this time zone
+  */
+  public $timeZone;
+
+  /**
    * @var CustomerType
   */
   public $type;

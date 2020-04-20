@@ -29,6 +29,11 @@ class Repair extends Types\Type
   public $customFields;
 
   /**
+   * @var Customer
+  */
+  public $customer;
+
+  /**
    * @var RepairTransportType
   */
   public $deliveryType;
