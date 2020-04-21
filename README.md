@@ -6,6 +6,21 @@
 * ext-mbstring
 * ext-curl
 
+## Word about versioning
+
+Versioning od SDK is very important. It looks like `3.<major>.<minor>`, eg. `3.0.1`.
+When you're including SDK into your composer config, it's strongly recommended to set major version as fixed, eg:
+```
+"require": {
+    "serwisant/serwisant-api": "3.0.*"
+},
+```  
+It's important, because of typed queries and mutations. If schema will change, arguments passed to 
+queries and mutations will change as well. It can be a new required arguments or even order of arguments can change.
+In that case SDK will e released with incremented major version. If you'll decide to upgrade, it can break your application.
+
+**You have being warned.**
+
 ## Basic usage:
 
 ```php

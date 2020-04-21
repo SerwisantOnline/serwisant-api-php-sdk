@@ -14,6 +14,7 @@ class RepairOffer extends Types\Type
 
   /**
    * @var bool
+   * This field can be null - that means no desision was made - true or false means yes or no
   */
   public $accepted;
 
