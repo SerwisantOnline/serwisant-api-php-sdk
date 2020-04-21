@@ -1,0 +1,23 @@
+{
+  "name": "serwisant/serwisant-api",
+  "description": "API client for https://serwisant.online service",
+  "version": "3.0.0",
+  "type": "library",
+  "homepage": "https://github.com/SerwisantOnline/serwisant-api",
+  "license": "Apache-2.0",
+  "require": {
+    "guzzlehttp/guzzle": "^6.5",
+    "ext-json": "*"
+  },
+  "authors": [
+    {
+      "name": "Arkadiusz Kuryłowicz",
+      "email": "sms@kurylowicz.info"
+    }
+  ],
+  "autoload": {
+    "psr-0": {
+      "Serwisant\\SerwisantApi": "src"
+    }
+  }
+}
