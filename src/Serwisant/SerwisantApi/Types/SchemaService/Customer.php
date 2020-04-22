@@ -56,6 +56,11 @@ class Customer extends Types\Type
   /**
    * @var bool
   */
+  public $internetAccess;
+
+  /**
+   * @var bool
+  */
   public $isAnonymous;
 
   /**

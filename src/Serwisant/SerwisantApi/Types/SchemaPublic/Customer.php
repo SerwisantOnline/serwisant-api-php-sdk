@@ -8,6 +8,11 @@ use Serwisant\SerwisantApi\Types;
 class Customer extends Types\Type
 {
   /**
+   * @var bool
+  */
+  public $internetAccess;
+
+  /**
    * @var string
    * Time zone of customer, all times wisible for customer should be represented in this time zone
   */
