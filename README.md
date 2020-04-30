@@ -16,18 +16,22 @@ When you're including SDK into your composer config, it's strongly recommended t
 },
 ```  
 It's important, because of typed queries and mutations. If schema will change, arguments passed to 
-queries and mutations will change as well. It can be a new required arguments or even order of arguments can change.
+queries and mutations will change as well. It can be new required arguments or even order of arguments can change.
 In that case SDK will e released with incremented major version. If you'll decide to upgrade, it can break your application.
 
 **You have being warned.**
+
+There is a single exception to that. `internal` schema is not for public consumption. Breaking changes will be
+excluded from above rules.
 
 ## Basic usage:
 
 ```php
 use Serwisant\SerwisantApi;
 
-/* get own client and secret by creating an application via webpage */
-$access_token = new SerwisantApi\AccessTokenOauth('client', 'secret', 'public');
+// get own client and secret by creating an application via webpage
+// 4th argument is a access token cache, it's optional, but recommended for performance reasons
+$access_token = new SerwisantApi\AccessTokenOauth('client', 'secret', 'public', (new SerwisantApi\AccessTokenContainerFile));
 
 $api = new SerwisantApi\Api();
 $api->setAccessToken($access_token);

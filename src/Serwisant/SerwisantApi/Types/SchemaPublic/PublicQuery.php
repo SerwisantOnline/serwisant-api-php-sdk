@@ -8,13 +8,11 @@ use Serwisant\SerwisantApi\Types;
 class PublicQuery extends Types\RootType
 {
   /**
-   * Return a configuration of customer panel related to given token
-   * @param string $token
    * @return CustomerPanelConfig
    */
-  public function configByToken(string $token)
+  public function configuration()
   {
-     return $this->inputArgs('configByToken', ['token' => $token]);
+     return $this->inputArgs('configuration', []);
   }
 
   /**

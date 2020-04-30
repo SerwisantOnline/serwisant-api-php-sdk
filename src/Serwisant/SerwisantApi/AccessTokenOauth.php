@@ -107,7 +107,7 @@ class AccessTokenOauth implements AccessToken
 
       return [
         'access_token' => $data['access_token'],
-        'expiry' => ($data['ts'] + $data['expires_in'])
+        'expiry' => ($data['created_at'] + $data['expires_in'])
       ];
     } else {
       throw new Exception("Unable to fetch an access token, HTTP code was '{$code}'");

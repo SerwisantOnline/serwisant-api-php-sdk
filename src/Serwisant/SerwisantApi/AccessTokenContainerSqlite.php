@@ -20,7 +20,7 @@ class AccessTokenContainerSqlite implements AccessTokenContainer
   {
     $dir = dirname($db_name);
     if (!is_dir($dir)) {
-      throw new Exception("Access token container container database directory do not exists - please create '{$dir}' directory.");
+      throw new Exception("Access token container database directory do not exists - please create '{$dir}' directory.");
     }
 
     $this->namespace = $namespace;

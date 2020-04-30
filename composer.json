@@ -1,7 +1,7 @@
 {
   "name": "serwisant/serwisant-api",
   "description": "API client for https://serwisant.online service",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "type": "library",
   "homepage": "https://github.com/SerwisantOnline/serwisant-api",
   "license": "Apache-2.0",
