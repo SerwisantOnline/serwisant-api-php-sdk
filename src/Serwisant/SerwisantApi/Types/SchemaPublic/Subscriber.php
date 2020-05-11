@@ -1,6 +1,6 @@
 <?php
 
-namespace Serwisant\SerwisantApi\Types\SchemaService;
+namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
@@ -44,6 +44,6 @@ class Subscriber extends Types\Type
 
   protected function schemaNamespace()
   {
-    return 'SchemaService';
+    return 'SchemaPublic';
   }
 }

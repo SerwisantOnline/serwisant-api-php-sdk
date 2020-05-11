@@ -1,6 +1,6 @@
 <?php
 
-namespace Serwisant\SerwisantApi\Types\SchemaInternal;
+namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
@@ -21,6 +21,6 @@ class SecretTokenSubject extends Types\Enum
 
   protected function schemaNamespace()
   {
-    return 'SchemaInternal';
+    return 'SchemaPublic';
   }
 }

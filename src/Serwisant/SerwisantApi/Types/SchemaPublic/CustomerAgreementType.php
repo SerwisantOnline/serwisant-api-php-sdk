@@ -1,6 +1,6 @@
 <?php
 
-namespace Serwisant\SerwisantApi\Types\SchemaService;
+namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
@@ -41,6 +41,6 @@ class CustomerAgreementType extends Types\Enum
 
   protected function schemaNamespace()
   {
-    return 'SchemaService';
+    return 'SchemaPublic';
   }
 }

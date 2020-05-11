@@ -14,6 +14,11 @@ class Phone extends Types\Type
   public $countryPrefix;
 
   /**
+   * @var string
+  */
+  public $formatted;
+
+  /**
    * @var bool
   */
   public $isGsm;

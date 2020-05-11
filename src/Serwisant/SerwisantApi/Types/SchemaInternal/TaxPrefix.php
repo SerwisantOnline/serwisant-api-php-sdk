@@ -5,19 +5,11 @@ namespace Serwisant\SerwisantApi\Types\SchemaInternal;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class SecretTokenSubject extends Types\Enum
+class TaxPrefix extends Types\Enum
 {
   /**
   */
-  const LICENCE = 'LICENCE';
-
-  /**
-  */
-  const REPAIR = 'REPAIR';
-
-  /**
-  */
-  const ONLINEPAYMENT = 'ONLINEPAYMENT';
+  const PL = 'PL';
 
   protected function schemaNamespace()
   {

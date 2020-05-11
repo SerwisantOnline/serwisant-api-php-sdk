@@ -19,11 +19,12 @@ class ServiceQuery extends Types\RootType
 
   /**
    * Return agreements customer should view or accept
+   * @param CustomerAgreementsFilter $filter
    * @return CustomerAgreement[]
    */
-  public function customerAgreements()
+  public function customerAgreements(CustomerAgreementsFilter $filter = null)
   {
-     return $this->inputArgs('customerAgreements', []);
+     return $this->inputArgs('customerAgreements', ['filter' => $filter]);
   }
 
   /**

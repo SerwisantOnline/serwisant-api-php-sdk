@@ -18,6 +18,11 @@ class Subscriber extends Types\Type
   public $activationToken;
 
   /**
+   * @var Address
+  */
+  public $address;
+
+  /**
    * @var string
   */
   public $companyName;
@@ -36,6 +41,21 @@ class Subscriber extends Types\Type
    * @var string
   */
   public $number;
+
+  /**
+   * @var ServiceSupplier
+  */
+  public $serviceSupplier;
+
+  /**
+   * @var string
+  */
+  public $taxId;
+
+  /**
+   * @var TaxPrefix
+  */
+  public $taxPrefix;
 
   protected function schemaNamespace()
   {

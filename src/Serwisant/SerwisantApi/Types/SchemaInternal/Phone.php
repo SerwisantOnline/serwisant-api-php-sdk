@@ -1,6 +1,6 @@
 <?php
 
-namespace Serwisant\SerwisantApi\Types\SchemaPublic;
+namespace Serwisant\SerwisantApi\Types\SchemaInternal;
 
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
@@ -31,6 +31,6 @@ class Phone extends Types\Type
 
   protected function schemaNamespace()
   {
-    return 'SchemaPublic';
+    return 'SchemaInternal';
   }
 }

@@ -24,7 +24,9 @@ In that case SDK will e released with incremented major version. If you'll decid
 There is a single exception to that. `internal` schema is not for public consumption. Breaking changes will be
 excluded from above rules.
 
-## Basic usage:
+## Usage:
+
+First of all, prepare an instance of API for later use, it should be shared across whole application 
 
 ```php
 use Serwisant\SerwisantApi;
@@ -35,9 +37,14 @@ $access_token = new SerwisantApi\AccessTokenOauth('client', 'secret', 'public', 
 
 $api = new SerwisantApi\Api();
 $api->setAccessToken($access_token);
+```
 
+Basic example with inline query
+
+```php
 /* please note __typename at each type - it's required for proper typecast */
-$query = 'query($token: String!) {
+$query = '
+query($token: String!) {
     repairByToken(token: $token) {
       __typename
       displayName
@@ -55,3 +62,30 @@ echo $repair->displayName;
 echo $repair->status->displayName;
 ```
 
+Example with batched query - use batches as more, as you can for performance reasons. Batching queries reduce HTTP traffic.
+
+```php
+/* please note __typename at each type - it's required for proper typecast */
+$query = '
+query($token: String!) {
+  repair: repairByToken(token: $token) {
+    __typename
+    displayName
+  }
+  me: viewer {
+    __typename
+    employee {
+      __typename
+      displayName
+    }
+  } 
+}';
+
+$result = $api->publicQuery()->newRequest()->set($query, ['token' => 'abc-def'])->execute();
+
+$repair = $result->fetch('repair');
+$me = $result->fetch('me');
+
+echo $repair->displayName;
+echo $me->displayName;
+```

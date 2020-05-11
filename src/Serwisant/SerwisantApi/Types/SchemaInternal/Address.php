@@ -5,32 +5,37 @@ namespace Serwisant\SerwisantApi\Types\SchemaInternal;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class SecretToken extends Types\Type
+class Address extends Types\Type
 {
   /**
    * @var string
   */
-  public $oauthClientId;
+  public $building;
 
   /**
    * @var string
   */
-  public $oauthClientSecret;
+  public $city;
 
   /**
    * @var string
   */
-  public $oauthScopes;
-
-  /**
-   * @var SecretTokenSubject
-  */
-  public $subjectType;
+  public $countryIso;
 
   /**
    * @var string
   */
-  public $token;
+  public $postalCode;
+
+  /**
+   * @var string
+  */
+  public $street;
+
+  /**
+   * @var AddressType
+  */
+  public $type;
 
   protected function schemaNamespace()
   {

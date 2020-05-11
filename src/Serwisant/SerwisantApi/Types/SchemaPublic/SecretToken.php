@@ -1,27 +1,12 @@
 <?php
 
-namespace Serwisant\SerwisantApi\Types\SchemaInternal;
+namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
 class SecretToken extends Types\Type
 {
-  /**
-   * @var string
-  */
-  public $oauthClientId;
-
-  /**
-   * @var string
-  */
-  public $oauthClientSecret;
-
-  /**
-   * @var string
-  */
-  public $oauthScopes;
-
   /**
    * @var SecretTokenSubject
   */
@@ -34,6 +19,6 @@ class SecretToken extends Types\Type
 
   protected function schemaNamespace()
   {
-    return 'SchemaInternal';
+    return 'SchemaPublic';
   }
 }

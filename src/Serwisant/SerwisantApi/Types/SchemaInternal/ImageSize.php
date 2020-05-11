@@ -5,19 +5,15 @@ namespace Serwisant\SerwisantApi\Types\SchemaInternal;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class SecretTokenSubject extends Types\Enum
+class ImageSize extends Types\Enum
 {
   /**
   */
-  const LICENCE = 'LICENCE';
+  const ORIGINAL = 'ORIGINAL';
 
   /**
   */
-  const REPAIR = 'REPAIR';
-
-  /**
-  */
-  const ONLINEPAYMENT = 'ONLINEPAYMENT';
+  const THUMBNAIL = 'THUMBNAIL';
 
   protected function schemaNamespace()
   {

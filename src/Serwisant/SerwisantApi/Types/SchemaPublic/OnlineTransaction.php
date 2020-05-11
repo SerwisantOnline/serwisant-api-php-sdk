@@ -5,29 +5,22 @@ namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Phone extends Types\Type
+class OnlineTransaction extends Types\Type
 {
   /**
    * @var string
-   * Country prefix, eg. +48
   */
-  public $countryPrefix;
+  public $ID;
 
   /**
    * @var string
   */
-  public $formatted;
+  public $processorUrl;
 
   /**
-   * @var bool
+   * @var OnlineTransactionStatus
   */
-  public $isGsm;
-
-  /**
-   * @var string
-   * Number without country prefix - domestic number
-  */
-  public $number;
+  public $status;
 
   protected function schemaNamespace()
   {

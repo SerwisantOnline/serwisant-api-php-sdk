@@ -94,6 +94,11 @@ class Repair extends Types\Type
   public $rma;
 
   /**
+   * @var SecretToken
+  */
+  public $secretToken;
+
+  /**
    * @var string
   */
   public $serial;
