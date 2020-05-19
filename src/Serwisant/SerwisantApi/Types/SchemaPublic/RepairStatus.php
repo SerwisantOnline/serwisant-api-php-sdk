@@ -81,6 +81,11 @@ class RepairStatus extends Types\Type
   public $summedUp;
 
   /**
+   * @var float
+  */
+  public $timeProgress;
+
+  /**
    * @var OrderTimeStatus
   */
   public $timeStatus;

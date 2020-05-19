@@ -59,6 +59,11 @@ class Repair extends Types\Type
   public $displayName;
 
   /**
+   * @var Employee
+  */
+  public $employee;
+
+  /**
    * @var File[]
    * Files attached to repair. For :service schema it includes private and public files, for otcher schemas only public files are included
   */

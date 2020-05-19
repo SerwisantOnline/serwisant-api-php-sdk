@@ -10,7 +10,17 @@ class Employee extends Types\Type
   /**
    * @var string
   */
+  public $ID;
+
+  /**
+   * @var string
+  */
   public $displayName;
+
+  /**
+   * @var ServiceSupplier
+  */
+  public $serviceSupplier;
 
   /**
    * @var Subscriber

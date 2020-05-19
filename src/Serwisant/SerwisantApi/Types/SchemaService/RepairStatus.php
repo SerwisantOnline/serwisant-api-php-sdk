@@ -89,6 +89,11 @@ List depends on current status and strategy settings.
   public $summedUp;
 
   /**
+   * @var float
+  */
+  public $timeProgress;
+
+  /**
    * @var OrderTimeStatus
   */
   public $timeStatus;

@@ -27,6 +27,10 @@ class SubscriberBusinessActivity extends Types\Enum
   */
   const HOUSEHOLD_EQUIPMENT = 'HOUSEHOLD_EQUIPMENT';
 
+  /**
+  */
+  const BIKES = 'BIKES';
+
   protected function schemaNamespace()
   {
     return 'SchemaInternal';

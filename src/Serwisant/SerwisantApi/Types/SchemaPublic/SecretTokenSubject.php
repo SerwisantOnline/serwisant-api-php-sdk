@@ -19,6 +19,10 @@ class SecretTokenSubject extends Types\Enum
   */
   const ONLINEPAYMENT = 'ONLINEPAYMENT';
 
+  /**
+  */
+  const PARCEL = 'PARCEL';
+
   protected function schemaNamespace()
   {
     return 'SchemaPublic';

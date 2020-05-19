@@ -13,6 +13,11 @@ class Subscriber extends Types\Type
   public $address;
 
   /**
+   * @var SubscriberBusinessActivity
+  */
+  public $businessActivity;
+
+  /**
    * @var string
   */
   public $companyName;
