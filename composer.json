@@ -7,8 +7,12 @@
   "license": "Apache-2.0",
   "require": {
     "guzzlehttp/guzzle": "^6.5",
-    "ext-json": "*",
-    "ext-pdo": "*"
+    "php" : ">=7.2",
+    "ext-json": "*"
+  },
+  "suggest": {
+    "ext-pdo": "For SQL access token caching container",
+    "ext-pdo-sqlite": "If you want to use AccessTokenContainerSqlite as access token caching container"
   },
   "authors": [
     {
