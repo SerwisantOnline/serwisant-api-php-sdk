@@ -68,6 +68,8 @@ Missing magic field for any type will result in exception.
 ```php
 use Serwisant\SerwisantApi;
 
+/* @var SerwisantApi\Api $api */
+
 /* please note __typename at each type - it's required for proper typecast */
 $query = '
 query($token: String!) {
@@ -102,16 +104,19 @@ This is exactly the same query you've assigned to variable in 1. example.
 ```php
 use Serwisant\SerwisantApi;
 
-// tell SerwisantApi\Api where to look for files with queries, mutations, etc. It can be done once, in 1. example.
-$api->addLoadPath('/full/path/to/queries/SchemaInternal');
+/* @var SerwisantApi\Api $api */
 
-/* @var SerwisantApi\Types\SchemaPublic\PublicQuery $schema */
+// tell SerwisantApi\Api where to look for files with queries, mutations, etc. It can be done once, in 1. example.
+$api->addLoadPath('/full/path/to/queries/SchemaPublic');
+
+/* @var SerwisantApi\Types\SchemaPublic\PublicQuery $query */
 $query = $api->publicQuery();
 
 /* @var SerwisantApi\Types\SchemaPublic\Repair $repair */
 $repair = $query->repairByToken('abc-def'); // abc-def is a token form repair fetched from user input
 
 echo $repair->displayName;
+echo $repair->status->displayName;
 ```
 
 Probably you want to ask: why SDK doesn't provide files witch queries?
@@ -128,6 +133,8 @@ Use batches for performance reasons. Batching queries reduce HTTP traffic.
 
 ```php
 use Serwisant\SerwisantApi;
+
+/* @var SerwisantApi\Api $api */
 
 /* please note __typename at each type - it's required for proper typecast */
 $query = '
