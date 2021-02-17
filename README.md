@@ -167,6 +167,31 @@ echo $me->subscriber;
 ***PLEASE NOTE*** you can't use a file based query/mutation feature with batched query. Batched queries must be always
 performed directly
 
+## Contributions
+
+Pull requests are welcome. 
+
+Do not edit or update any files in `src/Serwisant/SerwisantApi/Types` - it's auto-generated. To
+generate missing types, queries, mutations use `bin/introspection.php` script:
+
+```
+php ./bin/introspection.php 
+```
+
+## Release
+
+SDK available as composer package on packagist.org:
+
+- update `composer.json` with new version
+- commit and push changes to master
+- `git tag 3.0.x`
+- `git push origin --tags`
+
+## Licencing
+
+Apache License
+See LICENCE for full licence information.
+
 ## Author
 
 Arkadiusz Kuryłowicz <sms(at)kurylowicz.info>
