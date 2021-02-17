@@ -10,18 +10,18 @@ class PublicQuery extends Types\RootType
   /**
    * @return CustomerPanelConfig
    */
-  public function configuration()
+  public function configuration($vars = array())
   {
-     return $this->inputArgs('configuration', []);
+     return $this->inputArgs('configuration', array_merge($vars, []));
   }
 
   /**
    * @param CustomerAgreementsFilter $filter
    * @return CustomerAgreement[]
    */
-  public function customerAgreements(CustomerAgreementsFilter $filter = null)
+  public function customerAgreements(CustomerAgreementsFilter $filter = null, $vars = array())
   {
-     return $this->inputArgs('customerAgreements', ['filter' => $filter]);
+     return $this->inputArgs('customerAgreements', array_merge($vars, ['filter' => $filter]));
   }
 
   /**
@@ -29,9 +29,9 @@ class PublicQuery extends Types\RootType
    * @param string $token
    * @return OnlinePayment
    */
-  public function paymentByToken(string $token)
+  public function paymentByToken(string $token, $vars = array())
   {
-     return $this->inputArgs('paymentByToken', ['token' => $token]);
+     return $this->inputArgs('paymentByToken', array_merge($vars, ['token' => $token]));
   }
 
   /**
@@ -40,18 +40,18 @@ doesn't support online payments
 
    * @return OnlinePaymentMethod[]
    */
-  public function paymentMethods()
+  public function paymentMethods($vars = array())
   {
-     return $this->inputArgs('paymentMethods', []);
+     return $this->inputArgs('paymentMethods', array_merge($vars, []));
   }
 
   /**
    * @param string $ID
    * @return OnlineTransaction
    */
-  public function paymentTransaction(string $ID)
+  public function paymentTransaction(string $ID, $vars = array())
   {
-     return $this->inputArgs('paymentTransaction', ['ID' => $ID]);
+     return $this->inputArgs('paymentTransaction', array_merge($vars, ['ID' => $ID]));
   }
 
   /**
@@ -59,9 +59,9 @@ doesn't support online payments
    * @param string $token
    * @return Repair
    */
-  public function repairByToken(string $token)
+  public function repairByToken(string $token, $vars = array())
   {
-     return $this->inputArgs('repairByToken', ['token' => $token]);
+     return $this->inputArgs('repairByToken', array_merge($vars, ['token' => $token]));
   }
 
   /**
@@ -69,17 +69,17 @@ doesn't support online payments
    * @param string $token
    * @return SecretToken
    */
-  public function secretToken(string $token)
+  public function secretToken(string $token, $vars = array())
   {
-     return $this->inputArgs('secretToken', ['token' => $token]);
+     return $this->inputArgs('secretToken', array_merge($vars, ['token' => $token]));
   }
 
   /**
    * @return Viewer
    */
-  public function viewer()
+  public function viewer($vars = array())
   {
-     return $this->inputArgs('viewer', []);
+     return $this->inputArgs('viewer', array_merge($vars, []));
   }
 
   protected function schemaNamespace()

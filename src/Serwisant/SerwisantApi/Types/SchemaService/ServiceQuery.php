@@ -12,9 +12,9 @@ class ServiceQuery extends Types\RootType
    * @param CustomFieldForm $form
    * @return CustomField[]
    */
-  public function customFields(CustomFieldForm $form)
+  public function customFields(CustomFieldForm $form, $vars = array())
   {
-     return $this->inputArgs('customFields', ['form' => $form]);
+     return $this->inputArgs('customFields', array_merge($vars, ['form' => $form]));
   }
 
   /**
@@ -22,9 +22,9 @@ class ServiceQuery extends Types\RootType
    * @param CustomerAgreementsFilter $filter
    * @return CustomerAgreement[]
    */
-  public function customerAgreements(CustomerAgreementsFilter $filter = null)
+  public function customerAgreements(CustomerAgreementsFilter $filter = null, $vars = array())
   {
-     return $this->inputArgs('customerAgreements', ['filter' => $filter]);
+     return $this->inputArgs('customerAgreements', array_merge($vars, ['filter' => $filter]));
   }
 
   /**
@@ -35,9 +35,9 @@ class ServiceQuery extends Types\RootType
    * @param CustomersSort $sort
    * @return CustomersResult
    */
-  public function customers(int $limit = null, int $page = null, CustomersFilter $filter = null, CustomersSort $sort = null)
+  public function customers(int $limit = null, int $page = null, CustomersFilter $filter = null, CustomersSort $sort = null, $vars = array())
   {
-     return $this->inputArgs('customers', ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]);
+     return $this->inputArgs('customers', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]));
   }
 
   /**
@@ -45,9 +45,9 @@ class ServiceQuery extends Types\RootType
    * @param DictionaryEntriesFilter $filter
    * @return Dictionary[]
    */
-  public function dictionaryEntries(DictionaryEntriesFilter $filter = null)
+  public function dictionaryEntries(DictionaryEntriesFilter $filter = null, $vars = array())
   {
-     return $this->inputArgs('dictionaryEntries', ['filter' => $filter]);
+     return $this->inputArgs('dictionaryEntries', array_merge($vars, ['filter' => $filter]));
   }
 
   /**
@@ -58,18 +58,18 @@ class ServiceQuery extends Types\RootType
    * @param RepairsSort $sort
    * @return RepairsResult
    */
-  public function repairs(int $limit = null, int $page = null, RepairsFilter $filter = null, RepairsSort $sort = null)
+  public function repairs(int $limit = null, int $page = null, RepairsFilter $filter = null, RepairsSort $sort = null, $vars = array())
   {
-     return $this->inputArgs('repairs', ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]);
+     return $this->inputArgs('repairs', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]));
   }
 
   /**
    * Return employee related to current viewer - can be a System employee if token is not related to authenticated employee
    * @return Viewer
    */
-  public function viewer()
+  public function viewer($vars = array())
   {
-     return $this->inputArgs('viewer', []);
+     return $this->inputArgs('viewer', array_merge($vars, []));
   }
 
   protected function schemaNamespace()

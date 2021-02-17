@@ -46,6 +46,8 @@ abstract class RootType
     switch ($this->schemaNamespace()) {
       case self::SCHEMA_PUBLIC:
         return new SerwisantApi\GraphqlRequest($this->client, 'public', $this->schemaNamespace(), $this->url, $this->load_paths);
+      case self::SCHEMA_SERVICE:
+        return new SerwisantApi\GraphqlRequest($this->client, 'service', $this->schemaNamespace(), $this->url, $this->load_paths);
       case self::SCHEMA_INTERNAL:
         return new SerwisantApi\GraphqlRequest($this->client, 'internal', $this->schemaNamespace(), $this->url, $this->load_paths);
       default:

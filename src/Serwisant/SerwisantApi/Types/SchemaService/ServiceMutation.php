@@ -15,9 +15,9 @@ class ServiceMutation extends Types\RootType
    * @param FileInput[] $files
    * @return CustomerCreationResult
    */
-  public function createCustomer(CustomerInput $customer, array $agreements, array $addresses, array $files)
+  public function createCustomer(CustomerInput $customer, array $agreements, array $addresses, array $files, $vars = array())
   {
-     return $this->inputArgs('createCustomer', ['customer' => $customer, 'agreements' => $agreements, 'addresses' => $addresses, 'files' => $files]);
+     return $this->inputArgs('createCustomer', array_merge($vars, ['customer' => $customer, 'agreements' => $agreements, 'addresses' => $addresses, 'files' => $files]));
   }
 
   /**
@@ -26,9 +26,9 @@ class ServiceMutation extends Types\RootType
    * @param FileInput $file
    * @return FileCreationResult
    */
-  public function createFile(string $subject, FileSubjectType $subjectType, FileInput $file)
+  public function createFile(string $subject, FileSubjectType $subjectType, FileInput $file, $vars = array())
   {
-     return $this->inputArgs('createFile', ['subject' => $subject, 'subjectType' => $subjectType, 'file' => $file]);
+     return $this->inputArgs('createFile', array_merge($vars, ['subject' => $subject, 'subjectType' => $subjectType, 'file' => $file]));
   }
 
   /**
@@ -39,9 +39,9 @@ class ServiceMutation extends Types\RootType
    * @param FileInput[] $files
    * @return RepairCreationResult
    */
-  public function createRepair(string $customer, RepairInput $repair, array $additionalItems, array $files)
+  public function createRepair(string $customer, RepairInput $repair, array $additionalItems, array $files, $vars = array())
   {
-     return $this->inputArgs('createRepair', ['customer' => $customer, 'repair' => $repair, 'additionalItems' => $additionalItems, 'files' => $files]);
+     return $this->inputArgs('createRepair', array_merge($vars, ['customer' => $customer, 'repair' => $repair, 'additionalItems' => $additionalItems, 'files' => $files]));
   }
 
   /**
@@ -50,9 +50,9 @@ class ServiceMutation extends Types\RootType
    * @param RepairState $status
    * @return RepairStatusUpdateResult
    */
-  public function updateRepairStatus(string $repair, RepairState $status)
+  public function updateRepairStatus(string $repair, RepairState $status, $vars = array())
   {
-     return $this->inputArgs('updateRepairStatus', ['repair' => $repair, 'status' => $status]);
+     return $this->inputArgs('updateRepairStatus', array_merge($vars, ['repair' => $repair, 'status' => $status]));
   }
 
   protected function schemaNamespace()

@@ -1,13 +1,14 @@
 {
   "name": "serwisant/serwisant-api",
   "description": "API client for https://serwisant.online service",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "type": "library",
   "homepage": "https://github.com/SerwisantOnline/serwisant-api",
   "license": "Apache-2.0",
   "require": {
     "guzzlehttp/guzzle": "^6.5",
-    "ext-json": "*"
+    "ext-json": "*",
+    "ext-pdo": "*"
   },
   "authors": [
     {

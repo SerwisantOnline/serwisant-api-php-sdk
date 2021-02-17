@@ -13,9 +13,9 @@ class InternalMutation extends Types\RootType
    * @param string $salesPartnerCookie
    * @return SubscriberActivationResult
    */
-  public function activateSubscriber(string $activationToken, string $salesPartnerCookie = null)
+  public function activateSubscriber(string $activationToken, string $salesPartnerCookie = null, $vars = array())
   {
-     return $this->inputArgs('activateSubscriber', ['activationToken' => $activationToken, 'salesPartnerCookie' => $salesPartnerCookie]);
+     return $this->inputArgs('activateSubscriber', array_merge($vars, ['activationToken' => $activationToken, 'salesPartnerCookie' => $salesPartnerCookie]));
   }
 
   /**
@@ -23,9 +23,9 @@ class InternalMutation extends Types\RootType
    * @param ContactMessage $message
    * @return ContactMessageResult
    */
-  public function createContactMessage(ContactMessage $message)
+  public function createContactMessage(ContactMessage $message, $vars = array())
   {
-     return $this->inputArgs('createContactMessage', ['message' => $message]);
+     return $this->inputArgs('createContactMessage', array_merge($vars, ['message' => $message]));
   }
 
   /**
@@ -33,9 +33,9 @@ class InternalMutation extends Types\RootType
    * @param string $email
    * @return DemoAccessResult
    */
-  public function createDemoAccess(string $email)
+  public function createDemoAccess(string $email, $vars = array())
   {
-     return $this->inputArgs('createDemoAccess', ['email' => $email]);
+     return $this->inputArgs('createDemoAccess', array_merge($vars, ['email' => $email]));
   }
 
   /**
@@ -44,9 +44,9 @@ class InternalMutation extends Types\RootType
    * @param string $activationUrl
    * @return SubscriberCreationResult
    */
-  public function createSubscriber(SubscriberInput $subscriber, string $activationUrl)
+  public function createSubscriber(SubscriberInput $subscriber, string $activationUrl, $vars = array())
   {
-     return $this->inputArgs('createSubscriber', ['subscriber' => $subscriber, 'activationUrl' => $activationUrl]);
+     return $this->inputArgs('createSubscriber', array_merge($vars, ['subscriber' => $subscriber, 'activationUrl' => $activationUrl]));
   }
 
   protected function schemaNamespace()

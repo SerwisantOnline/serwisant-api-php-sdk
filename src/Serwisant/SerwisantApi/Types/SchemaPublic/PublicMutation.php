@@ -14,9 +14,9 @@ class PublicMutation extends Types\RootType
    * @param string $offer
    * @return AcceptOrRejectRepairResult
    */
-  public function acceptOrRejectRepair(string $token, AcceptOrRejectRepairDecision $decision, string $offer = null)
+  public function acceptOrRejectRepair(string $token, AcceptOrRejectRepairDecision $decision, string $offer = null, $vars = array())
   {
-     return $this->inputArgs('acceptOrRejectRepair', ['token' => $token, 'decision' => $decision, 'offer' => $offer]);
+     return $this->inputArgs('acceptOrRejectRepair', array_merge($vars, ['token' => $token, 'decision' => $decision, 'offer' => $offer]));
   }
 
   /**
@@ -29,9 +29,9 @@ queued: in that case pool for result, may be asked to redirect user to other sit
    * @param string $errorUrl
    * @return OnlinePaymentResult
    */
-  public function pay(string $token, OnlineTransactionInput $onlineTransaction, string $successUrl, string $errorUrl)
+  public function pay(string $token, OnlineTransactionInput $onlineTransaction, string $successUrl, string $errorUrl, $vars = array())
   {
-     return $this->inputArgs('pay', ['token' => $token, 'onlineTransaction' => $onlineTransaction, 'successUrl' => $successUrl, 'errorUrl' => $errorUrl]);
+     return $this->inputArgs('pay', array_merge($vars, ['token' => $token, 'onlineTransaction' => $onlineTransaction, 'successUrl' => $successUrl, 'errorUrl' => $errorUrl]));
   }
 
   protected function schemaNamespace()

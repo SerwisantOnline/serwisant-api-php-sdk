@@ -29,9 +29,7 @@ abstract class Type
 
       unset($object['__typename']);
 
-      $instance = new $class_name();
-      $instance->fillUsingGraphqlResult($object);
-      return $instance;
+      return new $class_name($object, true);
     }
   }
 
@@ -40,11 +38,16 @@ abstract class Type
     return is_array($arr) && count($arr) > 0 && array_keys($arr) !== range(0, count($arr) - 1);
   }
 
-  /**
-   * @param $object
-   * @throws Exception
-   */
-  public function fillUsingGraphqlResult($object)
+  public function __construct(array $object = [], bool $typed_object = false)
+  {
+    if ($typed_object) {
+      $this->fillUsingGraphqlResult($object);
+    } else {
+      $this->fillUsingArray($object);
+    }
+  }
+
+  private function fillUsingGraphqlResult(array $object)
   {
     foreach ($object as $prop => $value) {
       if (is_array($value)) {
@@ -53,6 +56,15 @@ abstract class Type
         $this->{$prop} = $value;
       }
     }
+    return $this;
+  }
+
+  private function fillUsingArray(array $object)
+  {
+    foreach ($object as $prop => $value) {
+      $this->{$prop} = $value;
+    }
+    return $this;
   }
 
   abstract protected function schemaNamespace();

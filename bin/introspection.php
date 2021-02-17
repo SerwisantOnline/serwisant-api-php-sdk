@@ -134,11 +134,12 @@ function build_toot_type_method($field)
     $type_args_call[] = "'" . $arg['name'] . "' => " . '$' . $arg['name'];
   }
   $func_args = join(', ', array_merge($type_args_not_null, $type_args_null));
+  $extra_args = (strlen(trim($func_args)) > 0 ? ', ' : '') . '$vars = array()';
   $content = '';
   $content .= c_func_comment($type_args_comment, c_detect_name($field['type'], 'comment'), $field['description']);
-  $content .= "  public function {$field['name']}(" . $func_args . ")\n";
+  $content .= "  public function {$field['name']}(" . $func_args . $extra_args . ")\n";
   $content .= "  {\n";
-  $content .= '     return $this->inputArgs(' . "'{$field['name']}'" . ', [' . join(', ', $type_args_call) . "]);\n";
+  $content .= '     return $this->inputArgs(' . "'{$field['name']}'" . ', array_merge($vars, [' . join(', ', $type_args_call) . "]));\n";
   $content .= "  }\n\n";
   return $content;
 }

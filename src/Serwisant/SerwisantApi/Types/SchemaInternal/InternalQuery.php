@@ -12,18 +12,18 @@ class InternalQuery extends Types\RootType
    * @param string $cookie
    * @return CredentialsCookie
    */
-  public function credentialsCookie(string $cookie = null)
+  public function credentialsCookie(string $cookie = null, $vars = array())
   {
-     return $this->inputArgs('credentialsCookie', ['cookie' => $cookie]);
+     return $this->inputArgs('credentialsCookie', array_merge($vars, ['cookie' => $cookie]));
   }
 
   /**
    * @param string $token
    * @return SecretToken
    */
-  public function secretToken(string $token)
+  public function secretToken(string $token, $vars = array())
   {
-     return $this->inputArgs('secretToken', ['token' => $token]);
+     return $this->inputArgs('secretToken', array_merge($vars, ['token' => $token]));
   }
 
   /**
@@ -31,18 +31,18 @@ class InternalQuery extends Types\RootType
    * @param SubscriberAgreementsFilter $filter
    * @return SubscriberAgreement[]
    */
-  public function subscriberAgreements(SubscriberAgreementsFilter $filter = null)
+  public function subscriberAgreements(SubscriberAgreementsFilter $filter = null, $vars = array())
   {
-     return $this->inputArgs('subscriberAgreements', ['filter' => $filter]);
+     return $this->inputArgs('subscriberAgreements', array_merge($vars, ['filter' => $filter]));
   }
 
   /**
    * Subscription levels available for sale
    * @return SubscriptionLevel[]
    */
-  public function subscriptionLevels()
+  public function subscriptionLevels($vars = array())
   {
-     return $this->inputArgs('subscriptionLevels', []);
+     return $this->inputArgs('subscriptionLevels', array_merge($vars, []));
   }
 
   protected function schemaNamespace()
