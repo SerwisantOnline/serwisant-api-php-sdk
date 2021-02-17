@@ -119,10 +119,11 @@ echo $repair->displayName;
 echo $repair->status->displayName;
 ```
 
-Probably you want to ask: why SDK doesn't provide files witch queries?
+Probably you want to ask: why SDK doesn't provide files with all available queries and mutations?
 
 That's because we have no idea what fields/objects you want to get from schema. Possibility to limit a fetched data is
-one of the most important feature of GraphQL. With pre-defined query files you'll lose a possibility to decide.
+one of the most important feature of GraphQL. With pre-defined query files you'll lose a possibility to decide by
+yourself.
 
 ### 4. Batched query
 
@@ -169,10 +170,12 @@ performed directly
 
 ## Contributions
 
-Pull requests are welcome. 
+Pull requests are welcome.
 
-Do not edit or update any files in `src/Serwisant/SerwisantApi/Types` - it's auto-generated. To
-generate missing types, queries, mutations use `bin/introspection.php` script:
+Do not edit or update any files in `src/Serwisant/SerwisantApi/Types` - all files/classes in that directory are
+auto-generated and changes will be overwritten.
+
+To generate missing types, queries, mutations use `bin/introspection.php` script:
 
 ```
 php ./bin/introspection.php 
@@ -189,8 +192,7 @@ SDK available as composer package on packagist.org:
 
 ## Licencing
 
-Apache License
-See LICENCE for full licence information.
+Apache License See LICENCE for full licence information.
 
 ## Author
 
