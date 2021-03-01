@@ -25,6 +25,15 @@ class PublicQuery extends Types\RootType
   }
 
   /**
+   * Will return a list of custom fields for customer signup form - for generic list see customFields
+   * @return CustomField[]
+   */
+  public function customerCustomFields($vars = array())
+  {
+     return $this->inputArgs('customerCustomFields', array_merge($vars, []));
+  }
+
+  /**
    * If token belongs to online payment, use this query to get details
    * @param string $token
    * @return OnlinePayment

@@ -49,8 +49,9 @@ $api->setAccessToken($access_token);
 It's optional, but *STRONGLY* recommended for performance reasons, because it's persisting access token between requests
 until it expire and avoid create a new token for every HTTP request. Check out other cache containers:
 
-- `SerwisantApi\AccessTokenContainerShm` - in memory container - **not recommended** in production environment on
-  multi-process/multi-machine infrastructure
+- `SerwisantApi\AccessTokenContainerSessipn` - in session container, it should be used only
+  with `AccessTokenOauthUserCredentials` and store user specific access token (fetched using login and password) -
+  please don't use it for only key-secret access tokens.
 - `SerwisantApi\AccessTokenContainerSqlite` - SQLite database based cache, easy to set-up. Require `PDO`
   and `php_pdo_sqlite` extensions.
 - ...build tour own for ie `MySQL`, use `SerwisantApi\AccessTokenContainer` abstract class
@@ -167,6 +168,13 @@ echo $me->subscriber;
 
 ***PLEASE NOTE*** you can't use a file based query/mutation feature with batched query. Batched queries must be always
 performed directly
+
+## Changelog
+
+- 3.0.5 - schema update, added optional method argument to each query/mutation call to pass non-arguments variables,
+  like query conditionals, etc.
+- 3.1.0 - removed `AccessTokenContainerShm` - it's useless and possibly confusing, added `getRefreshToken()`
+  to `AccessTokenContainer` interface, added `AccessTokenOauthUserCredentials` for user-password access tokens.
 
 ## Contributions
 

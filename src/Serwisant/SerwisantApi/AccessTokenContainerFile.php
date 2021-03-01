@@ -5,52 +5,66 @@ namespace Serwisant\SerwisantApi;
 class AccessTokenContainerFile implements AccessTokenContainer
 {
   private $file_path;
-  private $access_token;
-  private $expiry_timestamp;
+  private $data;
 
-  public function __construct($dir = '/tmp')
+  public function __construct($dir = null, $namespace = 'default')
   {
+    if (is_null($dir)) {
+      $dir = sys_get_temp_dir();
+    }
+
     if (!is_dir($dir)) {
       throw new Exception("Directory do not exists - please create '{$dir}' directory.");
     }
+
     if (!is_writable($dir)) {
       throw new Exception("Directory do not writeable - please change permissions of '{$dir}' directory.");
     }
-    $this->file_path = $dir . '/' . md5(__FILE__) . '_access_token.json';
+
+    $this->file_path = $dir . '/' . md5(__DIR__) . '_' . $namespace . '_access_token.json';
+    $this->data = null;
   }
 
-  public function store($access_token, $expiry_timestamp)
+  public function store($access_token, $expiry_timestamp, $refresh_token = null)
   {
-    $payload = json_encode(['access_token' => $access_token, 'expiry_timestamp' => $expiry_timestamp]);
+    $payload = json_encode([
+      'access_token' => $access_token,
+      'expiry_timestamp' => $expiry_timestamp,
+      'refresh_token' => $refresh_token
+    ]);
     file_put_contents($this->file_path, $payload);
+    $this->data = null;
   }
 
   public function getAccessToken()
   {
-    if ($this->access_token === null) {
-      $this->fetch();
-    }
-    return $this->access_token;
+    return $this->data()['access_token'];
   }
 
   public function getExpiryTimestamp()
   {
-    if ($this->expiry_timestamp === null) {
-      $this->fetch();
-    }
-    return (int)$this->expiry_timestamp;
+    return (int)$this->data()['expiry_timestamp'];
   }
 
-  private function fetch()
+  public function getRefreshToken()
   {
-    if (file_exists($this->file_path)) {
-      $content = file_get_contents($this->file_path);
-      $payload = json_decode($content, true);
-      $this->access_token = $payload['access_token'];
-      $this->expiry_timestamp = $payload['expiry_timestamp'];
-    } else {
-      $this->access_token = null;
-      $this->expiry_timestamp = null;
+    return $this->data()['refresh_token'];
+  }
+
+
+  private function data()
+  {
+    if (!is_array($this->data)) {
+      if (file_exists($this->file_path)) {
+        $this->data = json_decode(file_get_contents($this->file_path), true);
+      } else {
+        $this->data = [
+          'access_token' => null,
+          'expiry_timestamp' => 0,
+          'refresh_token' => null
+        ];
+      }
     }
+    return $this->data;
   }
 }

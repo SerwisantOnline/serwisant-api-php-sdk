@@ -5,22 +5,17 @@ namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Dictionary extends Types\Type
+class CustomerType extends Types\Enum
 {
   /**
-   * @var string
+   * Person
   */
-  public $ID;
+  const PERSONAL = 'PERSONAL';
 
   /**
-   * @var string
+   * Company
   */
-  public $name;
-
-  /**
-   * @var DictionaryType
-  */
-  public $type;
+  const BUSINESS = 'BUSINESS';
 
   protected function schemaNamespace()
   {

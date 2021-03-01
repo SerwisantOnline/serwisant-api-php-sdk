@@ -5,22 +5,37 @@ namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Dictionary extends Types\Type
+class AddressInput extends Types\Type
 {
   /**
-   * @var string
-  */
-  public $ID;
-
-  /**
-   * @var string
-  */
-  public $name;
-
-  /**
-   * @var DictionaryType
+   * @var AddressType
   */
   public $type;
+
+  /**
+   * @var string
+  */
+  public $street;
+
+  /**
+   * @var string
+  */
+  public $building;
+
+  /**
+   * @var string
+  */
+  public $city;
+
+  /**
+   * @var string
+  */
+  public $postalCode;
+
+  /**
+   * @var CountryCode
+  */
+  public $countryIso;
 
   protected function schemaNamespace()
   {

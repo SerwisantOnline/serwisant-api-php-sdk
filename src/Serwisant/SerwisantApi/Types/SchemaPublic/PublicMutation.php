@@ -20,6 +20,17 @@ class PublicMutation extends Types\RootType
   }
 
   /**
+   * @param CustomerInput $customer
+   * @param CustomerAgreementInput[] $agreements
+   * @param AddressInput[] $addresses
+   * @return CustomerCreationResult
+   */
+  public function createCustomer(CustomerInput $customer, array $agreements, array $addresses, $vars = array())
+  {
+     return $this->inputArgs('createCustomer', array_merge($vars, ['customer' => $customer, 'agreements' => $agreements, 'addresses' => $addresses]));
+  }
+
+  /**
    * Pay for `OnlinePayment` using any available `type` of payment. Depending on result status, payment may be
 queued: in that case pool for result, may be asked to redirect user to other site to complete a payment.
 

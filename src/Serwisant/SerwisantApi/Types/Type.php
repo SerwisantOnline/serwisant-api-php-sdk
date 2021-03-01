@@ -47,6 +47,11 @@ abstract class Type
     }
   }
 
+  public function __toString()
+  {
+    return print_r($this, 1);
+  }
+
   private function fillUsingGraphqlResult(array $object)
   {
     foreach ($object as $prop => $value) {

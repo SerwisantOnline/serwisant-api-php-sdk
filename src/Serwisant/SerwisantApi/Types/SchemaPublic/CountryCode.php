@@ -5,22 +5,11 @@ namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Dictionary extends Types\Type
+class CountryCode extends Types\Enum
 {
   /**
-   * @var string
   */
-  public $ID;
-
-  /**
-   * @var string
-  */
-  public $name;
-
-  /**
-   * @var DictionaryType
-  */
-  public $type;
+  const PL = 'PL';
 
   protected function schemaNamespace()
   {

@@ -10,6 +10,11 @@ class Address extends Types\Type
   /**
    * @var string
   */
+  public $ID;
+
+  /**
+   * @var string
+  */
   public $building;
 
   /**

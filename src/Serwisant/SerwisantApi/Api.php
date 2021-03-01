@@ -91,6 +91,16 @@ class Api
     return new Types\SchemaInternal\InternalQuery($this->client(), $this->url, $this->load_paths);
   }
 
+  public function customerMutation()
+  {
+    return new Types\SchemaCustomer\CustomerMutation($this->client(), $this->url, $this->load_paths);
+  }
+
+  public function customerQuery()
+  {
+    return new Types\SchemaCustomer\CustomerQuery($this->client(), $this->url, $this->load_paths);
+  }
+  
   /**
    * @return AccessToken
    * @throws Exception

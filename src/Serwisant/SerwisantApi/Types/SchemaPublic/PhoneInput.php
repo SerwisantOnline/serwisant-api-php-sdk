@@ -5,22 +5,17 @@ namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Dictionary extends Types\Type
+class PhoneInput extends Types\Type
 {
   /**
    * @var string
   */
-  public $ID;
+  public $number;
 
   /**
    * @var string
   */
-  public $name;
-
-  /**
-   * @var DictionaryType
-  */
-  public $type;
+  public $countryPrefix;
 
   protected function schemaNamespace()
   {

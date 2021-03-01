@@ -5,23 +5,17 @@ namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Dictionary extends Types\Type
+class CustomerCreationResult extends Types\Type
 {
   /**
-   * @var string
+   * @var Customer
   */
-  public $ID;
+  public $customer;
 
   /**
-   * @var string
+   * @var Error[]
   */
-  public $name;
-
-  /**
-   * @var DictionaryType
-  */
-  public $type;
-
+  public $errors = [];
   protected function schemaNamespace()
   {
     return 'SchemaPublic';

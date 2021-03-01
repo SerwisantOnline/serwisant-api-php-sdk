@@ -3,37 +3,33 @@
 namespace Serwisant\SerwisantApi;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception;
 
 class AccessTokenOauth implements AccessToken
 {
-  const URL = 'https://serwisant.online/oauth/token';
+  protected $url;
+  protected $client_id;
+  protected $client_secret;
+  protected $scope;
+  protected $container;
 
-  private $url;
-  private $client_id;
-  private $client_secret;
-  private $scope;
-  private $container;
-
-  private $access_token;
+  protected $access_token;
 
   /**
-   * @param string $client_id
-   * @param string $client_secret
+   * AccessTokenOauth constructor.
+   * @param $client_id
+   * @param $client_secret
    * @param string $scope
    * @param AccessTokenContainer|null $container
    * @param string $url
    */
-  public function __construct($client_id, $client_secret, $scope = '', AccessTokenContainer $container = null, $url = null)
+  public function __construct($client_id, $client_secret, $scope = '', AccessTokenContainer $container = null, $url = self::URL)
   {
-    if (is_null($url)) {
-      $this->url = self::URL;
-    } else {
-      $this->url = $url;
-    }
     $this->client_id = $client_id;
     $this->client_secret = $client_secret;
     $this->scope = $scope;
     $this->container = $container;
+    $this->url = $url;
   }
 
   /**
@@ -51,7 +47,23 @@ class AccessTokenOauth implements AccessToken
   /**
    * @throws Exception
    */
-  private function fetch()
+  public function refresh()
+  {
+    $token_data = $this->createHttp();
+
+    if ($token_data !== null) {
+      $this->access_token = $token_data['access_token'];
+
+      if ($this->container !== null) {
+        $this->container->store($token_data['access_token'], $token_data['expiry'], $token_data['refresh_token']);
+      }
+    }
+  }
+
+  /**
+   * @throws Exception
+   */
+  protected function fetch()
   {
     if ($this->container instanceof AccessTokenContainer && $this->container->getExpiryTimestamp() > time()) {
       $this->access_token = $this->container->getAccessToken();
@@ -63,25 +75,10 @@ class AccessTokenOauth implements AccessToken
   }
 
   /**
-   * @throws Exception
-   */
-  public function refresh()
-  {
-    $token_data = $this->fetch_http();
-    if ($token_data !== null) {
-      $this->access_token = $token_data['access_token'];
-
-      if ($this->container !== null) {
-        $this->container->store($token_data['access_token'], $token_data['expiry']);
-      }
-    }
-  }
-
-  /**
    * @return array
    * @throws Exception
    */
-  private function fetch_http()
+  private function createHttp()
   {
     $params = [
       'grant_type' => 'client_credentials',
@@ -89,7 +86,11 @@ class AccessTokenOauth implements AccessToken
       'client_secret' => $this->client_secret,
       'scope' => $this->scope
     ];
+    return $this->http($params);
+  }
 
+  protected function http($params)
+  {
     $client_params = [
       'connect_timeout' => 5,
       'timeout' => 30,
@@ -98,19 +99,32 @@ class AccessTokenOauth implements AccessToken
 
     $client = new Client();
 
-    $res = $client->request('POST', $this->url, $client_params);
-    $code = $res->getStatusCode();
-
-    if ($code === 200) {
+    try {
+      $res = $client->request('POST', $this->url, $client_params);
       $contents = $res->getBody()->getContents();
       $data = json_decode($contents, true);
 
+      if (true === array_key_exists('refresh_token', $data)) {
+        $refresh_token = $data['refresh_token'];
+      } else {
+        $refresh_token = null;
+      }
+
       return [
         'access_token' => $data['access_token'],
+        'refresh_token' => $refresh_token,
         'expiry' => ($data['created_at'] + $data['expires_in'])
       ];
-    } else {
-      throw new Exception("Unable to fetch an access token, HTTP code was '{$code}'");
+
+    } catch (Exception\ClientException $ex) {
+      $http_code = $ex->getResponse()->getStatusCode();
+      switch ($http_code) {
+        case 401:
+          $error = json_decode($ex->getResponse()->getBody()->getContents(), true);
+          throw new ExceptionUnauthorized($error['error_description'], $error['error']);
+        default:
+          throw new Exception("Unable to fetch an access token, HTTP code was '{$http_code}'");
+      }
     }
   }
 }

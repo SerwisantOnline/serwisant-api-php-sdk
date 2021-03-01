@@ -1,6 +1,6 @@
 <?php
 
-namespace Serwisant\SerwisantApi\Types\SchemaPublic;
+namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
 
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
@@ -24,6 +24,6 @@ class Dictionary extends Types\Type
 
   protected function schemaNamespace()
   {
-    return 'SchemaPublic';
+    return 'SchemaCustomer';
   }
 }

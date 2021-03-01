@@ -5,7 +5,7 @@ namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Dictionary extends Types\Type
+class CustomerAgreementInput extends Types\Type
 {
   /**
    * @var string
@@ -13,14 +13,9 @@ class Dictionary extends Types\Type
   public $ID;
 
   /**
-   * @var string
+   * @var bool
   */
-  public $name;
-
-  /**
-   * @var DictionaryType
-  */
-  public $type;
+  public $accepted;
 
   protected function schemaNamespace()
   {

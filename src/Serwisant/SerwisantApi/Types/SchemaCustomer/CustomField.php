@@ -1,6 +1,6 @@
 <?php
 
-namespace Serwisant\SerwisantApi\Types\SchemaPublic;
+namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
 
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
@@ -43,6 +43,6 @@ class CustomField extends Types\Type
 
   protected function schemaNamespace()
   {
-    return 'SchemaPublic';
+    return 'SchemaCustomer';
   }
 }

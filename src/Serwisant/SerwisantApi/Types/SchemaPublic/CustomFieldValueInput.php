@@ -5,7 +5,7 @@ namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Dictionary extends Types\Type
+class CustomFieldValueInput extends Types\Type
 {
   /**
    * @var string
@@ -15,12 +15,7 @@ class Dictionary extends Types\Type
   /**
    * @var string
   */
-  public $name;
-
-  /**
-   * @var DictionaryType
-  */
-  public $type;
+  public $value;
 
   protected function schemaNamespace()
   {

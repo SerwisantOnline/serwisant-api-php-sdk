@@ -1,3 +1,4 @@
 .idea/
-queries/SchemaInternal/.graphqlconfig
 vendor/
+composer.lock
+.graphqlconfig
