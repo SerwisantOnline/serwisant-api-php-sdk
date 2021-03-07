@@ -38,7 +38,7 @@ class Address extends Types\Type
   public $street;
 
   /**
-   * @var AddressType
+   * @var string
   */
   public $type;
 

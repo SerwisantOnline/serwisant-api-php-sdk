@@ -23,7 +23,7 @@ class CustomField extends Types\Type
   public $description;
 
   /**
-   * @var CustomFieldForm
+   * @var string
   */
   public $form;
 
@@ -42,7 +42,7 @@ class CustomField extends Types\Type
   */
   public $selectOptions = [];
   /**
-   * @var CustomFieldType
+   * @var string
   */
   public $type;
 

@@ -9,10 +9,10 @@ class ServiceQuery extends Types\RootType
 {
   /**
    * Will return a list of custom fields, that can be assigned to specific subject like customer or repair
-   * @param CustomFieldForm $form
+   * @param string $form
    * @return CustomField[]
    */
-  public function customFields(CustomFieldForm $form, $vars = array())
+  public function customFields(string $form, $vars = array())
   {
      return $this->inputArgs('customFields', array_merge($vars, ['form' => $form]));
   }
@@ -32,10 +32,10 @@ class ServiceQuery extends Types\RootType
    * @param int $limit
    * @param int $page
    * @param CustomersFilter $filter
-   * @param CustomersSort $sort
+   * @param string $sort
    * @return CustomersResult
    */
-  public function customers(int $limit = null, int $page = null, CustomersFilter $filter = null, CustomersSort $sort = null, $vars = array())
+  public function customers(int $limit = null, int $page = null, CustomersFilter $filter = null, string $sort = null, $vars = array())
   {
      return $this->inputArgs('customers', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]));
   }
@@ -55,10 +55,10 @@ class ServiceQuery extends Types\RootType
    * @param int $limit
    * @param int $page
    * @param RepairsFilter $filter
-   * @param RepairsSort $sort
+   * @param string $sort
    * @return RepairsResult
    */
-  public function repairs(int $limit = null, int $page = null, RepairsFilter $filter = null, RepairsSort $sort = null, $vars = array())
+  public function repairs(int $limit = null, int $page = null, RepairsFilter $filter = null, string $sort = null, $vars = array())
   {
      return $this->inputArgs('repairs', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]));
   }

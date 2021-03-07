@@ -8,7 +8,7 @@ use Serwisant\SerwisantApi\Types;
 class SecretToken extends Types\Type
 {
   /**
-   * @var SecretTokenSubject
+   * @var string
   */
   public $subjectType;
 

@@ -18,7 +18,7 @@ class Repair extends Types\Type
   public $advanceAmount;
 
   /**
-   * @var RepairTransportType
+   * @var string
   */
   public $collectionType;
 
@@ -44,7 +44,7 @@ class Repair extends Types\Type
   public $delegation;
 
   /**
-   * @var RepairTransportType
+   * @var string
   */
   public $deliveryType;
 

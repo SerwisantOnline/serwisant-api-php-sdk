@@ -10,11 +10,11 @@ class PublicMutation extends Types\RootType
   /**
    * Send there a customer decision regarding estimated repair costs
    * @param string $token
-   * @param AcceptOrRejectRepairDecision $decision
+   * @param string $decision
    * @param string $offer
    * @return AcceptOrRejectRepairResult
    */
-  public function acceptOrRejectRepair(string $token, AcceptOrRejectRepairDecision $decision, string $offer = null, $vars = array())
+  public function acceptOrRejectRepair(string $token, string $decision, string $offer = null, $vars = array())
   {
      return $this->inputArgs('acceptOrRejectRepair', array_merge($vars, ['token' => $token, 'decision' => $decision, 'offer' => $offer]));
   }
@@ -65,10 +65,10 @@ queued: in that case pool for result, may be asked to redirect user to other sit
 Token is valid for limited time.
 
    * @param string $loginOrEmail
-   * @param PasswordResetSubject $subject
+   * @param string $subject
    * @return PasswordResetResult
    */
-  public function resetPassword(string $loginOrEmail, PasswordResetSubject $subject, $vars = array())
+  public function resetPassword(string $loginOrEmail, string $subject, $vars = array())
   {
      return $this->inputArgs('resetPassword', array_merge($vars, ['loginOrEmail' => $loginOrEmail, 'subject' => $subject]));
   }

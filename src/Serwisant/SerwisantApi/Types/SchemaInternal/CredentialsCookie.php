@@ -8,7 +8,7 @@ use Serwisant\SerwisantApi\Types;
 class CredentialsCookie extends Types\Type
 {
   /**
-   * @var CredentialsCookieUserClass
+   * @var string
   */
   public $userClass;
 

@@ -18,7 +18,7 @@ class OnlineTransaction extends Types\Type
   public $processorUrl;
 
   /**
-   * @var OnlineTransactionStatus
+   * @var string
   */
   public $status;
 

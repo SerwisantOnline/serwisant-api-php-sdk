@@ -75,7 +75,7 @@ class Customer extends Types\Type
   public $taxId;
 
   /**
-   * @var TaxPrefix
+   * @var string
   */
   public $taxPrefix;
 
@@ -86,7 +86,7 @@ class Customer extends Types\Type
   public $timeZone;
 
   /**
-   * @var CustomerType
+   * @var string
   */
   public $type;
 

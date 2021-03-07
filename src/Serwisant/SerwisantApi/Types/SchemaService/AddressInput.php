@@ -8,7 +8,7 @@ use Serwisant\SerwisantApi\Types;
 class AddressInput extends Types\Type
 {
   /**
-   * @var AddressType
+   * @var string
   */
   public $type;
 
@@ -33,7 +33,7 @@ class AddressInput extends Types\Type
   public $postalCode;
 
   /**
-   * @var CountryCode
+   * @var string
   */
   public $countryIso;
 

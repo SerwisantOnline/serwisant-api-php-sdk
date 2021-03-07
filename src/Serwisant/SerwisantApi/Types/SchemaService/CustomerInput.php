@@ -8,7 +8,7 @@ use Serwisant\SerwisantApi\Types;
 class CustomerInput extends Types\Type
 {
   /**
-   * @var CustomerType
+   * @var string
   */
   public $type;
 
@@ -23,7 +23,7 @@ class CustomerInput extends Types\Type
   public $companyName;
 
   /**
-   * @var TaxPrefix
+   * @var string
   */
   public $taxPrefix;
 

@@ -23,7 +23,7 @@ class SecretToken extends Types\Type
   public $oauthScopes;
 
   /**
-   * @var SecretTokenSubject
+   * @var string
   */
   public $subjectType;
 

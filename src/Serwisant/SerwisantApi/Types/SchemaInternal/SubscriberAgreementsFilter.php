@@ -13,7 +13,7 @@ class SubscriberAgreementsFilter extends Types\Type
   public $ID;
 
   /**
-   * @var LicenceHolderAgreementType
+   * @var string
   */
   public $type;
 

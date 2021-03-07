@@ -18,7 +18,7 @@ class Dictionary extends Types\Type
   public $name;
 
   /**
-   * @var DictionaryType
+   * @var string
   */
   public $type;
 

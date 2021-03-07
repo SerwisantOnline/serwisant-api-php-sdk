@@ -55,7 +55,7 @@ class RepairStatus extends Types\Type
   public $finished;
 
   /**
-   * @var RepairState[]
+   * @var string[]
    * List of valid statuses repair can be changed to via updateRepairStatus.
 List depends on current status and strategy settings.
 
@@ -79,7 +79,7 @@ List depends on current status and strategy settings.
   public $startedAt;
 
   /**
-   * @var RepairState
+   * @var string
   */
   public $status;
 
@@ -94,7 +94,7 @@ List depends on current status and strategy settings.
   public $timeProgress;
 
   /**
-   * @var OrderTimeStatus
+   * @var string
   */
   public $timeStatus;
 

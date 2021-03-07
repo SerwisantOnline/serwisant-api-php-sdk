@@ -43,7 +43,7 @@ class SubscriberInput extends Types\Type
   public $password;
 
   /**
-   * @var SubscriberBusinessActivity
+   * @var string
   */
   public $businessActivity;
 

@@ -12,12 +12,12 @@ class OnlinePaymentMethod extends Types\Type
   */
   public $channels = [];
   /**
-   * @var Currency
+   * @var string
   */
   public $currency;
 
   /**
-   * @var OnlinePaymentMethodType
+   * @var string
   */
   public $type;
 

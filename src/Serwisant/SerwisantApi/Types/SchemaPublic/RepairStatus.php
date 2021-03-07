@@ -71,7 +71,7 @@ class RepairStatus extends Types\Type
   public $startedAt;
 
   /**
-   * @var RepairState
+   * @var string
   */
   public $status;
 
@@ -86,7 +86,7 @@ class RepairStatus extends Types\Type
   public $timeProgress;
 
   /**
-   * @var OrderTimeStatus
+   * @var string
   */
   public $timeStatus;
 

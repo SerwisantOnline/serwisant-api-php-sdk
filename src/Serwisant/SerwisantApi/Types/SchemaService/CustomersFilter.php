@@ -8,7 +8,7 @@ use Serwisant\SerwisantApi\Types;
 class CustomersFilter extends Types\Type
 {
   /**
-   * @var CustomersFilterType
+   * @var string
   */
   public $type;
 

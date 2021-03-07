@@ -13,7 +13,7 @@ class CustomerAgreementsFilter extends Types\Type
   public $ID;
 
   /**
-   * @var CustomerAgreementType[]
+   * @var string[]
   */
   public $types = [];
   protected function schemaNamespace()

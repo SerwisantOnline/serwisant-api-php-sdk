@@ -43,7 +43,7 @@ class RepairInput extends Types\Type
   public $warrantyPurchaseDocument;
 
   /**
-   * @var RepairTransportType
+   * @var string
   */
   public $delivery;
 
@@ -53,7 +53,7 @@ class RepairInput extends Types\Type
   public $pickUpAddress;
 
   /**
-   * @var RepairTransportType
+   * @var string
   */
   public $collection;
 

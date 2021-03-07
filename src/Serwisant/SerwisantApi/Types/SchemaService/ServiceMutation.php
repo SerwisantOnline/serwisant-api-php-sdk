@@ -22,11 +22,11 @@ class ServiceMutation extends Types\RootType
 
   /**
    * @param string $subject
-   * @param FileSubjectType $subjectType
+   * @param string $subjectType
    * @param FileInput $file
    * @return FileCreationResult
    */
-  public function createFile(string $subject, FileSubjectType $subjectType, FileInput $file, $vars = array())
+  public function createFile(string $subject, string $subjectType, FileInput $file, $vars = array())
   {
      return $this->inputArgs('createFile', array_merge($vars, ['subject' => $subject, 'subjectType' => $subjectType, 'file' => $file]));
   }
@@ -47,10 +47,10 @@ class ServiceMutation extends Types\RootType
   /**
    * Update repair status. Before update check valid statuses in Repair.status.nextPossibleStatus
    * @param string $repair
-   * @param RepairState $status
+   * @param string $status
    * @return RepairStatusUpdateResult
    */
-  public function updateRepairStatus(string $repair, RepairState $status, $vars = array())
+  public function updateRepairStatus(string $repair, string $status, $vars = array())
   {
      return $this->inputArgs('updateRepairStatus', array_merge($vars, ['repair' => $repair, 'status' => $status]));
   }

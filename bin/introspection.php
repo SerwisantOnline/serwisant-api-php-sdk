@@ -62,6 +62,8 @@ function c_detect_name($type, $for)
     if ($for == 'arg') {
       return 'array'; // this is an array od types, PHP nas no such type hinting, it will be an array
     }
+  } elseif ($type['kind'] == 'ENUM') {
+    return 'string';  // ENUM is not class - it's a String
   } else {
     return $out;
   }
@@ -117,7 +119,7 @@ function build_enum($ns, $typedef)
   return $content;
 }
 
-function build_toot_type_method($field)
+function build_root_type_method($field)
 {
   $type_args_comment = [];
   $type_args_not_null = [];
@@ -157,7 +159,7 @@ function build_object($ns, $typedef)
       $content .= c_prop_comment($field['type'], $field['description']);
       $content .= "  public \${$field['name']} = [];\n";
     } elseif (false !== stripos($typedef['name'], 'query') || false !== stripos($typedef['name'], 'mutation')) {
-      $content .= build_toot_type_method($field);
+      $content .= build_root_type_method($field);
     } else {
       $content .= c_prop_comment($field['type'], $field['description']);
       $content .= "  public \${$field['name']};\n\n";

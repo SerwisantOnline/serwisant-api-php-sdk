@@ -34,7 +34,7 @@ class CustomerAgreement extends Types\Type
   public $title;
 
   /**
-   * @var CustomerAgreementType
+   * @var string
   */
   public $type;
 

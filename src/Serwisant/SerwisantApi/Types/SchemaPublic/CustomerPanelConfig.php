@@ -28,7 +28,7 @@ class CustomerPanelConfig extends Types\Type
   public $caPanelToken;
 
   /**
-   * @var Currency
+   * @var string
    * Service currency, all API prices and other money values are in this currency
   */
   public $currency;

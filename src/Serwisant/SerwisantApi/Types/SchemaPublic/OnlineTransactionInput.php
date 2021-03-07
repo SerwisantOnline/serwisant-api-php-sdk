@@ -8,7 +8,7 @@ use Serwisant\SerwisantApi\Types;
 class OnlineTransactionInput extends Types\Type
 {
   /**
-   * @var OnlinePaymentMethodType
+   * @var string
   */
   public $type;
 

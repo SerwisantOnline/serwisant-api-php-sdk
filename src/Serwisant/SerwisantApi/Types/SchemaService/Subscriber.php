@@ -13,7 +13,7 @@ class Subscriber extends Types\Type
   public $address;
 
   /**
-   * @var SubscriberBusinessActivity
+   * @var string
   */
   public $businessActivity;
 
@@ -43,7 +43,7 @@ class Subscriber extends Types\Type
   public $taxId;
 
   /**
-   * @var TaxPrefix
+   * @var string
   */
   public $taxPrefix;
 

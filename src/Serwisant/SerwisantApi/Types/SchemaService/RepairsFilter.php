@@ -8,7 +8,7 @@ use Serwisant\SerwisantApi\Types;
 class RepairsFilter extends Types\Type
 {
   /**
-   * @var RepairsFilterType
+   * @var string
   */
   public $type;
 
@@ -18,7 +18,7 @@ class RepairsFilter extends Types\Type
   public $ID;
 
   /**
-   * @var RepairState
+   * @var string
   */
   public $status;
 

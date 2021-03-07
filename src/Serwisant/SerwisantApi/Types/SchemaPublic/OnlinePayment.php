@@ -25,7 +25,7 @@ class OnlinePayment extends Types\Type
   public $amountToPay;
 
   /**
-   * @var Currency
+   * @var string
   */
   public $currency;
 
@@ -51,7 +51,7 @@ class OnlinePayment extends Types\Type
   public $serviceSupplier;
 
   /**
-   * @var OnlinePaymentStatus
+   * @var string
   */
   public $status;
 

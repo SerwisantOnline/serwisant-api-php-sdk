@@ -23,7 +23,7 @@ class RepairOfferItem extends Types\Type
   public $priceNet;
 
   /**
-   * @var RepairOfferItemType
+   * @var string
   */
   public $type;
 

@@ -8,7 +8,7 @@ use Serwisant\SerwisantApi\Types;
 class DictionaryEntriesFilter extends Types\Type
 {
   /**
-   * @var DictionaryType
+   * @var string
   */
   public $type;
 

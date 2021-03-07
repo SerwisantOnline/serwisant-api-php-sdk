@@ -38,7 +38,7 @@ class SubscriberAgreement extends Types\Type
   public $title;
 
   /**
-   * @var LicenceHolderAgreementType
+   * @var string
   */
   public $type;
 
