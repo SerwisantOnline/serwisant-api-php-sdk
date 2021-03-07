@@ -16,7 +16,11 @@ abstract class Type
     if (false === self::isAssocArray($object)) {
       $instances = [];
       foreach ($object as $value) {
-        $instances[] = self::spawn($schema_namespace, $value);
+        if (is_array($value)) {
+          $instances[] = self::spawn($schema_namespace, $value);
+        } else {
+          $instances[] = $value;
+        }
       }
       return $instances;
     } else {

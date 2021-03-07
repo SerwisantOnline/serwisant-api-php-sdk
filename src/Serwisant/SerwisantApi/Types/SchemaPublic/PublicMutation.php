@@ -20,6 +20,21 @@ class PublicMutation extends Types\RootType
   }
 
   /**
+   * Once customer is created via `createCustomer` he gets an email with activation URL contains a token.
+Token must be used against this mutation to activate an accoint and allo customer to log-in.
+
+   * @param string $activationToken
+   * @return CustomerActivationResult
+   */
+  public function activateCustomer(string $activationToken, $vars = array())
+  {
+     return $this->inputArgs('activateCustomer', array_merge($vars, ['activationToken' => $activationToken]));
+  }
+
+  /**
+   * Creates a customer account usable in `Customer` schema. Account is self-created account.
+Don't use it for purposes other than customer Panel sign-up.
+
    * @param CustomerInput $customer
    * @param CustomerAgreementInput[] $agreements
    * @param AddressInput[] $addresses
@@ -43,6 +58,31 @@ queued: in that case pool for result, may be asked to redirect user to other sit
   public function pay(string $token, OnlineTransactionInput $onlineTransaction, string $successUrl, string $errorUrl, $vars = array())
   {
      return $this->inputArgs('pay', array_merge($vars, ['token' => $token, 'onlineTransaction' => $onlineTransaction, 'successUrl' => $successUrl, 'errorUrl' => $errorUrl]));
+  }
+
+  /**
+   * Give a login or email to get an email with password reset link. Email will contain a reset token to use with `setPassword` mutation.
+Token is valid for limited time.
+
+   * @param string $loginOrEmail
+   * @param PasswordResetSubject $subject
+   * @return PasswordResetResult
+   */
+  public function resetPassword(string $loginOrEmail, PasswordResetSubject $subject, $vars = array())
+  {
+     return $this->inputArgs('resetPassword', array_merge($vars, ['loginOrEmail' => $loginOrEmail, 'subject' => $subject]));
+  }
+
+  /**
+   * Use a token sent by `resetPassword` to set a new password.
+   * @param string $resetToken
+   * @param string $password
+   * @param string $passwordConfirmation
+   * @return PasswordSetResult
+   */
+  public function setPassword(string $resetToken, string $password, string $passwordConfirmation, $vars = array())
+  {
+     return $this->inputArgs('setPassword', array_merge($vars, ['resetToken' => $resetToken, 'password' => $password, 'passwordConfirmation' => $passwordConfirmation]));
   }
 
   protected function schemaNamespace()

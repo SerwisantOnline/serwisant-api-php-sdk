@@ -2,8 +2,7 @@
 
 namespace Serwisant\SerwisantApi;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception;
+use GuzzleHttp;
 
 class AccessTokenOauth implements AccessToken
 {
@@ -97,7 +96,7 @@ class AccessTokenOauth implements AccessToken
       'form_params' => $params
     ];
 
-    $client = new Client();
+    $client = new GuzzleHttp\Client();
 
     try {
       $res = $client->request('POST', $this->url, $client_params);
@@ -116,10 +115,10 @@ class AccessTokenOauth implements AccessToken
         'expiry' => ($data['created_at'] + $data['expires_in'])
       ];
 
-    } catch (Exception\ClientException $ex) {
+    } catch (GuzzleHttp\Exception\ClientException $ex) {
       $http_code = $ex->getResponse()->getStatusCode();
       switch ($http_code) {
-        case 401:
+        case 400:
           $error = json_decode($ex->getResponse()->getBody()->getContents(), true);
           throw new ExceptionUnauthorized($error['error_description'], $error['error']);
         default:
