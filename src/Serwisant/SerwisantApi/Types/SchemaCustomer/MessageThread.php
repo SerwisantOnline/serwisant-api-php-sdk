@@ -5,16 +5,27 @@ namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class RepairCreationResult extends Types\Type
+class MessageThread extends Types\Type
 {
   /**
-   * @var Error[]
+   * @var string
   */
-  public $errors = [];
+  public $ID;
+
   /**
-   * @var Repair
+   * @var DateTime
   */
-  public $repair;
+  public $createdAt;
+
+  /**
+   * @var Message[]
+  */
+  public $messages;
+
+  /**
+   * @var string
+  */
+  public $subject;
 
   protected function schemaNamespace()
   {

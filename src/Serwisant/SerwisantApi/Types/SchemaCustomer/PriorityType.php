@@ -5,16 +5,11 @@ namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class RepairCreationResult extends Types\Type
+class PriorityType extends Types\Enum
 {
   /**
-   * @var Error[]
   */
-  public $errors = [];
-  /**
-   * @var Repair
-  */
-  public $repair;
+  const TICKET = 'TICKET';
 
   protected function schemaNamespace()
   {

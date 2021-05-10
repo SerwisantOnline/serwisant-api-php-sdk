@@ -110,6 +110,11 @@ class Repair extends Types\Type
   public $summary;
 
   /**
+   * @var string
+  */
+  public $timeZone;
+
+  /**
    * @var Dictionary
   */
   public $type;

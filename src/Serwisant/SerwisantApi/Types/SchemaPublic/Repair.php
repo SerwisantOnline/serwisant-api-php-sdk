@@ -29,11 +29,6 @@ class Repair extends Types\Type
   public $customFields;
 
   /**
-   * @var Customer
-  */
-  public $customer;
-
-  /**
    * @var string
   */
   public $deliveryType;
@@ -108,6 +103,11 @@ class Repair extends Types\Type
    * @var RepairSummary
   */
   public $summary;
+
+  /**
+   * @var string
+  */
+  public $timeZone;
 
   /**
    * @var Dictionary

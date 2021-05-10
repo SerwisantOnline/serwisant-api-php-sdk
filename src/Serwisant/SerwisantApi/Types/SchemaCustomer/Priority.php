@@ -1,36 +1,31 @@
 <?php
 
-namespace Serwisant\SerwisantApi\Types\SchemaPublic;
+namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
 
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Address extends Types\Type
+class Priority extends Types\Type
 {
   /**
    * @var string
   */
-  public $building;
+  public $ID;
 
   /**
    * @var string
   */
-  public $city;
+  public $color;
 
   /**
    * @var string
   */
-  public $countryIso;
+  public $name;
 
   /**
-   * @var string
+   * @var int
   */
-  public $postalCode;
-
-  /**
-   * @var string
-  */
-  public $street;
+  public $sla;
 
   /**
    * @var string
@@ -39,6 +34,6 @@ class Address extends Types\Type
 
   protected function schemaNamespace()
   {
-    return 'SchemaPublic';
+    return 'SchemaCustomer';
   }
 }

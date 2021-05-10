@@ -5,16 +5,19 @@ namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class RepairCreationResult extends Types\Type
+class MessagesFilterType extends Types\Enum
 {
   /**
-   * @var Error[]
   */
-  public $errors = [];
+  const ID = 'ID';
+
   /**
-   * @var Repair
   */
-  public $repair;
+  const ALL = 'ALL';
+
+  /**
+  */
+  const ARCHIVED = 'ARCHIVED';
 
   protected function schemaNamespace()
   {

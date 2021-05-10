@@ -22,6 +22,10 @@ class RepairsSort extends Types\Enum
 
   /**
   */
+  const DATE_UPDATED = 'DATE_UPDATED';
+
+  /**
+  */
   const RMA = 'RMA';
 
   /**

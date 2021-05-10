@@ -38,6 +38,11 @@ class CustomerPanelConfig extends Types\Type
   */
   public $showOrderProgressInfo;
 
+  /**
+   * @var string
+  */
+  public $timeZone;
+
   protected function schemaNamespace()
   {
     return 'SchemaPublic';

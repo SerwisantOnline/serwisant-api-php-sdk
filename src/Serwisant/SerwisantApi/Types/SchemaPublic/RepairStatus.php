@@ -90,6 +90,11 @@ class RepairStatus extends Types\Type
   */
   public $timeStatus;
 
+  /**
+   * @var DateTime
+  */
+  public $updatedAt;
+
   protected function schemaNamespace()
   {
     return 'SchemaPublic';

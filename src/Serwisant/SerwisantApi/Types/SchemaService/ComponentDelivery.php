@@ -5,7 +5,7 @@ namespace Serwisant\SerwisantApi\Types\SchemaService;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class ServiceSupplier extends Types\Type
+class ComponentDelivery extends Types\Type
 {
   /**
    * @var string
@@ -13,34 +13,44 @@ class ServiceSupplier extends Types\Type
   public $ID;
 
   /**
-   * @var Address
+   * @var string
   */
-  public $address;
+  public $invoiceSignature;
 
   /**
-   * @var Address[]
+   * @var Money
   */
-  public $addresses;
-
-  /**
-   * @var File
-  */
-  public $avatar;
+  public $priceNet;
 
   /**
    * @var string
   */
-  public $displayName;
+  public $purchasedAt;
+
+  /**
+   * @var int
+  */
+  public $quantity;
+
+  /**
+   * @var int
+  */
+  public $reservedQuantity;
 
   /**
    * @var string
   */
-  public $email;
+  public $serial;
 
   /**
-   * @var Phone
+   * @var string
   */
-  public $phone;
+  public $supplier;
+
+  /**
+   * @var float
+  */
+  public $vat;
 
   protected function schemaNamespace()
   {

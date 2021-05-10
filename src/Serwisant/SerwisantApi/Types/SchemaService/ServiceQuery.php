@@ -8,6 +8,18 @@ use Serwisant\SerwisantApi\Types;
 class ServiceQuery extends Types\RootType
 {
   /**
+   * List of components in inventory including a deliveries and related data
+   * @param int $limit
+   * @param int $page
+   * @param ComponentsFilter $filter
+   * @return ComponentsResult
+   */
+  public function components(int $limit = null, int $page = null, ComponentsFilter $filter = null, $vars = array())
+  {
+     return $this->inputArgs('components', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter]));
+  }
+
+  /**
    * Will return a list of custom fields, that can be assigned to specific subject like customer or repair
    * @param string $form
    * @return CustomField[]

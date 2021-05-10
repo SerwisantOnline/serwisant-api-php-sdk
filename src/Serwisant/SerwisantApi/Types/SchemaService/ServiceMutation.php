@@ -8,6 +8,30 @@ use Serwisant\SerwisantApi\Types;
 class ServiceMutation extends Types\RootType
 {
   /**
+   * Add a new component into inventory. This is only a component definition (card) - deliveries and other data goes in separate mutations.
+   * @param ComponentInput $component
+   * @return ComponentCreationResult
+   */
+  public function createComponent(ComponentInput $component, $vars = array())
+  {
+     return $this->inputArgs('createComponent', array_merge($vars, ['component' => $component]));
+  }
+
+  /**
+   * This mutation should be used to add a new stock into a inventory.
+Component card created via `createComponent` mutation is required before supply.
+`deliveries` argument is an array, so you can add multiple deliveries at once.
+
+   * @param string $component
+   * @param ComponentDeliveryInput[] $deliveries
+   * @return ComponentDeliveryCreationResult
+   */
+  public function createComponentDelivery(string $component, array $deliveries, $vars = array())
+  {
+     return $this->inputArgs('createComponentDelivery', array_merge($vars, ['component' => $component, 'deliveries' => $deliveries]));
+  }
+
+  /**
    * Create a new customer account
    * @param CustomerInput $customer
    * @param CustomerAgreementInput[] $agreements

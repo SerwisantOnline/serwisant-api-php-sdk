@@ -22,6 +22,7 @@ class OnlineTransactionStatus extends Types\Enum
 be pooled. Please note, when customer come back from redirect, transaction status probably won't change - it's
 processed asynchronously - it's on your side to care about to pool not to redirect again. Hint: use `successUrl`
 and `errorUrl` at `pay` mutation to pass data.
+
   */
   const REDIRECT_POOL = 'REDIRECT_POOL';
 

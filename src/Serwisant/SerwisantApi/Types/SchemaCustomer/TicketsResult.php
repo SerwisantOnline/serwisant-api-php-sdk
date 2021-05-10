@@ -5,16 +5,17 @@ namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class RepairCreationResult extends Types\Type
+class TicketsResult extends Types\Type
 {
   /**
-   * @var Error[]
+   * @var Ticket[]
   */
-  public $errors = [];
+  public $items;
+
   /**
-   * @var Repair
+   * @var int
   */
-  public $repair;
+  public $pages;
 
   protected function schemaNamespace()
   {

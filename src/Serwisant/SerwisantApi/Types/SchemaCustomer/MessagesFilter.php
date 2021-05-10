@@ -1,24 +1,24 @@
 <?php
 
-namespace Serwisant\SerwisantApi\Types\SchemaPublic;
+namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
 
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Dictionary extends Types\Type
+class MessagesFilter extends Types\Type
 {
-  /**
-   * @var string
-  */
-  public $name;
-
   /**
    * @var string
   */
   public $type;
 
+  /**
+   * @var string
+  */
+  public $ID;
+
   protected function schemaNamespace()
   {
-    return 'SchemaPublic';
+    return 'SchemaCustomer';
   }
 }

@@ -98,6 +98,11 @@ List depends on current status and strategy settings.
   */
   public $timeStatus;
 
+  /**
+   * @var DateTime
+  */
+  public $updatedAt;
+
   protected function schemaNamespace()
   {
     return 'SchemaService';
