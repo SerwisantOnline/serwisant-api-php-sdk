@@ -106,6 +106,9 @@ class GraphqlRequest
    */
   public function fetch($id = null)
   {
+    if (count($this->results) == 0) {
+      throw new Exception("Received empty result, double check is your query or mutation defines any fields to select");
+    }
     if (!$id) {
       $id = array_keys($this->results)[0];
     }

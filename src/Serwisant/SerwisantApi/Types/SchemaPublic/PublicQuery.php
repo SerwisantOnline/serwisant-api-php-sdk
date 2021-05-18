@@ -34,6 +34,16 @@ class PublicQuery extends Types\RootType
   }
 
   /**
+   * This query map given login credential, ie. email, or login itself to username valid for OAuth password login. Please note: given credential can point to more than one login, so thus must be handled on frontend side.
+   * @param string $loginCredential
+   * @return LoginResult[]
+   */
+  public function login(string $loginCredential, $vars = array())
+  {
+     return $this->inputArgs('login', array_merge($vars, ['loginCredential' => $loginCredential]));
+  }
+
+  /**
    * If token belongs to online payment, use this query to get details
    * @param string $token
    * @return OnlinePayment

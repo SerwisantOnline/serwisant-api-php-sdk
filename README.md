@@ -5,6 +5,12 @@
 * PHP 7.2 or higher
 * ext-mbstring
 * ext-curl
+* ext-json
+
+optional:
+
+* ext-openssl for `AccessTokenContainerEncryptedFile`
+* PDO, sqlite for `AccessTokenContainerSqlite`
 
 ## Word about versioning
 
@@ -38,7 +44,7 @@ one `SerwisantApi\Api` instance - it's useless and ineffective.
 use Serwisant\SerwisantApi;
 
 // get own client and secret by creating an application via webpage
-$access_token = new SerwisantApi\AccessTokenOauth('client', 'secret', 'public', (new SerwisantApi\AccessTokenContainerFile));
+$access_token = new SerwisantApi\AccessTokenOauth('client', 'secret', 'public', (new SerwisantApi\AccessTokenContainerEncryptedFile('some_string_as_encryption_key')));
 
 $api = new SerwisantApi\Api();
 $api->setAccessToken($access_token);
@@ -49,7 +55,12 @@ $api->setAccessToken($access_token);
 It's optional, but *STRONGLY* recommended for performance reasons, because it's persisting access token between requests
 until it expire and avoid create a new token for every HTTP request. Check out other cache containers:
 
-- `SerwisantApi\AccessTokenContainerSessipn` - in session container, it should be used only
+- `SerwisantApi\AccessTokenContainerEncryptedFile` - caches data in encrypted local files, it can be used on
+  single-server application with access to local filesystem
+- `SerwisantApi\AccessTokenContainerFile` - caches data in plain-text local files, it can be used on single-server
+  application with access to local filesystem. ***Please note*** - it's insecure to use it on shared hosting because
+  plain access tokens can be saved in `/tmp` directory accessible for other users.
+- `SerwisantApi\AccessTokenContainerSession` - in session container, it should be used only
   with `AccessTokenOauthUserCredentials` and store user specific access token (fetched using login and password) -
   please don't use it for only key-secret access tokens.
 - `SerwisantApi\AccessTokenContainerSqlite` - SQLite database based cache, easy to set-up. Require `PDO`

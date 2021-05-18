@@ -7,8 +7,10 @@
   "license": "Apache-2.0",
   "require": {
     "guzzlehttp/guzzle": "^6.5",
-    "php" : ">=7.2",
-    "ext-json": "*"
+    "php": ">=7.2",
+    "ext-json": "*",
+    "ext-curl": "*",
+    "ext-mbstring": "*"
   },
   "suggest": {
     "ext-pdo": "For SQL access token caching container",

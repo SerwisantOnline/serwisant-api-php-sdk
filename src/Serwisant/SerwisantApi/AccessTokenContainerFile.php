@@ -4,8 +4,8 @@ namespace Serwisant\SerwisantApi;
 
 class AccessTokenContainerFile implements AccessTokenContainer
 {
-  private $file_path;
-  private $data;
+  protected $file_path;
+  protected $data;
 
   public function __construct($dir = null, $namespace = 'default')
   {
@@ -32,7 +32,7 @@ class AccessTokenContainerFile implements AccessTokenContainer
       'expiry_timestamp' => $expiry_timestamp,
       'refresh_token' => $refresh_token
     ]);
-    file_put_contents($this->file_path, $payload);
+    $this->writeFile($payload);
     $this->data = null;
   }
 
@@ -51,12 +51,11 @@ class AccessTokenContainerFile implements AccessTokenContainer
     return $this->data()['refresh_token'];
   }
 
-
   private function data()
   {
     if (!is_array($this->data)) {
-      if (file_exists($this->file_path)) {
-        $this->data = json_decode(file_get_contents($this->file_path), true);
+      if (file_exists($this->file_path) && mb_strlen($content = $this->readFile()) > 0) {
+        $this->data = json_decode($content, true);
       } else {
         $this->data = [
           'access_token' => null,
@@ -66,5 +65,16 @@ class AccessTokenContainerFile implements AccessTokenContainer
       }
     }
     return $this->data;
+  }
+
+  protected function readFile()
+  {
+    return file_get_contents($this->file_path);
+  }
+
+  protected function writeFile($content)
+  {
+    file_put_contents($this->file_path, $content);
+    return true;
   }
 }
