@@ -25,6 +25,11 @@ class CustomField extends Types\Type
   /**
    * @var string
   */
+  public $form;
+
+  /**
+   * @var string
+  */
   public $name;
 
   /**

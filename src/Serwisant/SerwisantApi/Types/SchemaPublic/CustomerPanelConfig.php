@@ -36,6 +36,11 @@ class CustomerPanelConfig extends Types\Type
   /**
    * @var bool
   */
+  public $orderDictModel;
+
+  /**
+   * @var bool
+  */
   public $showOrderProgressInfo;
 
   /**

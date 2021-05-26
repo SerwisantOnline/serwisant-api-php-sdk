@@ -8,6 +8,7 @@ use Serwisant\SerwisantApi\Types;
 class PublicQuery extends Types\RootType
 {
   /**
+   * Get a basic customer panel configuration options
    * @return CustomerPanelConfig
    */
   public function configuration($vars = array())
@@ -16,6 +17,7 @@ class PublicQuery extends Types\RootType
   }
 
   /**
+   * List of agreements, eg. GDPR, rules, privacy policy to show/accept during a signup
    * @param CustomerAgreementsFilter $filter
    * @return CustomerAgreement[]
    */
@@ -25,7 +27,7 @@ class PublicQuery extends Types\RootType
   }
 
   /**
-   * Will return a list of custom fields for customer signup form - for generic list see customFields
+   * Will return a list of custom fields for customer signup form - for generic list see customFields in other schemas
    * @return CustomField[]
    */
   public function customerCustomFields($vars = array())

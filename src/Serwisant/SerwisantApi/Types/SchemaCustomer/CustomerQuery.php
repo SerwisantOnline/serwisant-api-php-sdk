@@ -8,6 +8,15 @@ use Serwisant\SerwisantApi\Types;
 class CustomerQuery extends Types\RootType
 {
   /**
+   * @param string $form
+   * @return CustomField[]
+   */
+  public function customFields(string $form, $vars = array())
+  {
+     return $this->inputArgs('customFields', array_merge($vars, ['form' => $form]));
+  }
+
+  /**
    * @param CustomerAgreementsFilter $filter
    * @return CustomerAgreement[]
    */
@@ -17,12 +26,12 @@ class CustomerQuery extends Types\RootType
   }
 
   /**
-   * Will return a list of custom fields for customer signup form - for generic list see customFields
-   * @return CustomField[]
+   * @param DictionaryEntriesFilter $filter
+   * @return Dictionary[]
    */
-  public function customerCustomFields($vars = array())
+  public function dictionaryEntries(DictionaryEntriesFilter $filter = null, $vars = array())
   {
-     return $this->inputArgs('customerCustomFields', array_merge($vars, []));
+     return $this->inputArgs('dictionaryEntries', array_merge($vars, ['filter' => $filter]));
   }
 
   /**
