@@ -46,6 +46,15 @@ class CustomerQuery extends Types\RootType
   }
 
   /**
+   * @param PrioritiesFilter $filter
+   * @return Priority[]
+   */
+  public function priorities(PrioritiesFilter $filter = null, $vars = array())
+  {
+     return $this->inputArgs('priorities', array_merge($vars, ['filter' => $filter]));
+  }
+
+  /**
    * @param int $limit
    * @param int $page
    * @param RepairsFilter $filter
@@ -55,6 +64,16 @@ class CustomerQuery extends Types\RootType
   public function repairs(int $limit = null, int $page = null, RepairsFilter $filter = null, string $sort = null, $vars = array())
   {
      return $this->inputArgs('repairs', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]));
+  }
+
+  /**
+   * Return details of temporary files identified by ID passed in arguments.
+   * @param string[] $ID
+   * @return TemporaryFile[]
+   */
+  public function temporaryFiles(array $ID, $vars = array())
+  {
+     return $this->inputArgs('temporaryFiles', array_merge($vars, ['ID' => $ID]));
   }
 
   /**

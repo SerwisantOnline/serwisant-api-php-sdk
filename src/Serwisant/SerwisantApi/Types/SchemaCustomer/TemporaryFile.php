@@ -5,7 +5,7 @@ namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Address extends Types\Type
+class TemporaryFile extends Types\Type
 {
   /**
    * @var string
@@ -15,32 +15,17 @@ class Address extends Types\Type
   /**
    * @var string
   */
-  public $building;
+  public $contentType;
 
   /**
    * @var string
   */
-  public $city;
+  public $name;
 
   /**
    * @var string
   */
-  public $countryIso;
-
-  /**
-   * @var string
-  */
-  public $postalCode;
-
-  /**
-   * @var string
-  */
-  public $street;
-
-  /**
-   * @var string
-  */
-  public $type;
+  public $url;
 
   protected function schemaNamespace()
   {

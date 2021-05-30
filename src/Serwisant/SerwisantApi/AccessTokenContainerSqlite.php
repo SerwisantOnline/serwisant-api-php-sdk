@@ -20,8 +20,13 @@ class AccessTokenContainerSqlite implements AccessTokenContainer
    */
   public function __construct($db_name = null, $namespace = 'default')
   {
+    $tmp_dir = getenv('TMPDIR');
+    if (is_null($tmp_dir) || trim($tmp_dir) == '') {
+      $tmp_dir = sys_get_temp_dir();
+    }
+
     if (is_null($db_name)) {
-      $db_name = sys_get_temp_dir() . '/' . md5(__DIR__) . '_' . 'access_token.sqlite';
+      $db_name = $tmp_dir . '/' . md5(__DIR__) . '_' . 'access_token.sqlite';
     }
 
     $dir = dirname($db_name);

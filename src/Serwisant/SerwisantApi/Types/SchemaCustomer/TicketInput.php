@@ -5,42 +5,41 @@ namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Address extends Types\Type
+class TicketInput extends Types\Type
 {
   /**
    * @var string
   */
-  public $ID;
+  public $address;
 
   /**
    * @var string
   */
-  public $building;
+  public $addressOther;
+
+  /**
+   * @var CustomFieldValueInput[]
+  */
+  public $customFields = [];
+  /**
+   * @var string
+  */
+  public $issue;
 
   /**
    * @var string
   */
-  public $city;
+  public $priority;
 
   /**
-   * @var string
+   * @var DateTime
   */
-  public $countryIso;
+  public $startAt;
 
   /**
-   * @var string
+   * @var bool
   */
-  public $postalCode;
-
-  /**
-   * @var string
-  */
-  public $street;
-
-  /**
-   * @var string
-  */
-  public $type;
+  public $wantInvoice;
 
   protected function schemaNamespace()
   {

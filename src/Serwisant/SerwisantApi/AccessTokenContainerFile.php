@@ -9,7 +9,10 @@ class AccessTokenContainerFile implements AccessTokenContainer
 
   public function __construct($dir = null, $namespace = 'default')
   {
-    if (is_null($dir)) {
+    if (is_null($dir) || trim($dir) == '') {
+      $dir = getenv('TMPDIR');
+    }
+    if (is_null($dir) || trim($dir) == '') {
       $dir = sys_get_temp_dir();
     }
 

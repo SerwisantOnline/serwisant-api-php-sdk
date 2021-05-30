@@ -48,11 +48,13 @@ class CustomerInput extends Types\Type
   public $customFields = [];
   /**
    * @var string
+   * Customer's group, ID passed from one of CUSTOMER_GROUP Dictionary entity
   */
   public $group;
 
   /**
    * @var bool
+   * By default it's false - when set tu true with customer will be activated access to customer panel - login and password will be sent to customer's email.
   */
   public $activateInternetAccess;
 
