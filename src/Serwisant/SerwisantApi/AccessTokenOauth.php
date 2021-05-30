@@ -6,7 +6,6 @@ use GuzzleHttp;
 
 class AccessTokenOauth implements AccessToken
 {
-  protected $url;
   protected $client_id;
   protected $client_secret;
   protected $scope;
@@ -20,15 +19,13 @@ class AccessTokenOauth implements AccessToken
    * @param $client_secret
    * @param string $scope
    * @param AccessTokenContainer|null $container
-   * @param string $url
    */
-  public function __construct($client_id, $client_secret, $scope = '', AccessTokenContainer $container = null, $url = self::URL)
+  public function __construct($client_id, $client_secret, $scope = '', AccessTokenContainer $container = null)
   {
     $this->client_id = $client_id;
     $this->client_secret = $client_secret;
     $this->scope = $scope;
     $this->container = $container;
-    $this->url = $url;
   }
 
   /**
@@ -88,6 +85,15 @@ class AccessTokenOauth implements AccessToken
     return $this->http($params);
   }
 
+  protected function url()
+  {
+    if (trim(getenv('OAUTH_URL'))) {
+      return getenv('OAUTH_URL');
+    }
+
+    return self::URL;
+  }
+
   protected function http($params)
   {
     $client_params = [
@@ -99,7 +105,7 @@ class AccessTokenOauth implements AccessToken
     $client = new GuzzleHttp\Client();
 
     try {
-      $res = $client->request('POST', $this->url, $client_params);
+      $res = $client->request('POST', $this->url(), $client_params);
       $contents = $res->getBody()->getContents();
       $data = json_decode($contents, true);
 

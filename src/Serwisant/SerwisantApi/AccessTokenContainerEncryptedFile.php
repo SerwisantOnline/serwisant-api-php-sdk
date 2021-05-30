@@ -9,7 +9,7 @@ class AccessTokenContainerEncryptedFile extends AccessTokenContainerFile
   const CIPHER = 'aes-128-cbc';
   private $key;
 
-  /***
+  /**
    * AccessTokenContainerEncryptedFile constructor.
    * @param $key
    * @param null $dir

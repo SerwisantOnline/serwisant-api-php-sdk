@@ -9,24 +9,16 @@ class GraphqlRequest
   private $client;
   private $schema_path;
   private $schema_namespace;
-  private $url;
   private $load_paths;
   private $query;
   private $variables = [];
   private $results = [];
 
-  public function __construct(GraphqlClient $client, $schema_path, $schema_namespace, $url = null, $load_paths = [])
+  public function __construct(GraphqlClient $client, $schema_path, $schema_namespace, $load_paths = [])
   {
     $this->client = $client;
     $this->schema_path = $schema_path;
     $this->schema_namespace = $schema_namespace;
-
-    if ($url) {
-      $this->url = $url;
-    } else {
-      $this->url = GraphqlRequest::URL;
-    }
-
     $this->load_paths = $load_paths;
     $this->load_paths[] = __DIR__ . '/../../../queries';
     $this->load_paths[] = __DIR__ . "/../../../queries/{$schema_namespace}";
@@ -94,7 +86,7 @@ class GraphqlRequest
    */
   public function execute()
   {
-    $this->results = $this->client->call("{$this->url}/{$this->schema_path}", $this->query, $this->variables);
+    $this->results = $this->client->call("{$this->url()}/{$this->schema_path}", $this->query, $this->variables);
     return $this;
   }
 
@@ -116,5 +108,14 @@ class GraphqlRequest
       return Types\Type::spawn($this->schema_namespace, $this->results[$id], $id);
     }
     throw new Exception("No result for id {$id}");
+  }
+
+  protected function url()
+  {
+    if (trim(getenv('GRAPHQL_URL'))) {
+      return getenv('GRAPHQL_URL');
+    } else {
+      return self::URL;
+    }
   }
 }

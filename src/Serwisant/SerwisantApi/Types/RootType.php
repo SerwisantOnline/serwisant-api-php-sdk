@@ -13,13 +13,11 @@ abstract class RootType
   const SCHEMA_CUSTOMER = 'SchemaCustomer';
 
   private $client;
-  private $url;
   private $load_paths;
 
-  public function __construct(GraphqlClient $client, $url = null, $load_paths = [])
+  public function __construct(GraphqlClient $client, $load_paths = [])
   {
     $this->client = $client;
-    $this->url = $url;
     $this->load_paths = $load_paths;
   }
 
@@ -46,13 +44,13 @@ abstract class RootType
   {
     switch ($this->schemaNamespace()) {
       case self::SCHEMA_PUBLIC:
-        return new SerwisantApi\GraphqlRequest($this->client, 'public', $this->schemaNamespace(), $this->url, $this->load_paths);
+        return new SerwisantApi\GraphqlRequest($this->client, 'public', $this->schemaNamespace(), $this->load_paths);
       case self::SCHEMA_SERVICE:
-        return new SerwisantApi\GraphqlRequest($this->client, 'service', $this->schemaNamespace(), $this->url, $this->load_paths);
+        return new SerwisantApi\GraphqlRequest($this->client, 'service', $this->schemaNamespace(), $this->load_paths);
       case self::SCHEMA_INTERNAL:
-        return new SerwisantApi\GraphqlRequest($this->client, 'internal', $this->schemaNamespace(), $this->url, $this->load_paths);
+        return new SerwisantApi\GraphqlRequest($this->client, 'internal', $this->schemaNamespace(), $this->load_paths);
       case self::SCHEMA_CUSTOMER:
-        return new SerwisantApi\GraphqlRequest($this->client, 'customer', $this->schemaNamespace(), $this->url, $this->load_paths);
+        return new SerwisantApi\GraphqlRequest($this->client, 'customer', $this->schemaNamespace(), $this->load_paths);
       default:
         throw new SerwisantApi\Exception("Unsupported schema namespace {$this->schemaNamespace()}");
     }

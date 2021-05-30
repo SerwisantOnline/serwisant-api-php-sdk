@@ -6,7 +6,6 @@ class Api
 {
   private $ip;
   private $lang;
-  private $url;
   private $load_paths = [];
   private $client;
   private $access_token;
@@ -32,16 +31,6 @@ class Api
   }
 
   /**
-   * @param $url
-   * @return $this
-   */
-  public function setUrl($url)
-  {
-    $this->url = $url;
-    return $this;
-  }
-
-  /**
    * @param $path
    * @return $this
    */
@@ -63,42 +52,42 @@ class Api
 
   public function publicMutation()
   {
-    return new Types\SchemaPublic\PublicMutation($this->client(), $this->url, $this->load_paths);
+    return new Types\SchemaPublic\PublicMutation($this->client(), $this->load_paths);
   }
 
   public function publicQuery()
   {
-    return new Types\SchemaPublic\PublicQuery($this->client(), $this->url, $this->load_paths);
+    return new Types\SchemaPublic\PublicQuery($this->client(), $this->load_paths);
   }
 
   public function serviceMutation()
   {
-    return new Types\SchemaService\ServiceMutation($this->client(), $this->url, $this->load_paths);
+    return new Types\SchemaService\ServiceMutation($this->client(), $this->load_paths);
   }
 
   public function serviceQuery()
   {
-    return new Types\SchemaService\ServiceQuery($this->client(), $this->url, $this->load_paths);
+    return new Types\SchemaService\ServiceQuery($this->client(), $this->load_paths);
   }
 
   public function internalMutation()
   {
-    return new Types\SchemaInternal\InternalMutation($this->client(), $this->url, $this->load_paths);
+    return new Types\SchemaInternal\InternalMutation($this->client(), $this->load_paths);
   }
 
   public function internalQuery()
   {
-    return new Types\SchemaInternal\InternalQuery($this->client(), $this->url, $this->load_paths);
+    return new Types\SchemaInternal\InternalQuery($this->client(), $this->load_paths);
   }
 
   public function customerMutation()
   {
-    return new Types\SchemaCustomer\CustomerMutation($this->client(), $this->url, $this->load_paths);
+    return new Types\SchemaCustomer\CustomerMutation($this->client(), $this->load_paths);
   }
 
   public function customerQuery()
   {
-    return new Types\SchemaCustomer\CustomerQuery($this->client(), $this->url, $this->load_paths);
+    return new Types\SchemaCustomer\CustomerQuery($this->client(), $this->load_paths);
   }
   
   /**

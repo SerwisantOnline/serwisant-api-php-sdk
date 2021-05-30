@@ -200,7 +200,7 @@ To generate missing types, queries, mutations use `bin/introspection.php` script
 php ./bin/introspection.php 
 ```
 
-## Release
+## Development
 
 SDK available as composer package on packagist.org:
 
@@ -208,6 +208,10 @@ SDK available as composer package on packagist.org:
 - commit and push changes to master
 - `git tag 3.0.x`
 - `git push origin --tags`
+
+There are two environment variables to test/develop SDK against development server. Set:
+- `OAUTH_URL` to eg. http://127.0.0.1:3000/oauth/token to change OAuth endpoint
+- `GRAPHQL_URL` to eg. http://127.0.0.1:3000/graphql to change base address of GraphQL schemas.
 
 ## Licencing
 
