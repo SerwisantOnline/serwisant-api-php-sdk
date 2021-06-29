@@ -11,9 +11,9 @@ abstract class Type
    * @return mixed
    * @throws Exception
    */
-  public static function spawn($schema_namespace, array $object, $id = '')
+  public static function spawn($schema_namespace, $object, $id = '')
   {
-    if (false === self::isAssocArray($object)) {
+    if (is_array($object) && false === self::isAssocArray($object)) {
       $instances = [];
       foreach ($object as $value) {
         if (is_array($value)) {
@@ -23,7 +23,7 @@ abstract class Type
         }
       }
       return $instances;
-    } else {
+    } elseif (is_array($object)) {
       if (!array_key_exists('__typename', $object)) {
         throw new Exception("object or query {$id} in schema {$schema_namespace} has no __typename field - You must add this field to each query object");
       }
@@ -34,6 +34,8 @@ abstract class Type
       unset($object['__typename']);
 
       return new $class_name($object, true);
+    } else {
+      return $object;
     }
   }
 
