@@ -13,9 +13,19 @@ class MessageThread extends Types\Type
   public $ID;
 
   /**
+   * @var int
+  */
+  public $allMessages;
+
+  /**
    * @var DateTime
   */
   public $createdAt;
+
+  /**
+   * @var DateTime
+  */
+  public $lastMessageAt;
 
   /**
    * @var Message[]
@@ -23,9 +33,19 @@ class MessageThread extends Types\Type
   public $messages;
 
   /**
+   * @var MessageRecipient[]
+  */
+  public $recipients;
+
+  /**
    * @var string
   */
   public $subject;
+
+  /**
+   * @var int
+  */
+  public $unreadMessages;
 
   protected function schemaNamespace()
   {

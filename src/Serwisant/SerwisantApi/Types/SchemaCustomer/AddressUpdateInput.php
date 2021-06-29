@@ -5,32 +5,42 @@ namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Message extends Types\Type
+class AddressUpdateInput extends Types\Type
 {
   /**
    * @var string
   */
-  public $ID;
+  public $PK;
 
   /**
    * @var string
   */
-  public $content;
+  public $type;
 
   /**
-   * @var DateTime
+   * @var string
   */
-  public $createdAt;
+  public $street;
 
   /**
-   * @var MessageSender
+   * @var string
   */
-  public $sender;
+  public $building;
 
   /**
-   * @var MessageThread
+   * @var string
   */
-  public $thread;
+  public $city;
+
+  /**
+   * @var string
+  */
+  public $postalCode;
+
+  /**
+   * @var string
+  */
+  public $countryIso;
 
   protected function schemaNamespace()
   {

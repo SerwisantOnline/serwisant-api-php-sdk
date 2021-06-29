@@ -20,21 +20,19 @@ class TicketStatus extends Types\Type
 
   /**
    * @var DateTime
-   * Time of planned (agreed) finish
-  */
-  public $finish;
-
-  /**
-   * @var DateTime
    * Real finish time, remarks are the same as for `started_on`
   */
   public $finishedAt;
 
   /**
    * @var DateTime
-   * Time of planned (agreed) start, this is not real start date
   */
-  public $start;
+  public $scheduledOn;
+
+  /**
+   * @var DateTime
+  */
+  public $scheduledTo;
 
   /**
    * @var DateTime

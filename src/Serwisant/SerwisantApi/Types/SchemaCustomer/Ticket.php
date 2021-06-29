@@ -13,6 +13,11 @@ class Ticket extends Types\Type
   public $ID;
 
   /**
+   * @var TicketAction[]
+  */
+  public $actions;
+
+  /**
    * @var Address
   */
   public $address;
@@ -28,6 +33,11 @@ class Ticket extends Types\Type
   public $employee;
 
   /**
+   * @var File[]
+  */
+  public $files;
+
+  /**
    * @var string
   */
   public $issue;
@@ -36,6 +46,11 @@ class Ticket extends Types\Type
    * @var string
   */
   public $number;
+
+  /**
+   * @var TicketPayment
+  */
+  public $payment;
 
   /**
    * @var Priority

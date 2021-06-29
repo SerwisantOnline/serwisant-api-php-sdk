@@ -4,12 +4,6 @@ use Serwisant\SerwisantApi;
 
 $loader = require __DIR__ . '/../vendor/autoload.php';
 
-if ($argv[1] == 'dev') {
-  define('GRAPHQL_SCHEMA_URL', 'http://127.0.0.1:3000/graphql');
-} else {
-  define('GRAPHQL_SCHEMA_URL', 'https://serwisant.online/graphql');
-}
-
 function c_header($ns, $name, $ext)
 {
   $content = "<?php\n\n";
@@ -200,7 +194,7 @@ foreach ($schemas as $ns => $schema_path) {
   if (!file_exists($classes_dir)) {
     mkdir($classes_dir);
   }
-  $request = new SerwisantApi\GraphqlRequest($client, $schema_path, $ns, GRAPHQL_SCHEMA_URL);
+  $request = new SerwisantApi\GraphqlRequest($client, $schema_path, $ns);
   foreach ($request->introspection()['types'] as $typedef) {
     $filename = null;
     $content = null;

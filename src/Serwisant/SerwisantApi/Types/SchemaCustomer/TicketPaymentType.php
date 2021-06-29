@@ -5,32 +5,27 @@ namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Message extends Types\Type
+class TicketPaymentType extends Types\Enum
 {
   /**
-   * @var string
   */
-  public $ID;
+  const INSTANT_FIXED = 'INSTANT_FIXED';
 
   /**
-   * @var string
   */
-  public $content;
+  const INSTANT_TIME = 'INSTANT_TIME';
 
   /**
-   * @var DateTime
   */
-  public $createdAt;
+  const SUBSCRIPTION_FIXED = 'SUBSCRIPTION_FIXED';
 
   /**
-   * @var MessageSender
   */
-  public $sender;
+  const SUBSCRIPTION_TIME = 'SUBSCRIPTION_TIME';
 
   /**
-   * @var MessageThread
   */
-  public $thread;
+  const CONTRACT = 'CONTRACT';
 
   protected function schemaNamespace()
   {

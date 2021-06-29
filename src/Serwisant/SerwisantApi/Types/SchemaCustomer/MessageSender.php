@@ -5,32 +5,17 @@ namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Message extends Types\Type
+class MessageSender extends Types\Type
 {
   /**
    * @var string
   */
-  public $ID;
+  public $displayName;
 
   /**
    * @var string
   */
-  public $content;
-
-  /**
-   * @var DateTime
-  */
-  public $createdAt;
-
-  /**
-   * @var MessageSender
-  */
-  public $sender;
-
-  /**
-   * @var MessageThread
-  */
-  public $thread;
+  public $type;
 
   protected function schemaNamespace()
   {

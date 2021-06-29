@@ -8,6 +8,25 @@ use Serwisant\SerwisantApi\Types;
 class CustomerMutation extends Types\RootType
 {
   /**
+   * @param MessageInput $message
+   * @return MessageCreationResult
+   */
+  public function createMessage(MessageInput $message, $vars = array())
+  {
+     return $this->inputArgs('createMessage', array_merge($vars, ['message' => $message]));
+  }
+
+  /**
+   * @param string $message
+   * @param string $content
+   * @return MessageReplyCreationResult
+   */
+  public function createMessageReply(string $message, string $content = null, $vars = array())
+  {
+     return $this->inputArgs('createMessageReply', array_merge($vars, ['message' => $message, 'content' => $content]));
+  }
+
+  /**
    * Create new repair as customer. Field `temporaryFiles` takes IDs of temporary files create via `createTemporaryFile `. Temporary files will be attached to repair and persisted.
    * @param RepairInput $repair
    * @param RepairItemInput[] $additionalItems
@@ -37,6 +56,26 @@ class CustomerMutation extends Types\RootType
   public function createTicket(TicketInput $ticket, array $temporaryFiles, $vars = array())
   {
      return $this->inputArgs('createTicket', array_merge($vars, ['ticket' => $ticket, 'temporaryFiles' => $temporaryFiles]));
+  }
+
+  /**
+   * @param string $message
+   * @return bool
+   */
+  public function markMessageRead(string $message, $vars = array())
+  {
+     return $this->inputArgs('markMessageRead', array_merge($vars, ['message' => $message]));
+  }
+
+  /**
+   * @param CustomerUpdateInput $customer
+   * @param CustomerAgreementUpdateInput[] $agreements
+   * @param AddressUpdateInput[] $addresses
+   * @return ViewerUpdateResult
+   */
+  public function updateViewer(array $agreements, array $addresses, CustomerUpdateInput $customer = null, $vars = array())
+  {
+     return $this->inputArgs('updateViewer', array_merge($vars, ['customer' => $customer, 'agreements' => $agreements, 'addresses' => $addresses]));
   }
 
   protected function schemaNamespace()
