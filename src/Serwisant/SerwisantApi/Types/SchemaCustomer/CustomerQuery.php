@@ -38,11 +38,12 @@ class CustomerQuery extends Types\RootType
    * @param int $limit
    * @param int $page
    * @param MessagesFilter $filter
+   * @param string $sort
    * @return MessagesResult
    */
-  public function messages(int $limit = null, int $page = null, MessagesFilter $filter = null, $vars = array())
+  public function messages(int $limit = null, int $page = null, MessagesFilter $filter = null, string $sort = null, $vars = array())
   {
-     return $this->inputArgs('messages', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter]));
+     return $this->inputArgs('messages', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]));
   }
 
   /**

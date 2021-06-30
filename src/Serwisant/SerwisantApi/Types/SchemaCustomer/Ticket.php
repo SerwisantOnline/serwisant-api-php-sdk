@@ -28,6 +28,12 @@ class Ticket extends Types\Type
   public $addressRemarks;
 
   /**
+   * @var CustomFieldValue[]
+   * Will return a list of values for custom fields
+  */
+  public $customFields;
+
+  /**
    * @var Employee
   */
   public $employee;
