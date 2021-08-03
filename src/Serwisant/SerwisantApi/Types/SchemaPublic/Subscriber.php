@@ -24,6 +24,7 @@ class Subscriber extends Types\Type
 
   /**
    * @var string
+   * Formatted legal name
   */
   public $displayName;
 
@@ -34,6 +35,7 @@ class Subscriber extends Types\Type
 
   /**
    * @var ServiceSupplier
+   * Data of main service supplier - branded - this is a data for customer information
   */
   public $serviceSupplier;
 

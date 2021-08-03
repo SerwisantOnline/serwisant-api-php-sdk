@@ -9,8 +9,21 @@ class Viewer extends Types\Type
 {
   /**
    * @var Customer
+   * Current customer
   */
   public $customer;
+
+  /**
+   * @var ServiceSupplier
+   * Service supplier dedicated for handling all repairs - it can be differ from main service supplier
+  */
+  public $repairsServiceSupplier;
+
+  /**
+   * @var ServiceSupplier
+   * Service supplier dedicated for handling ticketing - it can be differ from main service supplier
+  */
+  public $ticketsServiceSupplier;
 
   protected function schemaNamespace()
   {

@@ -14,11 +14,13 @@ class ServiceSupplier extends Types\Type
 
   /**
    * @var Address
+   * Main address
   */
   public $address;
 
   /**
    * @var Address[]
+   * All given addresses, including a main one
   */
   public $addresses;
 

@@ -80,7 +80,6 @@ class Customer extends Types\Type
 
   /**
    * @var ServiceSupplier
-   * Service supplier who is default for that customer
   */
   public $serviceSupplier;
 

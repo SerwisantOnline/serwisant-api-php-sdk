@@ -96,6 +96,7 @@ doesn't support online payments
   }
 
   /**
+   * Information about a service, public registry name, address and branded name, address as well
    * @return Viewer
    */
   public function viewer($vars = array())
