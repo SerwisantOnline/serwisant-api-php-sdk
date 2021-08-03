@@ -40,7 +40,7 @@ Don't use it for purposes other than customer Panel sign-up.
    * @param AddressInput[] $addresses
    * @return CustomerCreationResult
    */
-  public function createCustomer(CustomerInput $customer, array $agreements, array $addresses, $vars = array())
+  public function createCustomer(CustomerInput $customer, array $agreements = array(), array $addresses = array(), $vars = array())
   {
      return $this->inputArgs('createCustomer', array_merge($vars, ['customer' => $customer, 'agreements' => $agreements, 'addresses' => $addresses]));
   }

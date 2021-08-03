@@ -182,10 +182,13 @@ performed directly
 
 ## Changelog
 
-- 3.0.5 - schema update, added optional method argument to each query/mutation call to pass non-arguments variables,
-  like query conditionals, etc.
-- 3.1.0 - removed `AccessTokenContainerShm` - it's useless and possibly confusing, added `getRefreshToken()`
-  to `AccessTokenContainer` interface, added `AccessTokenOauthUserCredentials` for user-password access tokens.
+3.0.5 
+- schema update, added optional method argument to each query/mutation call to pass non-arguments variables, like query conditionals, etc
+
+3.1.0 - BREAKING CHANGES
+- removed `AccessTokenContainerShm` - it's useless and possibly confusing, added `getRefreshToken()` to `AccessTokenContainer` interface, added `AccessTokenOauthUserCredentials` for user-password access tokens.
+- replaced an enum input classes with plain strings (defined in appropriate class constants)
+- list null input arguments now are optional (default as empty array)
 
 ## Contributions
 
@@ -210,6 +213,7 @@ SDK available as composer package on packagist.org:
 - `git push origin --tags`
 
 There are two environment variables to test/develop SDK against development server. Set:
+
 - `OAUTH_URL` to eg. http://127.0.0.1:3000/oauth/token to change OAuth endpoint
 - `GRAPHQL_URL` to eg. http://127.0.0.1:3000/graphql to change base address of GraphQL schemas.
 

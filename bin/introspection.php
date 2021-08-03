@@ -66,10 +66,12 @@ function c_detect_name($type, $for)
 function c_detect_null($type)
 {
   if (!$type) {
-    return true;
+    return 'null';
   }
   if ($type['kind'] == 'NON_NULL') {
     return false;
+  } elseif ($type['kind'] == 'LIST') {
+    return 'array()';
   } else {
     return c_detect_null($type['ofType']);
   }
@@ -123,7 +125,7 @@ function build_root_type_method($field)
     $null = c_detect_null($arg['type']);
     $type_args_comment[] = c_detect_name($arg['type'], 'comment') . ' $' . $arg['name'];
     if ($null) {
-      $type_args_null[] = c_detect_name($arg['type'], 'arg') . ' $' . $arg['name'] . ' = null';
+      $type_args_null[] = c_detect_name($arg['type'], 'arg') . ' $' . $arg['name'] . ' = ' . $null;
     } else {
       $type_args_not_null[] = c_detect_name($arg['type'], 'arg') . ' $' . $arg['name'];
     }

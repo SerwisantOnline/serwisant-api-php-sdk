@@ -33,7 +33,7 @@ class CustomerMutation extends Types\RootType
    * @param string[] $temporaryFiles
    * @return RepairCreationResult
    */
-  public function createRepair(RepairInput $repair, array $additionalItems, array $temporaryFiles, $vars = array())
+  public function createRepair(RepairInput $repair, array $additionalItems = array(), array $temporaryFiles = array(), $vars = array())
   {
      return $this->inputArgs('createRepair', array_merge($vars, ['repair' => $repair, 'additionalItems' => $additionalItems, 'temporaryFiles' => $temporaryFiles]));
   }
@@ -53,7 +53,7 @@ class CustomerMutation extends Types\RootType
    * @param string[] $temporaryFiles
    * @return TicketCreationResult
    */
-  public function createTicket(TicketInput $ticket, array $temporaryFiles, $vars = array())
+  public function createTicket(TicketInput $ticket, array $temporaryFiles = array(), $vars = array())
   {
      return $this->inputArgs('createTicket', array_merge($vars, ['ticket' => $ticket, 'temporaryFiles' => $temporaryFiles]));
   }
@@ -73,7 +73,7 @@ class CustomerMutation extends Types\RootType
    * @param AddressUpdateInput[] $addresses
    * @return ViewerUpdateResult
    */
-  public function updateViewer(array $agreements, array $addresses, CustomerUpdateInput $customer = null, $vars = array())
+  public function updateViewer(CustomerUpdateInput $customer = null, array $agreements = array(), array $addresses = array(), $vars = array())
   {
      return $this->inputArgs('updateViewer', array_merge($vars, ['customer' => $customer, 'agreements' => $agreements, 'addresses' => $addresses]));
   }
