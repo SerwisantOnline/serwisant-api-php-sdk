@@ -180,16 +180,6 @@ echo $me->subscriber;
 ***PLEASE NOTE*** you can't use a file based query/mutation feature with batched query. Batched queries must be always
 performed directly
 
-## Changelog
-
-3.0.5 
-- schema update, added optional method argument to each query/mutation call to pass non-arguments variables, like query conditionals, etc
-
-3.1.0 - BREAKING CHANGES
-- removed `AccessTokenContainerShm` - it's useless and possibly confusing, added `getRefreshToken()` to `AccessTokenContainer` interface, added `AccessTokenOauthUserCredentials` for user-password access tokens.
-- replaced an enum input classes with plain strings (defined in appropriate class constants)
-- list null input arguments now are optional (default as empty array)
-
 ## Contributions
 
 Pull requests are welcome.
