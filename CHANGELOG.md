@@ -10,6 +10,7 @@
 - new `customer` schema
 - **BREAKING CHANGES** replaced an enum input argument classes with plain strings (defined in appropriate class
   constants)
+- **BREAKING CHANGES** fields ID in CustomFieldValueInput and CustomerAgreementInput has been deprecated and disapeared from PHP classes
 - null list input arguments now are optional (default as empty array)
 - other changes in types to reflect Serwisant Online API update
 

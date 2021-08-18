@@ -18,6 +18,12 @@ class Customer extends Types\Type
   public $addresses;
 
   /**
+   * @var CustomerAgreementValue[]
+   * Customer agreements, including any new agreement customer should take (this is complete agreements list)
+  */
+  public $agreements;
+
+  /**
    * @var File
   */
   public $avatar;

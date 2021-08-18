@@ -9,11 +9,13 @@ class CustomFieldValueInput extends Types\Type
 {
   /**
    * @var string
+   * Field's primary key taken from customFields query
   */
-  public $ID;
+  public $customField;
 
   /**
    * @var string
+   * Field's value relevant to definition - string, `1`/`0` for boolean or one of value from set (select)
   */
   public $value;
 

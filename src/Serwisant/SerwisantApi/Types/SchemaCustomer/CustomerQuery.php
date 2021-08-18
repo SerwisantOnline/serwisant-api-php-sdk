@@ -8,6 +8,16 @@ use Serwisant\SerwisantApi\Types;
 class CustomerQuery extends Types\RootType
 {
   /**
+   * @param string $scope
+   * @param string $query
+   * @return string[]
+   */
+  public function autocomplete(string $scope, string $query, $vars = array())
+  {
+     return $this->inputArgs('autocomplete', array_merge($vars, ['scope' => $scope, 'query' => $query]));
+  }
+
+  /**
    * @param string $form
    * @return CustomField[]
    */
@@ -90,7 +100,6 @@ class CustomerQuery extends Types\RootType
   }
 
   /**
-   * Return information about currently logged in customer
    * @return Viewer
    */
   public function viewer($vars = array())

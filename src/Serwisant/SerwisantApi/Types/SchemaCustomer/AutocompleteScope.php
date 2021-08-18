@@ -5,22 +5,15 @@ namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class CustomerAgreementUpdateInput extends Types\Type
+class AutocompleteScope extends Types\Enum
 {
   /**
-   * @var string
   */
-  public $ID;
+  const VENDOR = 'VENDOR';
 
   /**
-   * @var string
   */
-  public $customerAgreement;
-
-  /**
-   * @var bool
-  */
-  public $accepted;
+  const MODEL = 'MODEL';
 
   protected function schemaNamespace()
   {

@@ -10,7 +10,7 @@ class AddressUpdateInput extends Types\Type
   /**
    * @var string
   */
-  public $PK;
+  public $ID;
 
   /**
    * @var string

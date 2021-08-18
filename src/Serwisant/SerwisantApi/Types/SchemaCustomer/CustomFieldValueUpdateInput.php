@@ -10,12 +10,12 @@ class CustomFieldValueUpdateInput extends Types\Type
   /**
    * @var string
   */
-  public $PK;
+  public $ID;
 
   /**
    * @var string
   */
-  public $ID;
+  public $customField;
 
   /**
    * @var string

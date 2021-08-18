@@ -9,11 +9,13 @@ class CustomerAgreementInput extends Types\Type
 {
   /**
    * @var string
+   * Agreement's primary key taken from customerAgreements query
   */
-  public $ID;
+  public $customerAgreement;
 
   /**
    * @var bool
+   * True id customer accepts agreement
   */
   public $accepted;
 
