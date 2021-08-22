@@ -7,7 +7,7 @@ use PDO;
 class AccessTokenContainerPDO implements AccessTokenContainer
 {
   private $namespace;
-  private $connection_string;
+  private $connection_args;
 
   private $db;
 
@@ -16,10 +16,17 @@ class AccessTokenContainerPDO implements AccessTokenContainer
   private $expiry_timestamp;
   private $refresh_token;
 
-  public function __construct($connection_string = null, $namespace = 'default')
+  /**
+   * @param array $connection_args
+   * @param string $namespace
+   * @throws Exception
+   */
+  public function __construct(array $connection_args = [], string $namespace = 'default')
   {
-    if (strlen(trim($connection_string)) < 5) {
-      throw new Exception("Connection string looks invalid");
+    if (count($connection_args) < 1) {
+      throw new Exception("Connection args looks invalid");
+    } elseif (strlen(trim($connection_args[0])) < 5) {
+      throw new Exception("Connection string looks invalid, please pass a PDO connection string in first place of array, login and password in next places.");
     }
 
     if (strlen(trim($namespace)) < 6 || strlen(trim($namespace)) > 64) {
@@ -27,7 +34,7 @@ class AccessTokenContainerPDO implements AccessTokenContainer
     }
 
     $this->namespace = $namespace;
-    $this->connection_string = $connection_string;
+    $this->connection_args = $connection_args;
 
     $this->loaded = false;
   }
@@ -35,7 +42,7 @@ class AccessTokenContainerPDO implements AccessTokenContainer
   protected function db()
   {
     if ($this->db) {
-      $this->db = new PDO($this->connection_string);
+      $this->db = (new \ReflectionClass('PDO'))->newInstanceArgs($this->connection_args);
       $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     return $this->db;
