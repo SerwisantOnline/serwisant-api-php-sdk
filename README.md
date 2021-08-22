@@ -66,10 +66,26 @@ until it expire and avoid create a new token for every HTTP request. Check out o
   with `AccessTokenOauthUserCredentials` and store user specific access token (fetched using login and password) -
   please don't use it for only key-secret access tokens.
 - `SerwisantApi\AccessTokenContainerSqlite` - SQLite database based cache, easy to set-up. Require `PDO`
-  and `php_pdo_sqlite` extensions.
-- ...build tour own for ie `MySQL`, use `SerwisantApi\AccessTokenContainer` abstract class
+  and `php_pdo_sqlite` extensions. When using this container you don't need to worry about database - it will be created
+  automatically, on first use.
+- `SerwisantApi\AccessTokenContainerPDO` - generic PDO token container. Please note: you must create a database/table
+  before first use. Table schema:
 
-***PLEASE NOTE*** - your application can be banned if you'll be creating to many access tokens.
+```mysql
+CREATE TABLE IF NOT EXISTS access_token
+(
+    namespace varchar(64)  NOT NULL,
+    token     varchar(255) NOT NULL,
+    refresh   varchar(255),
+    expiry    int(11)      NOT NULL,
+    PRIMARY KEY (namespace)
+);
+```   
+
+- ...build your own, use `SerwisantApi\AccessTokenContainer` abstract class
+
+***PLEASE NOTE*** - your application can be banned if you'll be creating to many access tokens, i.e. for every single
+request.
 
 ### 2. Basic example with inline query
 
@@ -111,7 +127,7 @@ Above example can be called in other way.
 Please create in your application's root directory, folder named `queries\SchemaPublic`
 
 Next please put a content of your query string in `queries\SchemaPublic\repairByToken.graphql` file. File name is
-important. It must be an exact query name as it's seen in schema. File exnension must be `.graphql`.
+important. It must be an exact query name as it's seen in schema. File extension must be `.graphql`.
 
 This is exactly the same query you've assigned to variable in 1. example.
 
@@ -138,6 +154,43 @@ Probably you want to ask: why SDK doesn't provide files with all available queri
 That's because we have no idea what fields/objects you want to get from schema. Possibility to limit a fetched data is
 one of the most important feature of GraphQL. With pre-defined query files you'll lose a possibility to decide by
 yourself.
+
+***HINT*** Using a GraphQL syntax you can have multiple query variants in single `.graphql` file and select proper one
+using query variables. Look on below example. Let's have `repairByToken.graphql`. Put attention on
+multiple `repairByToken` and `@include(if: ..)` tag.
+
+```graphql
+query repairByToken($token: String!, $basic: Boolean = false, $complete: Boolean = false) {
+    repairByToken(token: $token) @include(if: $basic) {
+        __typename
+        status {
+            __typename
+            displayName
+        }
+    }
+    repairByToken(token: $token) @include(if: $complete) {
+        __typename
+        rma
+        serial
+        vendor
+        model
+    }
+}
+```
+
+Call to get only a repair status (query will be executed fast:
+
+```php
+$query = $api->publicQuery();
+$repair = $query->repairByToken('abc-def', ['basic' => true])
+```
+
+Call to get complex information about repair (query execution can take more time):
+
+```php
+$query = $api->publicQuery();
+$repair = $query->repairByToken('abc-def', ['complete' => true])
+```
 
 ### 4. Batched query
 
@@ -179,8 +232,14 @@ echo $repair->displayName;
 echo $me->subscriber;
 ```
 
-***PLEASE NOTE*** you can't use a file based query/mutation feature with batched query. Batched queries must be always
-performed directly
+***HINT*** you can put a batched query (let's assume it's above query) into a query folder under a custom name and call
+it like:
+
+```php
+$result = $api->publicQuery()->newRequest()->setFile('myBatchedQuery.graphql', ['token' => $secret_token])->execute();
+$repair = $result->fetch('repair');
+$me = $result->fetch('me');
+```
 
 ## Contributions
 
