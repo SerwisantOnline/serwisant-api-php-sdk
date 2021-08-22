@@ -21,11 +21,14 @@ class AccessTokenContainerPDO implements AccessTokenContainer
     if (strlen(trim($connection_string)) < 5) {
       throw new Exception("Connection string looks invalid");
     }
-    if (strlen($namespace) > 64) {
-      throw new Exception("Namespace strinh length must me under 64 chars");
+
+    if (strlen(trim($namespace)) < 6 || strlen(trim($namespace)) > 64) {
+      throw new Exception("Namespace string length must be between 10 and 64 chars");
     }
+
     $this->namespace = $namespace;
     $this->connection_string = $connection_string;
+
     $this->loaded = false;
   }
 

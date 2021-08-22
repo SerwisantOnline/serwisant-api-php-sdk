@@ -12,9 +12,10 @@ class AccessTokenContainerSession implements AccessTokenContainer
 
   public function __construct($namespace = "serwisant_api_user_access_token")
   {
-    if (strlen(trim($namespace)) < 10) {
-      throw new Exception("Namespace is too short, it must have at least 10 characters.");
+    if (strlen(trim($namespace)) < 6 || strlen(trim($namespace)) > 64) {
+      throw new Exception("Namespace string length must be between 10 and 64 chars");
     }
+
     $this->namespace = $namespace;
     $this->data = null;
   }

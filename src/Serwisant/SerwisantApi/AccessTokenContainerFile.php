@@ -24,6 +24,10 @@ class AccessTokenContainerFile implements AccessTokenContainer
       throw new Exception("Directory do not writeable - please change permissions of '{$dir}' directory.");
     }
 
+    if (strlen(trim($namespace)) < 6 || strlen(trim($namespace)) > 64) {
+      throw new Exception("Namespace string length must be between 10 and 64 chars");
+    }
+
     $this->file_path = $dir . '/' . md5(__DIR__) . '_' . $namespace . '_access_token.json';
     $this->data = null;
   }
