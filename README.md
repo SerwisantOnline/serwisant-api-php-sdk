@@ -6,13 +6,11 @@
 * ext-json
 * ext-curl
 * ext-mbstring
-* ext-pdo
-* ext-pdo-sqlite
 
 optional:
 
 * ext-openssl for `AccessTokenContainerEncryptedFile`
-* PDO, sqlite for `AccessTokenContainerSqlite`
+* PDO, sqlite, mysql for `AccessTokenContainerSqlite`/`AccessTokenContainerPDO`
 
 ## Word about versioning
 
