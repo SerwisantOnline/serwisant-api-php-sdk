@@ -2,13 +2,13 @@
 
 namespace Serwisant\SerwisantApi;
 
-class ExceptionUnauthorized extends Exception
+class ExceptionAccessDenied extends Exception
 {
   private $handle;
 
   public function __construct($message, $handle)
   {
-    parent::__construct($message, 401);
+    parent::__construct($message, 403);
     $this->handle = $handle;
   }
 

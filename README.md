@@ -3,9 +3,11 @@
 ## Requirements:
 
 * PHP 7.2 or higher
-* ext-mbstring
-* ext-curl
 * ext-json
+* ext-curl
+* ext-mbstring
+* ext-pdo
+* ext-pdo-sqlite
 
 optional:
 

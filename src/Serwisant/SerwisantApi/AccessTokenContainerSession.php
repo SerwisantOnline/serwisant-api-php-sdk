@@ -5,12 +5,17 @@ namespace Serwisant\SerwisantApi;
 
 class AccessTokenContainerSession implements AccessTokenContainer
 {
-  const SESSION_KEY = "serwisant_api_access_token";
 
+
+  private $namespace;
   private $data;
 
-  public function __construct()
+  public function __construct($namespace = "serwisant_api_user_access_token")
   {
+    if (strlen(trim($namespace)) < 10) {
+      throw new Exception("Namespace is too short, it must have at least 10 characters.");
+    }
+    $this->namespace = $namespace;
     $this->data = null;
   }
 
@@ -23,7 +28,7 @@ class AccessTokenContainerSession implements AccessTokenContainer
       'expiry_timestamp' => $expiry_timestamp,
       'refresh_token' => $refresh_token
     ]);
-    $_SESSION[self::SESSION_KEY] = $payload;
+    $_SESSION[$this->sessionKey()] = $payload;
 
     $this->data = null;
   }
@@ -43,6 +48,11 @@ class AccessTokenContainerSession implements AccessTokenContainer
     return (int)$this->data()['expiry_timestamp'];
   }
 
+  private function sessionKey()
+  {
+    return $this->namespace;
+  }
+  
   private function checkSessionStarted()
   {
     if (session_status() !== PHP_SESSION_ACTIVE) {
@@ -55,8 +65,8 @@ class AccessTokenContainerSession implements AccessTokenContainer
     $this->checkSessionStarted();
 
     if (!is_array($this->data)) {
-      if (array_key_exists(self::SESSION_KEY, $_SESSION)) {
-        $this->data = json_decode($_SESSION[self::SESSION_KEY], true);
+      if (array_key_exists($this->sessionKey(), $_SESSION)) {
+        $this->data = json_decode($_SESSION[$this->sessionKey()], true);
       } else {
         $this->data = [
           'access_token' => null,

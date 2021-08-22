@@ -11,8 +11,10 @@
     "ext-json": "*",
     "ext-curl": "*",
     "ext-mbstring": "*",
-    "ext-pdo": "*",
-    "ext-pdo-sqlite": "*"
+  },
+  "suggest": {
+    "ext-pdo": "It's required only, if you decide to use AccessTokenContainerSqlite or AccessTokenContainerPDO",
+    "ext-openssl": "It's required only, if you decide to use AccessTokenContainerEncryptedFile"
   },
   "authors": [
     {

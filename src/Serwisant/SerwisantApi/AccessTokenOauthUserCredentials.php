@@ -2,10 +2,12 @@
 
 namespace Serwisant\SerwisantApi;
 
-use GuzzleHttp\Client;
-
 class AccessTokenOauthUserCredentials extends AccessTokenOauth
 {
+  /**
+   * @param $login
+   * @param $password
+   */
   public function login($login, $password)
   {
     $token_data = $this->createHttp($login, $password);
@@ -25,12 +27,27 @@ class AccessTokenOauthUserCredentials extends AccessTokenOauth
   }
 
   /**
+   * @return bool
+   * @throws Exception
+   */
+  public function isAuthenticated():bool
+  {
+    try {
+      return !!$this->get();
+    } catch (ExceptionUserCredentialsRequired | ExceptionUnauthorized $e) {
+      return false;
+    } catch (Exception $e) {
+      throw $e;
+    }
+  }
+
+  /**
    * @throws Exception
    */
   public function refresh()
   {
     // najpierw ustalam, czy mam refresh token w kontenerze, jeśli nie to nic nie mogę zrobić, bo potrzebuję interakcji (login/hasło)
-    if ($this->container instanceof AccessTokenContainer && $this->container->getRefreshToken() !== null) {
+    if ($this->container instanceof AccessTokenContainer && $this->container->getRefreshToken()) {
       $token_data = $this->refreshHttp($this->container->getRefreshToken());
 
       if ($token_data !== null) {
@@ -44,7 +61,7 @@ class AccessTokenOauthUserCredentials extends AccessTokenOauth
       return;
     }
 
-    throw new ExceptionUserCredentialsRequired('Please log in');
+    throw new ExceptionUserCredentialsRequired;
   }
 
   private function createHttp($login, $password)
@@ -64,6 +81,8 @@ class AccessTokenOauthUserCredentials extends AccessTokenOauth
   {
     $params = [
       'grant_type' => 'refresh_token',
+      'client_id' => $this->client_id,
+      'client_secret' => $this->client_secret,
       'refresh_token' => $refresh_token
     ];
     return $this->http($params);

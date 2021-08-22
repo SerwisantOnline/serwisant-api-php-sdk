@@ -35,46 +35,49 @@ class GraphqlClient
    * @param $query
    * @param $variables
    * @param array $options
-   * @param bool $is_retry
-   * @return array
+   * @param false $is_retry
+   * @return mixed|void
    * @throws Exception
+   * @throws ExceptionAccessDenied
    * @throws ExceptionNotFound
+   * @throws \GuzzleHttp\Exception\GuzzleException
    */
-  public function call($url, $query, $variables, array $options = [], $is_retry = false)
+  public function call($url, $query, $variables, array $options = [])
   {
     $res = $this->client->request('POST', $url, $this->clientOptions($query, $variables));
-    $code = $res->getStatusCode();
+    $http_code = $res->getStatusCode();
 
-    if ($code === 200) {
+    if ($http_code === 200) {
       $result = json_decode($res->getBody()->getContents(), true);
       if (array_key_exists('errors', $result)) {
         $this->handleErrors($result['errors']);
-      } else {
-        return $result['data'];
       }
-    } elseif ($code === 401 && $is_retry === false) {
-      $this->access_token->refresh();
-      return $this->call($url, $query, $variables, $options, true);
+      return $result['data'];
     } else {
-      throw new Exception("Unable to execute a query or mutation, HTTP code was '{$code}'");
+      throw new Exception("Unable to execute a query or mutation, HTTP code was '{$http_code}', response was: '{$res->getBody()->getContents()}'");
     }
   }
 
   private function handleErrors(array $errors)
   {
     if ($errors[0] && array_key_exists('extensions', $errors[0]) && array_key_exists('code', $errors[0]['extensions'])) {
-      $error_code = $errors[0]['extensions']['code'];
+      $error_code = (int)$errors[0]['extensions']['code'];
       $error_message = $errors[0]['message'];
+    } elseif($errors[0] && array_key_exists('error', $errors[0]) && $errors[0]['error'] == 'unauthorized_client') {
+      $error_code = 403;
+      $error_message = $errors[0]['error_description'];
     } else {
       $error_code = null;
       $error_message = null;
     }
 
     switch ($error_code) {
-      case '404':
+      case 403:
+        throw new ExceptionAccessDenied($error_message, "{$error_code}");
+      case 404:
         throw new ExceptionNotFound($error_message);
       default:
-        throw new Exception("Query or mutation syntax error, message was: " . print_r($errors, true));
+        throw new Exception("Query or mutation error, message was: " . print_r($errors, true));
     }
   }
 

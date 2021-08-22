@@ -61,7 +61,7 @@ class AccessTokenOauth implements AccessToken
    */
   protected function fetch()
   {
-    if ($this->container instanceof AccessTokenContainer && $this->container->getExpiryTimestamp() > time()) {
+    if ($this->container instanceof AccessTokenContainer && $this->container->getExpiryTimestamp() - 10 > time()) {
       $this->access_token = $this->container->getAccessToken();
     }
 
@@ -94,7 +94,15 @@ class AccessTokenOauth implements AccessToken
     return self::URL;
   }
 
-  protected function http($params)
+  /**
+   * @param $params
+   * @return array
+   * @throws Exception
+   * @throws ExceptionAccessDenied
+   * @throws ExceptionUnauthorized
+   * @throws GuzzleHttp\Exception\GuzzleException
+   */
+  protected function http($params): array
   {
     $client_params = [
       'connect_timeout' => 5,
@@ -123,10 +131,18 @@ class AccessTokenOauth implements AccessToken
 
     } catch (GuzzleHttp\Exception\ClientException $ex) {
       $http_code = $ex->getResponse()->getStatusCode();
+
       switch ($http_code) {
         case 400:
+        case 401:
           $error = json_decode($ex->getResponse()->getBody()->getContents(), true);
-          throw new ExceptionUnauthorized($error['error_description'], $error['error']);
+          if ($error['error'] === 'invalid_grant') {
+            # niepoprawne login, hasło
+            throw new ExceptionUnauthorized($error['error_description'], $error['error']);
+          } else {
+            # inne sytuacje, niepoprawny key/secret
+            throw new ExceptionAccessDenied($error['error_description'], $error['error']);
+          }
         default:
           throw new Exception("Unable to fetch an access token, HTTP code was '{$http_code}'");
       }
