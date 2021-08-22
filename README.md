@@ -239,6 +239,10 @@ $repair = $result->fetch('repair');
 $me = $result->fetch('me');
 ```
 
+## Changelog
+
+Changelog in [CHANGELOG](/CHANGELOG.md)
+
 ## Contributions
 
 Pull requests are welcome.
