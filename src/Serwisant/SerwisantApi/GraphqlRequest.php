@@ -82,6 +82,7 @@ class GraphqlRequest
   /**
    * @return $this
    * @throws Exception
+   * @throws ExceptionAccessDenied
    * @throws ExceptionNotFound
    */
   public function execute()

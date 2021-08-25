@@ -29,6 +29,7 @@ abstract class RootType
    * @return mixed
    * @throws Exception
    * @throws SerwisantApi\Exception
+   * @throws SerwisantApi\ExceptionAccessDenied
    * @throws SerwisantApi\ExceptionNotFound
    */
   protected function inputArgs($mutation, $args)
