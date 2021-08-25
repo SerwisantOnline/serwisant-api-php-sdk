@@ -41,7 +41,7 @@ class AccessTokenContainerPDO implements AccessTokenContainer
 
   protected function db()
   {
-    if ($this->db) {
+    if (is_null($this->db)) {
       $this->db = (new \ReflectionClass('PDO'))->newInstanceArgs($this->connection_args);
       $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }

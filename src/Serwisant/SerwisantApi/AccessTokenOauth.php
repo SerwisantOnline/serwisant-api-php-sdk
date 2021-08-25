@@ -13,14 +13,7 @@ class AccessTokenOauth implements AccessToken
 
   protected $access_token;
 
-  /**
-   * AccessTokenOauth constructor.
-   * @param $client_id
-   * @param $client_secret
-   * @param string $scope
-   * @param AccessTokenContainer|null $container
-   */
-  public function __construct($client_id, $client_secret, $scope = '', AccessTokenContainer $container = null)
+  public function __construct(string $client_id, string $client_secret, string $scope = '', AccessTokenContainer $container = null)
   {
     $this->client_id = $client_id;
     $this->client_secret = $client_secret;
@@ -28,10 +21,6 @@ class AccessTokenOauth implements AccessToken
     $this->container = $container;
   }
 
-  /**
-   * @return string
-   * @throws Exception
-   */
   public function get()
   {
     if ($this->access_token === null) {
@@ -40,9 +29,6 @@ class AccessTokenOauth implements AccessToken
     return $this->access_token;
   }
 
-  /**
-   * @throws Exception
-   */
   public function refresh()
   {
     $token_data = $this->createHttp();
@@ -56,9 +42,44 @@ class AccessTokenOauth implements AccessToken
     }
   }
 
-  /**
-   * @throws Exception
-   */
+  public function revoke($access_token = null): bool
+  {
+    $client_params = [
+      'connect_timeout' => 5,
+      'timeout' => 30,
+      'form_params' => [
+        'client_id' => $this->client_id,
+        'client_secret' => $this->client_secret,
+        'token' => $access_token
+      ]
+    ];
+
+    try {
+      $client = new GuzzleHttp\Client();
+      $client->request('POST', $this->revokeUrl(), $client_params);
+      var_dump($client_params);
+      return true;
+    } catch (GuzzleHttp\Exception\ClientException $ex) {
+      return false;
+    }
+  }
+
+  protected function url(): string
+  {
+    if (trim(getenv('OAUTH_URL'))) {
+      return getenv('OAUTH_URL');
+    }
+    return self::URL;
+  }
+
+  protected function revokeUrl(): string
+  {
+    if (trim(getenv('OAUTH_REVOKE_URL'))) {
+      return getenv('OAUTH_REVOKE_URL');
+    }
+    return self::REVOKE_URL;
+  }
+
   protected function fetch()
   {
     if ($this->container instanceof AccessTokenContainer && $this->container->getExpiryTimestamp() - 10 > time()) {
@@ -70,10 +91,6 @@ class AccessTokenOauth implements AccessToken
     }
   }
 
-  /**
-   * @return array
-   * @throws Exception
-   */
   private function createHttp()
   {
     $params = [
@@ -85,23 +102,6 @@ class AccessTokenOauth implements AccessToken
     return $this->http($params);
   }
 
-  protected function url()
-  {
-    if (trim(getenv('OAUTH_URL'))) {
-      return getenv('OAUTH_URL');
-    }
-
-    return self::URL;
-  }
-
-  /**
-   * @param $params
-   * @return array
-   * @throws Exception
-   * @throws ExceptionAccessDenied
-   * @throws ExceptionUnauthorized
-   * @throws GuzzleHttp\Exception\GuzzleException
-   */
   protected function http($params): array
   {
     $client_params = [

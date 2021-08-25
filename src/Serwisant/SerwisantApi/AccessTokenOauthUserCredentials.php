@@ -21,16 +21,20 @@ class AccessTokenOauthUserCredentials extends AccessTokenOauth
     }
   }
 
-  public function logout()
+  public function revoke($access_token = null): bool
   {
+    if ($this->container instanceof AccessTokenContainer) {
+      parent::revoke($this->container->getAccessToken());
+    }
     $this->container->store(null, 0, null);
+    return true;
   }
 
   /**
    * @return bool
    * @throws Exception
    */
-  public function isAuthenticated():bool
+  public function isAuthenticated(): bool
   {
     try {
       return !!$this->get();

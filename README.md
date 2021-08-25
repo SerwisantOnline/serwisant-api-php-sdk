@@ -267,7 +267,8 @@ SDK available as composer package on packagist.org:
 
 There are two environment variables to test/develop SDK against development server. Set:
 
-- `OAUTH_URL` to eg. http://127.0.0.1:3000/oauth/token to change OAuth endpoint
+- `OAUTH_URL` to eg. http://127.0.0.1:3000/oauth/token to change OAuth token endpoint
+- `OAUTH_REVOKE_URL` to eg. http://127.0.0.1:3000/oauth/revoke to change OAuth token revoke endpoint
 - `GRAPHQL_URL` to eg. http://127.0.0.1:3000/graphql to change base address of GraphQL schemas.
 
 ## Licencing
