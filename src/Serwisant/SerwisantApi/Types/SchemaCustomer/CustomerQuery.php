@@ -27,15 +27,6 @@ class CustomerQuery extends Types\RootType
   }
 
   /**
-   * @param CustomerAgreementsFilter $filter
-   * @return CustomerAgreement[]
-   */
-  public function customerAgreements(CustomerAgreementsFilter $filter = null, $vars = array())
-  {
-     return $this->inputArgs('customerAgreements', array_merge($vars, ['filter' => $filter]));
-  }
-
-  /**
    * @param DictionaryEntriesFilter $filter
    * @return Dictionary[]
    */

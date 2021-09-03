@@ -9,25 +9,16 @@ class CustomerPanelConfig extends Types\Type
 {
   /**
    * @var bool
-   * True when service want to use a messaging system in customer panel
   */
   public $caPanelCommunication;
 
   /**
    * @var bool
-   * True if service want to use repairs module
   */
   public $caPanelRepairs;
 
   /**
    * @var bool
-   * True if service allow to customer self-register - False must disable signup possibility
-  */
-  public $caPanelSignups;
-
-  /**
-   * @var bool
-   * True if service want to use ticketing module
   */
   public $caPanelTickets;
 
@@ -52,6 +43,41 @@ class CustomerPanelConfig extends Types\Type
    * @var bool
   */
   public $orderDictModel;
+
+  /**
+   * @var bool
+   * True when service want to use a messaging system in customer panel
+  */
+  public $panelCommunication;
+
+  /**
+   * @var bool
+   * Is access to customer panel enables
+  */
+  public $panelEnabled;
+
+  /**
+   * @var bool
+   * True if service want to use repairs module
+  */
+  public $panelRepairs;
+
+  /**
+   * @var bool
+   * True if service allow to customer self-register - False must disable signup possibility
+  */
+  public $panelSignups;
+
+  /**
+   * @var bool
+   * True if service want to use ticketing module
+  */
+  public $panelTickets;
+
+  /**
+   * @var string
+  */
+  public $panelToken;
 
   /**
    * @var bool

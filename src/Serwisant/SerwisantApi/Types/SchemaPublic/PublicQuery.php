@@ -36,6 +36,14 @@ class PublicQuery extends Types\RootType
   }
 
   /**
+   * @return CustomerStatement[]
+   */
+  public function customerStatements($vars = array())
+  {
+     return $this->inputArgs('customerStatements', array_merge($vars, []));
+  }
+
+  /**
    * This query map given login credential, ie. email, or login itself to username valid for OAuth password login. Please note: given credential can point to more than one login, so thus must be handled on frontend side.
    * @param string $loginCredential
    * @return LoginResult[]
