@@ -19,6 +19,7 @@ class RepairStatus extends Types\Type
 
   /**
    * @var DateTime
+   * Repair creation date - first apear in database
   */
   public $createdAt;
 
@@ -46,6 +47,7 @@ class RepairStatus extends Types\Type
 
   /**
    * @var string
+   * This is estimated end date - this date is set by service once repair is created. It can differ from real `finishedAt`
   */
   public $finishDateEstimated;
 
@@ -53,6 +55,12 @@ class RepairStatus extends Types\Type
    * @var bool
   */
   public $finished;
+
+  /**
+   * @var string
+   * Real date of repair finish. Finish mean transition into WAITING_FOR_COLLECTION or PASSED_FOR_RETURN state.
+  */
+  public $finishedAt;
 
   /**
    * @var float
@@ -66,7 +74,7 @@ class RepairStatus extends Types\Type
 
   /**
    * @var string
-   * Date when repair was started, for repair delivered by parcel this will differ from createdAt
+   * Date when repair was started. For repair delivered by parcel or created via customer panel this will be set once repair will be delivered to service and its status will be set to WAITING_FOR_DIAGNOSIS
   */
   public $startedAt;
 
@@ -92,6 +100,7 @@ class RepairStatus extends Types\Type
 
   /**
    * @var DateTime
+   * Date when repair was touched last time - repair update, status update, new diagnosis, repair acton will update this date
   */
   public $updatedAt;
 

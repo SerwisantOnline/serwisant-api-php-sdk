@@ -8,6 +8,16 @@ use Serwisant\SerwisantApi\Types;
 class ServiceQuery extends Types\RootType
 {
   /**
+   * @param int $limit
+   * @param int $page
+   * @return ComponentWarehousesResult
+   */
+  public function componentWarehouses(int $limit = null, int $page = null, $vars = array())
+  {
+     return $this->inputArgs('componentWarehouses', array_merge($vars, ['limit' => $limit, 'page' => $page]));
+  }
+
+  /**
    * List of components in inventory including a deliveries and related data
    * @param int $limit
    * @param int $page

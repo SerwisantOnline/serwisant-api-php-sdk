@@ -43,6 +43,11 @@ class ComponentDeliveryInput extends Types\Type
   */
   public $invoiceSignature;
 
+  /**
+   * @var string
+  */
+  public $warehouse;
+
   protected function schemaNamespace()
   {
     return 'SchemaService';
