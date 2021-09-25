@@ -57,7 +57,6 @@ class AccessTokenOauth implements AccessToken
     try {
       $client = new GuzzleHttp\Client();
       $client->request('POST', $this->revokeUrl(), $client_params);
-      var_dump($client_params);
       return true;
     } catch (GuzzleHttp\Exception\ClientException $ex) {
       return false;
