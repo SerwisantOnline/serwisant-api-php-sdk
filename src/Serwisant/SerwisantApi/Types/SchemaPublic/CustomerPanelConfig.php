@@ -8,26 +8,6 @@ use Serwisant\SerwisantApi\Types;
 class CustomerPanelConfig extends Types\Type
 {
   /**
-   * @var bool
-  */
-  public $caPanelCommunication;
-
-  /**
-   * @var bool
-  */
-  public $caPanelRepairs;
-
-  /**
-   * @var bool
-  */
-  public $caPanelTickets;
-
-  /**
-   * @var string
-  */
-  public $caPanelToken;
-
-  /**
    * @var string
    * Service currency, all API prices and other money values are in this currency
   */

@@ -68,6 +68,16 @@ class CustomerMutation extends Types\RootType
   }
 
   /**
+   * @param string $type
+   * @param string $ID
+   * @return TemporaryFileCreationResult
+   */
+  public function print(string $type, string $ID, $vars = array())
+  {
+     return $this->inputArgs('print', array_merge($vars, ['type' => $type, 'ID' => $ID]));
+  }
+
+  /**
    * @param CustomerUpdateInput $customer
    * @param CustomerAgreementUpdateInput[] $agreements
    * @param AddressUpdateInput[] $addresses
