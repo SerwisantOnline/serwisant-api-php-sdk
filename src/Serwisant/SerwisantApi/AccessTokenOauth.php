@@ -172,9 +172,7 @@ class AccessTokenOauth implements AccessToken
       'headers' => $headers,
       'verify' => parse_url($url, PHP_URL_HOST) == self::HOST // for custom API URL skip SSL verification
     ];
-
-    error_log(print_r($options, 1));
-
+    
     return $options;
   }
 }
