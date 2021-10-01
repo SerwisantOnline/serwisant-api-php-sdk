@@ -13,28 +13,6 @@ class Api
   private $access_token;
 
   /**
-   * @param Request $request
-   * @return $this
-   */
-  public function setUpFromRequest(Request $request)
-  {
-    if ($request->headers->has('CF-Connecting-IP')) {
-      $client_ip = $request->headers->get('CF-Connecting-IP');
-    } else {
-      $client_ip = $request->getClientIp();
-    }
-    $this->setIp($client_ip);
-
-    if ($request->headers->has('Accept-Language')) {
-      $lang = $request->headers->get('Accept-Language');
-    } else {
-      $lang = 'pl-PL';
-    }
-    $this->setLang($lang);
-    return $this;
-  }
-
-  /**
    * @param $ip
    * @return $this
    */
