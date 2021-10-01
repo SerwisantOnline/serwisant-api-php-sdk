@@ -154,7 +154,6 @@ class AccessTokenOauth implements AccessToken
 
     if (trim((string)$this->ip) !== '') {
       $headers['X-Real-IP'] = $this->ip;
-      $headers['CF-Connecting-IP'] = $this->ip;
     }
     if (trim((string)$this->lang) !== '') {
       $headers['Accept-Language'] = $this->lang;
@@ -172,7 +171,7 @@ class AccessTokenOauth implements AccessToken
       'headers' => $headers,
       'verify' => parse_url($url, PHP_URL_HOST) == self::HOST // for custom API URL skip SSL verification
     ];
-    
+
     return $options;
   }
 }
