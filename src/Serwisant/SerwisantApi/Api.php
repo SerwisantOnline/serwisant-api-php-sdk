@@ -92,31 +92,20 @@ class Api
     return new Types\SchemaCustomer\CustomerQuery($this->client(), $this->load_paths);
   }
 
-  /**
-   * @return AccessToken
-   * @throws Exception
-   */
-  public function accessToken()
+  public function accessToken(): AccessToken
   {
     if (!$this->access_token) {
       throw new Exception('Access token not set, use setAccessToken(AccessToken($client, $secret)) before spawning any schema');
     }
-    $this->access_token->setIp($this->ip);
-    $this->access_token->setLang($this->lang);
-    return $this->access_token;
+    return $this->access_token->setIp($this->ip)->setLang($this->lang);
   }
 
-  /**
-   * @return GraphqlClient
-   * @throws Exception
-   */
-  private function client()
+  private function client(): GraphqlClient
   {
     if (!$this->client) {
       $this->client = new GraphqlClient($this->accessToken());
     }
-    $this->client->setIp($this->ip);
-    $this->client->setLang($this->lang);
-    return $this->client;
+    return $this->client->setIp($this->ip)->setLang($this->lang);
+
   }
 }
