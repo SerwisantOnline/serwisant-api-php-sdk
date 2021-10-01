@@ -11,6 +11,9 @@ class AccessTokenOauth implements AccessToken
   protected $scope;
   protected $container;
 
+  private $ip;
+  private $lang;
+
   protected $access_token;
 
   public function __construct(string $client_id, string $client_secret, string $scope = '', AccessTokenContainer $container = null)
@@ -19,6 +22,18 @@ class AccessTokenOauth implements AccessToken
     $this->client_secret = $client_secret;
     $this->scope = $scope;
     $this->container = $container;
+  }
+
+  public function setIp($ip)
+  {
+    $this->ip = $ip;
+    return $this;
+  }
+
+  public function setLang($lang)
+  {
+    $this->lang = $lang;
+    return $this;
   }
 
   public function get()
@@ -31,7 +46,14 @@ class AccessTokenOauth implements AccessToken
 
   public function refresh()
   {
-    $token_data = $this->createHttp();
+    $params = [
+      'grant_type' => 'client_credentials',
+      'client_id' => $this->client_id,
+      'client_secret' => $this->client_secret,
+      'scope' => $this->scope
+    ];
+
+    $token_data = $this->http($params);
 
     if ($token_data !== null) {
       $this->access_token = $token_data['access_token'];
@@ -44,22 +66,29 @@ class AccessTokenOauth implements AccessToken
 
   public function revoke($access_token = null): bool
   {
-    $client_params = [
-      'connect_timeout' => 5,
-      'timeout' => 30,
-      'form_params' => [
-        'client_id' => $this->client_id,
-        'client_secret' => $this->client_secret,
-        'token' => $access_token
-      ]
+    $params = [
+      'client_id' => $this->client_id,
+      'client_secret' => $this->client_secret,
+      'token' => $access_token
     ];
 
     try {
       $client = new GuzzleHttp\Client();
-      $client->request('POST', $this->revokeUrl(), $client_params);
+      $client->request('POST', $this->revokeUrl(), $this->clientOptions($this->revokeUrl(), $params));
       return true;
     } catch (GuzzleHttp\Exception\ClientException $ex) {
       return false;
+    }
+  }
+
+  protected function fetch()
+  {
+    if ($this->container instanceof AccessTokenContainer && $this->container->getExpiryTimestamp() - 10 > time()) {
+      $this->access_token = $this->container->getAccessToken();
+    }
+
+    if ($this->access_token === null) {
+      $this->refresh();
     }
   }
 
@@ -79,40 +108,11 @@ class AccessTokenOauth implements AccessToken
     return self::REVOKE_URL;
   }
 
-  protected function fetch()
-  {
-    if ($this->container instanceof AccessTokenContainer && $this->container->getExpiryTimestamp() - 10 > time()) {
-      $this->access_token = $this->container->getAccessToken();
-    }
-
-    if ($this->access_token === null) {
-      $this->refresh();
-    }
-  }
-
-  private function createHttp()
-  {
-    $params = [
-      'grant_type' => 'client_credentials',
-      'client_id' => $this->client_id,
-      'client_secret' => $this->client_secret,
-      'scope' => $this->scope
-    ];
-    return $this->http($params);
-  }
-
   protected function http($params): array
   {
-    $client_params = [
-      'connect_timeout' => 5,
-      'timeout' => 30,
-      'form_params' => $params
-    ];
-
-    $client = new GuzzleHttp\Client();
-
     try {
-      $res = $client->request('POST', $this->url(), $client_params);
+      $client = new GuzzleHttp\Client();
+      $res = $client->request('POST', $this->url(), $this->clientOptions($this->url(), $params));
       $contents = $res->getBody()->getContents();
       $data = json_decode($contents, true);
 
@@ -146,5 +146,35 @@ class AccessTokenOauth implements AccessToken
           throw new Exception("Unable to fetch an access token, HTTP code was '{$http_code}'");
       }
     }
+  }
+
+  private function clientOptions($url, $params)
+  {
+    $headers = [];
+
+    if (trim((string)$this->ip) !== '') {
+      $headers['X-Real-IP'] = $this->ip;
+      $headers['CF-Connecting-IP'] = $this->ip;
+    }
+    if (trim((string)$this->lang) !== '') {
+      $headers['Accept-Language'] = $this->lang;
+    }
+
+    $timeout = intval(getenv('HTTP_TIMEOUT'));
+    if ($timeout <= 0) {
+      $timeout = 30;
+    }
+
+    $options =  [
+      'connect_timeout' => ceil($timeout / 5),
+      'timeout' => $timeout,
+      'form_params' => $params,
+      'headers' => $headers,
+      'verify' => parse_url($url, PHP_URL_HOST) == self::HOST // for custom API URL skip SSL verification
+    ];
+
+    error_log(print_r($options, 1));
+
+    return $options;
   }
 }

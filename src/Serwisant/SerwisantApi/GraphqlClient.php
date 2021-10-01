@@ -6,7 +6,8 @@ use GuzzleHttp\Client;
 
 class GraphqlClient
 {
-  private $url;
+  const HOST = 'serwisant.online';
+
   private $access_token;
   private $client;
   private $ip;
@@ -34,16 +35,16 @@ class GraphqlClient
    * @param $url
    * @param $query
    * @param $variables
-   * @param array $options
    * @return mixed
    * @throws Exception
    * @throws ExceptionAccessDenied
    * @throws ExceptionNotFound
    */
-  public function call($url, $query, $variables, array $options = [])
+  public function call($url, $query, $variables)
   {
     try {
-      $res = $this->client->request('POST', $url, $this->clientOptions($query, $variables));
+      $options = $this->clientOptions($url, $query, $variables);
+      $res = $this->client->request('POST', $url, $options);
     } catch (\GuzzleHttp\Exception\GuzzleException $e) {
       throw new Exception($e->getMessage());
     }
@@ -85,12 +86,14 @@ class GraphqlClient
         throw new ExceptionAccessDenied($error_message, "{$error_code}");
       case 404:
         throw new ExceptionNotFound($error_message);
+      case 410:
+        throw new ExceptionSubscriberGone($error_message);
       default:
         throw new Exception("Query or mutation error, message was: " . print_r($errors, true));
     }
   }
 
-  private function clientOptions($query, $variables = null)
+  private function clientOptions($url, $query, $variables = null)
   {
     $headers = [];
 
@@ -100,6 +103,7 @@ class GraphqlClient
 
     if (trim((string)$this->ip) !== '') {
       $headers['X-Real-IP'] = $this->ip;
+      $headers['CF-Connecting-IP'] = $this->ip;
     }
     if (trim((string)$this->lang) !== '') {
       $headers['Accept-Language'] = $this->lang;
@@ -111,12 +115,18 @@ class GraphqlClient
       'operationName' => null
     ];
 
+    $timeout = intval(getenv('HTTP_TIMEOUT'));
+    if ($timeout <= 0) {
+      $timeout = 30;
+    }
+
     return [
       'http_errors' => false,
-      'connect_timeout' => 5,
-      'timeout' => 30,
+      'connect_timeout' => ceil($timeout / 5),
+      'timeout' => $timeout,
       'form_params' => $params,
-      'headers' => $headers
+      'headers' => $headers,
+      'verify' => parse_url($url, PHP_URL_HOST) == self::HOST // for custom API URL skip SSL verification
     ];
   }
 
