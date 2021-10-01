@@ -2,6 +2,8 @@
 
 namespace Serwisant\SerwisantApi;
 
+use Symfony\Component\HttpFoundation\Request;
+
 class Api
 {
   private $ip;
@@ -9,6 +11,28 @@ class Api
   private $load_paths = [];
   private $client;
   private $access_token;
+
+  /**
+   * @param Request $request
+   * @return $this
+   */
+  public function setUpFromRequest(Request $request)
+  {
+    if ($request->headers->has('CF-Connecting-IP')) {
+      $client_ip = $request->headers->get('CF-Connecting-IP');
+    } else {
+      $client_ip = $request->getClientIp();
+    }
+    $this->setIp($client_ip);
+
+    if ($request->headers->has('Accept-Language')) {
+      $lang = $request->headers->get('Accept-Language');
+    } else {
+      $lang = 'pl-PL';
+    }
+    $this->setLang($lang);
+    return $this;
+  }
 
   /**
    * @param $ip
@@ -44,7 +68,7 @@ class Api
    * @param $access_token
    * @return $this
    */
-  public function setAccessToken($access_token)
+  public function setAccessToken(AccessToken $access_token)
   {
     $this->access_token = $access_token;
     return $this;
@@ -89,7 +113,7 @@ class Api
   {
     return new Types\SchemaCustomer\CustomerQuery($this->client(), $this->load_paths);
   }
-  
+
   /**
    * @return AccessToken
    * @throws Exception
@@ -99,6 +123,8 @@ class Api
     if (!$this->access_token) {
       throw new Exception('Access token not set, use setAccessToken(AccessToken($client, $secret)) before spawning any schema');
     }
+    $this->access_token->setIp($this->ip);
+    $this->access_token->setLang($this->lang);
     return $this->access_token;
   }
 
@@ -111,7 +137,8 @@ class Api
     if (!$this->client) {
       $this->client = new GraphqlClient($this->accessToken());
     }
-    $this->client->setIp($this->ip)->setLang($this->lang);
+    $this->client->setIp($this->ip);
+    $this->client->setLang($this->lang);
     return $this->client;
   }
 }
