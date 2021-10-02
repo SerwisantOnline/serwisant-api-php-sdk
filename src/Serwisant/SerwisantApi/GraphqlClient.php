@@ -57,6 +57,8 @@ class GraphqlClient
         $this->handleErrors($result['errors']);
       }
       return $result['data'];
+    } elseif ($http_code === 429) {
+      throw new ExceptionTooManyRequests();
     } else {
       throw new Exception("Unable to execute a query or mutation, HTTP code was '{$http_code}', response was: '{$res->getBody()->getContents()}'");
     }

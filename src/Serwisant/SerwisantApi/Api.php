@@ -104,6 +104,5 @@ class Api
       $this->client = new GraphqlClient($this->accessToken());
     }
     return $this->client->setIp($this->ip)->setLang($this->lang);
-
   }
 }

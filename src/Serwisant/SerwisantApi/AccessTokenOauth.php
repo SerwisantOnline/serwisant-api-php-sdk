@@ -76,7 +76,7 @@ class AccessTokenOauth implements AccessToken
       $client = new GuzzleHttp\Client();
       $client->request('POST', $this->revokeUrl(), $this->clientOptions($this->revokeUrl(), $params));
       return true;
-    } catch (GuzzleHttp\Exception\ClientException $ex) {
+    } catch (\GuzzleHttp\Exception\GuzzleException $e) {
       return false;
     }
   }
@@ -108,43 +108,59 @@ class AccessTokenOauth implements AccessToken
     return self::REVOKE_URL;
   }
 
+  /**
+   * @param $params
+   * @return array
+   * @throws Exception
+   * @throws ExceptionAccessDenied
+   * @throws ExceptionTooManyRequests
+   * @throws ExceptionUnauthorized
+   */
   protected function http($params): array
   {
     try {
       $client = new GuzzleHttp\Client();
-      $res = $client->request('POST', $this->url(), $this->clientOptions($this->url(), $params));
-      $contents = $res->getBody()->getContents();
-      $data = json_decode($contents, true);
+      $options = $this->clientOptions($this->url(), $params);
+      $res = $client->request('POST', $this->url(), $options);
+    } catch (\GuzzleHttp\Exception\GuzzleException $e) {
+      throw new Exception($e->getMessage());
+    }
 
-      if (true === array_key_exists('refresh_token', $data)) {
-        $refresh_token = $data['refresh_token'];
-      } else {
-        $refresh_token = null;
-      }
+    $http_code = $res->getStatusCode();
 
-      return [
-        'access_token' => $data['access_token'],
-        'refresh_token' => $refresh_token,
-        'expiry' => ($data['created_at'] + $data['expires_in'])
-      ];
+    switch ($http_code) {
+      case 200:
+        $data = json_decode($res->getBody()->getContents(), true);
 
-    } catch (GuzzleHttp\Exception\ClientException $ex) {
-      $http_code = $ex->getResponse()->getStatusCode();
+        if (true === array_key_exists('refresh_token', $data)) {
+          $refresh_token = $data['refresh_token'];
+        } else {
+          $refresh_token = null;
+        }
 
-      switch ($http_code) {
-        case 400:
-        case 401:
-          $error = json_decode($ex->getResponse()->getBody()->getContents(), true);
-          if ($error['error'] === 'invalid_grant') {
-            # niepoprawne login, hasło
-            throw new ExceptionUnauthorized($error['error_description'], $error['error']);
-          } else {
-            # inne sytuacje, niepoprawny key/secret
-            throw new ExceptionAccessDenied($error['error_description'], $error['error']);
-          }
-        default:
-          throw new Exception("Unable to fetch an access token, HTTP code was '{$http_code}'");
-      }
+        return [
+          'access_token' => $data['access_token'],
+          'refresh_token' => $refresh_token,
+          'expiry' => ($data['created_at'] + $data['expires_in'])
+        ];
+
+      case 400:
+      case 401:
+        $error = json_decode($res->getBody()->getContents(), true);
+
+        if ($error['error'] === 'invalid_grant') {
+          # niepoprawne login, hasło
+          throw new ExceptionUnauthorized($error['error_description'], $error['error']);
+        } else {
+          # inne sytuacje, niepoprawny key/secret
+          throw new ExceptionAccessDenied($error['error_description'], $error['error']);
+        }
+
+      case 429:
+        throw new ExceptionTooManyRequests();
+
+      default:
+        throw new Exception("Unable to fetch an access token, HTTP code was '{$http_code}'");
     }
   }
 
@@ -165,6 +181,7 @@ class AccessTokenOauth implements AccessToken
     }
 
     return [
+      'http_errors' => false,
       'connect_timeout' => ceil($timeout / 5),
       'timeout' => $timeout,
       'form_params' => $params,
