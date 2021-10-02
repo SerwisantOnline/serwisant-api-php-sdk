@@ -2,8 +2,6 @@
 
 namespace Serwisant\SerwisantApi;
 
-use Symfony\Component\HttpFoundation\Request;
-
 class Api
 {
   private $ip;

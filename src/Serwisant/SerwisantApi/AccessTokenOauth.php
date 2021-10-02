@@ -153,7 +153,7 @@ class AccessTokenOauth implements AccessToken
     $headers = [];
 
     if (trim((string)$this->ip) !== '') {
-      $headers['X-Real-IP'] = $this->ip;
+      $headers['X-API-Client-IP'] = $this->ip;
     }
     if (trim((string)$this->lang) !== '') {
       $headers['Accept-Language'] = $this->lang;
@@ -164,14 +164,12 @@ class AccessTokenOauth implements AccessToken
       $timeout = 30;
     }
 
-    $options =  [
+    return [
       'connect_timeout' => ceil($timeout / 5),
       'timeout' => $timeout,
       'form_params' => $params,
       'headers' => $headers,
       'verify' => parse_url($url, PHP_URL_HOST) == self::HOST // for custom API URL skip SSL verification
     ];
-
-    return $options;
   }
 }

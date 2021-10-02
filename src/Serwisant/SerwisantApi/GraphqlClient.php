@@ -102,7 +102,7 @@ class GraphqlClient
     }
 
     if (trim((string)$this->ip) !== '') {
-      $headers['X-Real-IP'] = $this->ip;
+      $headers['X-API-Client-IP'] = $this->ip;
     }
     if (trim((string)$this->lang) !== '') {
       $headers['Accept-Language'] = $this->lang;
