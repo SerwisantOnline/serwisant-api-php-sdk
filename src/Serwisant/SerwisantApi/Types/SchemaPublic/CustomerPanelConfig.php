@@ -22,6 +22,11 @@ class CustomerPanelConfig extends Types\Type
   /**
    * @var bool
   */
+  public $internalTransportEnabled;
+
+  /**
+   * @var bool
+  */
   public $orderDictModel;
 
   /**
@@ -58,6 +63,11 @@ class CustomerPanelConfig extends Types\Type
    * @var string
   */
   public $panelToken;
+
+  /**
+   * @var bool
+  */
+  public $personalTransportEnabled;
 
   /**
    * @var bool
