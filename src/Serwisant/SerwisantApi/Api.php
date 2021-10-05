@@ -4,29 +4,18 @@ namespace Serwisant\SerwisantApi;
 
 class Api
 {
-  private $ip;
-  private $lang;
+  private $http_headers = [];
   private $load_paths = [];
   private $client;
   private $access_token;
 
   /**
-   * @param $ip
+   * @param array $http_headers
    * @return $this
    */
-  public function setIp($ip)
+  public function setHttpHeaders(array $http_headers)
   {
-    $this->ip = $ip;
-    return $this;
-  }
-
-  /**
-   * @param $lang
-   * @return $this
-   */
-  public function setLang($lang)
-  {
-    $this->lang = $lang;
+    $this->http_headers = $http_headers;
     return $this;
   }
 
@@ -95,7 +84,7 @@ class Api
     if (!$this->access_token) {
       throw new Exception('Access token not set, use setAccessToken(AccessToken($client, $secret)) before spawning any schema');
     }
-    return $this->access_token->setIp($this->ip)->setLang($this->lang);
+    return $this->access_token->setHttpHeaders($this->http_headers);
   }
 
   private function client(): GraphqlClient
@@ -103,6 +92,6 @@ class Api
     if (!$this->client) {
       $this->client = new GraphqlClient($this->accessToken());
     }
-    return $this->client->setIp($this->ip)->setLang($this->lang);
+    return $this->client->setHttpHeaders($this->http_headers);
   }
 }

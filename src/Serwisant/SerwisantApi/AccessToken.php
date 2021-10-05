@@ -15,7 +15,5 @@ interface AccessToken
 
   public function revoke($access_token = null): bool;
 
-  public function setIp($ip);
-
-  public function setLang($lang);
+  public function setHttpHeaders(array $http_headers);
 }

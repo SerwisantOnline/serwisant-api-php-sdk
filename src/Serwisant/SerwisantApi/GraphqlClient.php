@@ -10,8 +10,7 @@ class GraphqlClient
 
   private $access_token;
   private $client;
-  private $ip;
-  private $lang;
+  private $http_headers;
 
   public function __construct(AccessToken $access_token = null)
   {
@@ -19,15 +18,13 @@ class GraphqlClient
     $this->client = new Client();
   }
 
-  public function setIp($ip)
+  /**
+   * @param array $http_headers
+   * @return $this
+   */
+  public function setHttpHeaders(array $http_headers)
   {
-    $this->ip = $ip;
-    return $this;
-  }
-
-  public function setLang($lang)
-  {
-    $this->lang = $lang;
+    $this->http_headers = $http_headers;
     return $this;
   }
 
@@ -97,17 +94,10 @@ class GraphqlClient
 
   private function clientOptions($url, $query, $variables = null)
   {
-    $headers = [];
+    $headers = $this->http_headers;
 
     if ($this->access_token) {
       $headers['Authorization'] = 'Bearer ' . $this->access_token->get();
-    }
-
-    if (trim((string)$this->ip) !== '') {
-      $headers['X-API-Client-IP'] = $this->ip;
-    }
-    if (trim((string)$this->lang) !== '') {
-      $headers['Accept-Language'] = $this->lang;
     }
 
     $params = [

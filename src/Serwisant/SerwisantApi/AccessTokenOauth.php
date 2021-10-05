@@ -10,11 +10,9 @@ class AccessTokenOauth implements AccessToken
   protected $client_secret;
   protected $scope;
   protected $container;
-
-  private $ip;
-  private $lang;
-
   protected $access_token;
+
+  private $http_headers = [];
 
   public function __construct(string $client_id, string $client_secret, string $scope = '', AccessTokenContainer $container = null)
   {
@@ -24,15 +22,9 @@ class AccessTokenOauth implements AccessToken
     $this->container = $container;
   }
 
-  public function setIp($ip)
+  public function setHttpHeaders(array $http_headers)
   {
-    $this->ip = $ip;
-    return $this;
-  }
-
-  public function setLang($lang)
-  {
-    $this->lang = $lang;
+    $this->http_headers = $http_headers;
     return $this;
   }
 
@@ -166,14 +158,7 @@ class AccessTokenOauth implements AccessToken
 
   private function clientOptions($url, $params)
   {
-    $headers = [];
-
-    if (trim((string)$this->ip) !== '') {
-      $headers['X-API-Client-IP'] = $this->ip;
-    }
-    if (trim((string)$this->lang) !== '') {
-      $headers['Accept-Language'] = $this->lang;
-    }
+    $headers = $this->http_headers;
 
     $timeout = intval(getenv('HTTP_TIMEOUT'));
     if ($timeout <= 0) {
