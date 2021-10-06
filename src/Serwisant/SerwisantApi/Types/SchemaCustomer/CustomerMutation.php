@@ -8,6 +8,17 @@ use Serwisant\SerwisantApi\Types;
 class CustomerMutation extends Types\RootType
 {
   /**
+   * @param string $repair
+   * @param string $decision
+   * @param string $offer
+   * @return AcceptOrRejectRepairResult
+   */
+  public function acceptOrRejectRepair(string $repair, string $decision, string $offer = null, $vars = array())
+  {
+     return $this->inputArgs('acceptOrRejectRepair', array_merge($vars, ['repair' => $repair, 'decision' => $decision, 'offer' => $offer]));
+  }
+
+  /**
    * @param MessageInput $message
    * @return MessageCreationResult
    */
