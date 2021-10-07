@@ -3,6 +3,7 @@
 namespace Serwisant\SerwisantApi;
 
 use PDO;
+use PDOException;
 
 class AccessTokenContainerPDO implements AccessTokenContainer
 {
@@ -42,8 +43,12 @@ class AccessTokenContainerPDO implements AccessTokenContainer
   protected function db()
   {
     if (is_null($this->db)) {
-      $this->db = (new \ReflectionClass('PDO'))->newInstanceArgs($this->connection_args);
-      $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      try {
+        $this->db = new PDO(...$this->connection_args);
+        $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      } catch (PDOException $e) {
+        throw new Exception('unable to connect do database, error was: ' . $e->getMessage());
+      }
     }
     return $this->db;
   }
