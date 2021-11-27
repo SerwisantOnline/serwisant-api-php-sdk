@@ -72,6 +72,11 @@ class CustomerPanelConfig extends Types\Type
   /**
    * @var bool
   */
+  public $requirePhoneNumber;
+
+  /**
+   * @var bool
+  */
   public $showOrderProgressInfo;
 
   /**
