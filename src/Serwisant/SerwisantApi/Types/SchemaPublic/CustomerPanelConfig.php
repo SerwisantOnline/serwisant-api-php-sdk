@@ -87,6 +87,11 @@ class CustomerPanelConfig extends Types\Type
   /**
    * @var bool
   */
+  public $uploadFiles;
+
+  /**
+   * @var bool
+  */
   public $uploadOnlyImages;
 
   /**
