@@ -29,16 +29,6 @@ class InternalMutation extends Types\RootType
   }
 
   /**
-   * Create access to demo version
-   * @param string $email
-   * @return DemoAccessResult
-   */
-  public function createDemoAccess(string $email, $vars = array())
-  {
-     return $this->inputArgs('createDemoAccess', array_merge($vars, ['email' => $email]));
-  }
-
-  /**
    * Sign-up for a new account
    * @param SubscriberInput $subscriber
    * @param string $activationUrl

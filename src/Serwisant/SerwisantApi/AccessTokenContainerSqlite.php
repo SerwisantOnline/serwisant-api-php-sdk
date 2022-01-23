@@ -30,7 +30,7 @@ class AccessTokenContainerSqlite extends AccessTokenContainerPDO
       throw new Exception("Directory do not writeable - please change permissions of '{$dir}' directory.");
     }
 
-    parent::__construct("sqlite:" . $db_name, $namespace);
+    parent::__construct(["sqlite:" . $db_name], $namespace);
 
     $this->db()->exec(
       "CREATE TABLE IF NOT EXISTS access_token (namespace TEXT PRIMARY KEY, token TEXT, refresh TEXT, expiry INTEGER) WITHOUT ROWID"

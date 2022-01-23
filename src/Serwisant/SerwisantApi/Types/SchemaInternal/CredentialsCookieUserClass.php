@@ -13,10 +13,6 @@ class CredentialsCookieUserClass extends Types\Enum
 
   /**
   */
-  const DEMO = 'DEMO';
-
-  /**
-  */
   const UNAUTHORISED = 'UNAUTHORISED';
 
   protected function schemaNamespace()

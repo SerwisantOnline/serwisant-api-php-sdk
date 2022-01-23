@@ -31,6 +31,14 @@ class SubscriberBusinessActivity extends Types\Enum
   */
   const BIKES = 'BIKES';
 
+  /**
+  */
+  const PHOTO = 'PHOTO';
+
+  /**
+  */
+  const GARDEN = 'GARDEN';
+
   protected function schemaNamespace()
   {
     return 'SchemaPublic';

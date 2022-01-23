@@ -20,6 +20,12 @@ class Enum
     }
   }
 
+  public function enum()
+  {
+    $oClass = new \ReflectionClass($this);
+    return $oClass->getConstants();
+  }
+
   public function __toString()
   {
     return $this->selection ?: '';
