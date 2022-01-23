@@ -20,7 +20,7 @@ class Enum
     }
   }
 
-  public function enum()
+  public function values()
   {
     $oClass = new \ReflectionClass($this);
     return $oClass->getConstants();
