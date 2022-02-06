@@ -44,7 +44,7 @@ class PublicQuery extends Types\RootType
   }
 
   /**
-   * This query map given login credential, ie. email, or login itself to username valid for OAuth password login. Please note: given credential can point to more than one login, so thus must be handled on frontend side.
+   * This query map given login credential, ie. email, or username itself to OAuth login. Please note: given credential can point to more than one login, so thus must be handled on frontend side. This will also return unavailability reasons if customer has no internet access enabled or account is not activated with confirmation link.
    * @param string $loginCredential
    * @return LoginResult[]
    */

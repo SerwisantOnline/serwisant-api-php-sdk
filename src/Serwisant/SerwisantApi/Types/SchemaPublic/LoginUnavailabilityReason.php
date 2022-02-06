@@ -19,6 +19,10 @@ class LoginUnavailabilityReason extends Types\Enum
   */
   const DISABLED = 'DISABLED';
 
+  /**
+  */
+  const INTERNET_ACCESS_NOT_ENABLED = 'INTERNET_ACCESS_NOT_ENABLED';
+
   protected function schemaNamespace()
   {
     return 'SchemaPublic';

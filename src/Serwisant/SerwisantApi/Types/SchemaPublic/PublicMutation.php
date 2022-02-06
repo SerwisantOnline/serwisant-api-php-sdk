@@ -20,9 +20,7 @@ class PublicMutation extends Types\RootType
   }
 
   /**
-   * Once customer is created via `createCustomer` he gets an email with activation URL contains a token.
-Token must be used against this mutation to activate an accoint and allo customer to log-in.
-
+   * Once customer is created via `createCustomer` he gets an email with activation URL contains a token. Token must be used against this mutation to activate an account and also customer to log-in.
    * @param string $activationToken
    * @return CustomerActivationResult
    */
@@ -32,9 +30,7 @@ Token must be used against this mutation to activate an accoint and allo custome
   }
 
   /**
-   * Creates a customer account usable in `Customer` schema. Account is self-created account.
-Don't use it for purposes other than customer Panel sign-up.
-
+   * Creates a customer account usable in `Customer` schema. Account is self-created account. Don't use it for purposes other than customer Panel sign-up.
    * @param CustomerInput $customer
    * @param CustomerAgreementInput[] $agreements
    * @param AddressInput[] $addresses
@@ -46,9 +42,20 @@ Don't use it for purposes other than customer Panel sign-up.
   }
 
   /**
-   * Pay for `OnlinePayment` using any available `type` of payment. Depending on result status, payment may be
-queued: in that case pool for result, may be asked to redirect user to other site to complete a payment.
+   * Activate customer panel access for existing customer - set a login and password
+   * @param string $activationToken
+   * @param string $login
+   * @param string $password
+   * @param CustomerAgreementInput[] $agreements
+   * @return CustomerAccessCreationResult
+   */
+  public function createCustomerAccess(string $activationToken, string $login, string $password, array $agreements = array(), $vars = array())
+  {
+     return $this->inputArgs('createCustomerAccess', array_merge($vars, ['activationToken' => $activationToken, 'login' => $login, 'password' => $password, 'agreements' => $agreements]));
+  }
 
+  /**
+   * Pay for `OnlinePayment` using any available `type` of payment. Depending on result status, payment may be queued: in that case pool for result, may be asked to redirect user to other site to complete a payment.
    * @param string $token
    * @param OnlineTransactionInput $onlineTransaction
    * @param string $successUrl
@@ -61,9 +68,17 @@ queued: in that case pool for result, may be asked to redirect user to other sit
   }
 
   /**
-   * Give a login or email to get an email with password reset link. Email will contain a reset token to use with `setPassword` mutation.
-Token is valid for limited time.
+   * If customer already exists (`login` query will return `INTERNET_ACCESS_NOT_ENABLED`, or `create_customer` ends up with email exists validation error) this mutation can be used to send a secret link points to panel access activation (set up a login and password).
+   * @param string $customer
+   * @return bool
+   */
+  public function requestCustomerAccess(string $customer, $vars = array())
+  {
+     return $this->inputArgs('requestCustomerAccess', array_merge($vars, ['customer' => $customer]));
+  }
 
+  /**
+   * Give a login or email to get an email with password reset link. Email will contain a reset token to use with `setPassword` mutation. Token is valid for limited time.
    * @param string $loginOrEmail
    * @param string $subject
    * @return PasswordResetResult

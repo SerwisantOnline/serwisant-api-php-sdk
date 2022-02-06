@@ -9,6 +9,11 @@ class LoginResult extends Types\Type
 {
   /**
    * @var string
+  */
+  public $ID;
+
+  /**
+   * @var string
    * Valid username
   */
   public $login;
