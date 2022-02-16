@@ -15,6 +15,11 @@ class Dictionary extends Types\Type
   /**
    * @var string
   */
+  public $auxiliaryId;
+
+  /**
+   * @var string
+  */
   public $name;
 
   /**

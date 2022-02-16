@@ -12,6 +12,11 @@ class DictionaryEntriesFilter extends Types\Type
   */
   public $type;
 
+  /**
+   * @var string
+  */
+  public $auxiliaryId;
+
   protected function schemaNamespace()
   {
     return 'SchemaService';
