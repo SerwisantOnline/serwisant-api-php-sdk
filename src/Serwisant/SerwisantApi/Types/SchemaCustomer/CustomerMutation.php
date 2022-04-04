@@ -99,6 +99,17 @@ class CustomerMutation extends Types\RootType
      return $this->inputArgs('updateViewer', array_merge($vars, ['customer' => $customer, 'agreements' => $agreements, 'addresses' => $addresses]));
   }
 
+  /**
+   * @param string $currentPassword
+   * @param string $password
+   * @param string $passwordConfirmation
+   * @return ViewerPasswordUpdateResult
+   */
+  public function updateViewerPassword(string $currentPassword, string $password, string $passwordConfirmation, $vars = array())
+  {
+     return $this->inputArgs('updateViewerPassword', array_merge($vars, ['currentPassword' => $currentPassword, 'password' => $password, 'passwordConfirmation' => $passwordConfirmation]));
+  }
+
   protected function schemaNamespace()
   {
     return 'SchemaCustomer';

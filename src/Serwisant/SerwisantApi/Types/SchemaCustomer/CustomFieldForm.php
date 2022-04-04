@@ -19,6 +19,10 @@ class CustomFieldForm extends Types\Enum
   */
   const CUSTOMER = 'CUSTOMER';
 
+  /**
+  */
+  const DEVICE = 'DEVICE';
+
   protected function schemaNamespace()
   {
     return 'SchemaCustomer';

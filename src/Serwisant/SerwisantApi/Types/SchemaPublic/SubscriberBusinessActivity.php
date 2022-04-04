@@ -9,6 +9,10 @@ class SubscriberBusinessActivity extends Types\Enum
 {
   /**
   */
+  const UNDEFINED = 'UNDEFINED';
+
+  /**
+  */
   const OTHER = 'OTHER';
 
   /**

@@ -18,12 +18,12 @@ class SubscriptionLevel extends Types\Type
   public $optionalModules;
 
   /**
-   * @var float
+   * @var Decimal
   */
   public $priceGross;
 
   /**
-   * @var float
+   * @var Decimal
   */
   public $priceNet;
 

@@ -18,12 +18,12 @@ class SubscriptionLevelPaidModule extends Types\Type
   public $longDescription;
 
   /**
-   * @var float
+   * @var Decimal
   */
   public $priceGross;
 
   /**
-   * @var float
+   * @var Decimal
   */
   public $priceNet;
 
@@ -33,7 +33,7 @@ class SubscriptionLevelPaidModule extends Types\Type
   public $title;
 
   /**
-   * @var float
+   * @var Decimal
   */
   public $vat;
 
