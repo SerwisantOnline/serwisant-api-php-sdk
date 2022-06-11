@@ -56,6 +56,19 @@ Component card created via `createComponent` mutation is required before supply.
   }
 
   /**
+   * Add new parcel do database. Parcel, after creation is not ordered yet. Call `submitParcel` to pass a parcel to external courier system. As a result a `Parcel` entity is returned, so you can add and fetch parcel pricing in single request. Parcel must be related with one or more `Repair`
+   * @param ParcelInput $parcel
+   * @param ParcelEdgeInput $pickupFrom
+   * @param ParcelEdgeInput $deliverTo
+   * @param string[] $repairs
+   * @return ParcelCreationResult
+   */
+  public function createParcel(ParcelInput $parcel, ParcelEdgeInput $pickupFrom, ParcelEdgeInput $deliverTo, array $repairs, $vars = array())
+  {
+     return $this->inputArgs('createParcel', array_merge($vars, ['parcel' => $parcel, 'pickupFrom' => $pickupFrom, 'deliverTo' => $deliverTo, 'repairs' => $repairs]));
+  }
+
+  /**
    * Create a repair order with some of dependencies
    * @param string $customer
    * @param RepairInput $repair
@@ -66,6 +79,47 @@ Component card created via `createComponent` mutation is required before supply.
   public function createRepair(string $customer, RepairInput $repair, array $additionalItems = array(), array $files = array(), $vars = array())
   {
      return $this->inputArgs('createRepair', array_merge($vars, ['customer' => $customer, 'repair' => $repair, 'additionalItems' => $additionalItems, 'files' => $files]));
+  }
+
+  /**
+   * @param string $repair
+   * @param RepairDiagnosisInput $diagnosis
+   * @return RepairDiagnosisCreationResult
+   */
+  public function createRepairDiagnosis(string $repair, RepairDiagnosisInput $diagnosis, $vars = array())
+  {
+     return $this->inputArgs('createRepairDiagnosis', array_merge($vars, ['repair' => $repair, 'diagnosis' => $diagnosis]));
+  }
+
+  /**
+   * Generate PDF files for repair, ticket protocols and shipping documents for parcel. ID of entity should be obtained from query. Mutation will return an URL to document. Please note: URLs have short lifetime. Document must be downloaded up to 10 minutes from mutation call.
+   * @param string $type
+   * @param string $ID
+   * @return TemporaryFileCreationResult
+   */
+  public function print(string $type, string $ID, $vars = array())
+  {
+     return $this->inputArgs('print', array_merge($vars, ['type' => $type, 'ID' => $ID]));
+  }
+
+  /**
+   * @param string $parcel
+   * @param string $pricing
+   * @return ParcelSubmitResult
+   */
+  public function submitParcel(string $parcel, string $pricing, $vars = array())
+  {
+     return $this->inputArgs('submitParcel', array_merge($vars, ['parcel' => $parcel, 'pricing' => $pricing]));
+  }
+
+  /**
+   * @param string $repair
+   * @param RepairDiagnosisInput $diagnosis
+   * @return RepairDiagnosisUpdateResult
+   */
+  public function updateRepairDiagnosis(string $repair, RepairDiagnosisInput $diagnosis, $vars = array())
+  {
+     return $this->inputArgs('updateRepairDiagnosis', array_merge($vars, ['repair' => $repair, 'diagnosis' => $diagnosis]));
   }
 
   /**

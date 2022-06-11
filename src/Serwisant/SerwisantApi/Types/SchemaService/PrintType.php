@@ -5,32 +5,23 @@ namespace Serwisant\SerwisantApi\Types\SchemaService;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class RepairDiagnosis extends Types\Type
+class PrintType extends Types\Enum
 {
   /**
-   * @var string
   */
-  public $internalRemarks;
+  const REPAIR_INTRO = 'REPAIR_INTRO';
 
   /**
-   * @var Decimal
   */
-  public $priceGross;
+  const REPAIR_SUMMARY = 'REPAIR_SUMMARY';
 
   /**
-   * @var Decimal
   */
-  public $priceNet;
+  const TICKET = 'TICKET';
 
   /**
-   * @var string
   */
-  public $publicRemarks;
-
-  /**
-   * @var Decimal
-  */
-  public $vat;
+  const PARCEL = 'PARCEL';
 
   protected function schemaNamespace()
   {

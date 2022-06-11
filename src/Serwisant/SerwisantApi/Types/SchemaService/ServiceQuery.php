@@ -73,6 +73,18 @@ class ServiceQuery extends Types\RootType
   }
 
   /**
+   * @param int $limit
+   * @param int $page
+   * @param ParcelsFilter $filter
+   * @param string $sort
+   * @return ParcelsResult
+   */
+  public function parcels(int $limit = null, int $page = null, ParcelsFilter $filter = null, string $sort = null, $vars = array())
+  {
+     return $this->inputArgs('parcels', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]));
+  }
+
+  /**
    * Return list of repairs filtered with specified conditions
    * @param int $limit
    * @param int $page
@@ -85,6 +97,10 @@ class ServiceQuery extends Types\RootType
      return $this->inputArgs('repairs', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]));
   }
 
+  /**
+   * @var ServiceSupplier[]
+  */
+  public $serviceSuppliers = [];
   /**
    * Return employee related to current viewer - can be a System employee if token is not related to authenticated employee
    * @return Viewer

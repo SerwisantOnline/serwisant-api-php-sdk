@@ -13,12 +13,12 @@ class RepairOfferItem extends Types\Type
   public $description;
 
   /**
-   * @var float
+   * @var Decimal
   */
   public $priceGross;
 
   /**
-   * @var float
+   * @var Decimal
   */
   public $priceNet;
 
@@ -28,7 +28,7 @@ class RepairOfferItem extends Types\Type
   public $type;
 
   /**
-   * @var float
+   * @var Decimal
   */
   public $vat;
 

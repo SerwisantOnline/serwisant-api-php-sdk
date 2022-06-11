@@ -34,12 +34,12 @@ class RepairOffer extends Types\Type
   public $number;
 
   /**
-   * @var float
+   * @var Decimal
   */
   public $priceGross;
 
   /**
-   * @var float
+   * @var Decimal
    * Summary net price for this offer. If offered repair was diagnosed, diagnosis price is included here.
   */
   public $priceNet;

@@ -13,12 +13,19 @@ class Repair extends Types\Type
   public $ID;
 
   /**
-   * @var float
+   * @var Decimal
   */
   public $advanceAmount;
 
   /**
+   * @var Address
+   * Address where service should pick up a repair item. Empty if `collectionType` type is `PERSONAL`
+  */
+  public $collectionAddress;
+
+  /**
    * @var string
+   * Defines how repair item will be collected from customer.
   */
   public $collectionType;
 
@@ -44,7 +51,14 @@ class Repair extends Types\Type
   public $delegation;
 
   /**
+   * @var Address
+   * Address where repaired item should be returned. Empty if `deliveryType` type is `PERSONAL`
+  */
+  public $deliveryAddress;
+
+  /**
    * @var string
+   * Defines how repaired item should be returned to customer.
   */
   public $deliveryType;
 
@@ -84,12 +98,16 @@ class Repair extends Types\Type
   */
   public $offers = [];
   /**
-   * @var float
+   * @var Parcel[]
+  */
+  public $parcels = [];
+  /**
+   * @var Decimal
   */
   public $priceEstimated;
 
   /**
-   * @var float
+   * @var Decimal
   */
   public $priceEstimatedTaxRate;
 

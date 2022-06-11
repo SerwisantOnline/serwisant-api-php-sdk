@@ -44,6 +44,11 @@ class ServiceSupplier extends Types\Type
   */
   public $phone;
 
+  /**
+   * @var string
+  */
+  public $type;
+
   protected function schemaNamespace()
   {
     return 'SchemaService';

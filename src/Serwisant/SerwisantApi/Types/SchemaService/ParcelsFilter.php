@@ -5,32 +5,27 @@ namespace Serwisant\SerwisantApi\Types\SchemaService;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class RepairDiagnosis extends Types\Type
+class ParcelsFilter extends Types\Type
 {
   /**
    * @var string
   */
-  public $internalRemarks;
-
-  /**
-   * @var Decimal
-  */
-  public $priceGross;
-
-  /**
-   * @var Decimal
-  */
-  public $priceNet;
+  public $type;
 
   /**
    * @var string
   */
-  public $publicRemarks;
+  public $status;
 
   /**
-   * @var Decimal
+   * @var string
   */
-  public $vat;
+  public $ID;
+
+  /**
+   * @var string
+  */
+  public $trackingNumber;
 
   protected function schemaNamespace()
   {

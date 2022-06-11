@@ -5,32 +5,32 @@ namespace Serwisant\SerwisantApi\Types\SchemaService;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class RepairDiagnosis extends Types\Type
+class ParcelAddress extends Types\Type
 {
   /**
    * @var string
   */
-  public $internalRemarks;
-
-  /**
-   * @var Decimal
-  */
-  public $priceGross;
-
-  /**
-   * @var Decimal
-  */
-  public $priceNet;
+  public $building;
 
   /**
    * @var string
   */
-  public $publicRemarks;
+  public $city;
 
   /**
-   * @var Decimal
+   * @var string
   */
-  public $vat;
+  public $countryIso;
+
+  /**
+   * @var string
+  */
+  public $postalCode;
+
+  /**
+   * @var string
+  */
+  public $street;
 
   protected function schemaNamespace()
   {

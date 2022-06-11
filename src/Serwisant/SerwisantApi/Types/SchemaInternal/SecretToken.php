@@ -25,6 +25,11 @@ class SecretToken extends Types\Type
   /**
    * @var string
   */
+  public $redirectUrl;
+
+  /**
+   * @var string
+  */
   public $subjectType;
 
   /**

@@ -5,32 +5,23 @@ namespace Serwisant\SerwisantApi\Types\SchemaService;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class RepairDiagnosis extends Types\Type
+class ParcelStatus extends Types\Enum
 {
   /**
-   * @var string
   */
-  public $internalRemarks;
+  const NEW = 'NEW';
 
   /**
-   * @var Decimal
   */
-  public $priceGross;
+  const READY_FOR_SUBMISSION = 'READY_FOR_SUBMISSION';
 
   /**
-   * @var Decimal
   */
-  public $priceNet;
+  const SUBMITTED = 'SUBMITTED';
 
   /**
-   * @var string
   */
-  public $publicRemarks;
-
-  /**
-   * @var Decimal
-  */
-  public $vat;
+  const CLOSED = 'CLOSED';
 
   protected function schemaNamespace()
   {

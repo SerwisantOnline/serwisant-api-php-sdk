@@ -5,52 +5,47 @@ namespace Serwisant\SerwisantApi\Types\SchemaService;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class ComponentDelivery extends Types\Type
+class ParcelEdge extends Types\Type
 {
   /**
-   * @var string
+   * @var ParcelAddress
   */
-  public $ID;
+  public $address;
 
   /**
    * @var string
   */
-  public $invoiceSignature;
+  public $company;
 
   /**
-   * @var Money
+   * @var Customer
   */
-  public $priceNet;
-
-  /**
-   * @var string
-  */
-  public $purchasedAt;
-
-  /**
-   * @var int
-  */
-  public $quantity;
-
-  /**
-   * @var int
-  */
-  public $reservedQuantity;
+  public $customer;
 
   /**
    * @var string
   */
-  public $serial;
+  public $email;
 
   /**
    * @var string
   */
-  public $supplier;
+  public $name;
 
   /**
-   * @var Decimal
+   * @var string
   */
-  public $vat;
+  public $ownerType;
+
+  /**
+   * @var Phone
+  */
+  public $phone;
+
+  /**
+   * @var ServiceSupplier
+  */
+  public $serviceSupplier;
 
   protected function schemaNamespace()
   {

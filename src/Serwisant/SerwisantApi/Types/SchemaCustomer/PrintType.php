@@ -19,6 +19,10 @@ class PrintType extends Types\Enum
   */
   const TICKET = 'TICKET';
 
+  /**
+  */
+  const PARCEL = 'PARCEL';
+
   protected function schemaNamespace()
   {
     return 'SchemaCustomer';

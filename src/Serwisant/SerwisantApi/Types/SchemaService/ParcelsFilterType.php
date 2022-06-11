@@ -5,32 +5,23 @@ namespace Serwisant\SerwisantApi\Types\SchemaService;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class RepairDiagnosis extends Types\Type
+class ParcelsFilterType extends Types\Enum
 {
   /**
-   * @var string
   */
-  public $internalRemarks;
+  const ALL = 'ALL';
 
   /**
-   * @var Decimal
   */
-  public $priceGross;
+  const ID = 'ID';
 
   /**
-   * @var Decimal
   */
-  public $priceNet;
+  const STATUS = 'STATUS';
 
   /**
-   * @var string
   */
-  public $publicRemarks;
-
-  /**
-   * @var Decimal
-  */
-  public $vat;
+  const TRACKING_NUMBER = 'TRACKING_NUMBER';
 
   protected function schemaNamespace()
   {

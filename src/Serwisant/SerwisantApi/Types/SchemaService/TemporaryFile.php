@@ -5,32 +5,27 @@ namespace Serwisant\SerwisantApi\Types\SchemaService;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class RepairDiagnosis extends Types\Type
+class TemporaryFile extends Types\Type
 {
   /**
    * @var string
   */
-  public $internalRemarks;
-
-  /**
-   * @var Decimal
-  */
-  public $priceGross;
-
-  /**
-   * @var Decimal
-  */
-  public $priceNet;
+  public $ID;
 
   /**
    * @var string
   */
-  public $publicRemarks;
+  public $contentType;
 
   /**
-   * @var Decimal
+   * @var string
   */
-  public $vat;
+  public $name;
+
+  /**
+   * @var string
+  */
+  public $url;
 
   protected function schemaNamespace()
   {

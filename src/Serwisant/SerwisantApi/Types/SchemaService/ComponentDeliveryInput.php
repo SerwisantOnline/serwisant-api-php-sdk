@@ -23,7 +23,7 @@ class ComponentDeliveryInput extends Types\Type
   public $priceNet;
 
   /**
-   * @var float
+   * @var Decimal
    * VAT rate in percent points, eg. 23, 0
   */
   public $vat;

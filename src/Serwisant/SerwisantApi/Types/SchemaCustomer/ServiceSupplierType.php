@@ -5,32 +5,27 @@ namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class RepairOfferItem extends Types\Type
+class ServiceSupplierType extends Types\Enum
 {
   /**
-   * @var string
   */
-  public $description;
+  const MAIN = 'MAIN';
 
   /**
-   * @var Decimal
   */
-  public $priceGross;
+  const BRANCH = 'BRANCH';
 
   /**
-   * @var Decimal
   */
-  public $priceNet;
+  const SERVICE_SUPPLIER = 'SERVICE_SUPPLIER';
 
   /**
-   * @var string
   */
-  public $type;
+  const EXCHANGE_TARGET = 'EXCHANGE_TARGET';
 
   /**
-   * @var Decimal
   */
-  public $vat;
+  const EXCHANGE_SOURCE = 'EXCHANGE_SOURCE';
 
   protected function schemaNamespace()
   {
