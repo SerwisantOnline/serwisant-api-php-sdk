@@ -83,6 +83,10 @@ class Repair extends Types\Type
   */
   public $offers = [];
   /**
+   * @var Parcel[]
+  */
+  public $parcels = [];
+  /**
    * @var Decimal
   */
   public $priceEstimated;

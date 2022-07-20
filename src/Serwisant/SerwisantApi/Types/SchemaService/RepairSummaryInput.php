@@ -1,31 +1,26 @@
 <?php
 
-namespace Serwisant\SerwisantApi\Types\SchemaPublic;
+namespace Serwisant\SerwisantApi\Types\SchemaService;
 
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class RepairSummary extends Types\Type
+class RepairSummaryInput extends Types\Type
 {
-  /**
-   * @var Decimal
-  */
-  public $priceGross;
-
   /**
    * @var Decimal
   */
   public $priceNet;
 
   /**
-   * @var string
-  */
-  public $publicRemarks;
-
-  /**
    * @var Decimal
   */
   public $vat;
+
+  /**
+   * @var string
+  */
+  public $publicRemarks;
 
   /**
    * @var int
@@ -34,6 +29,6 @@ class RepairSummary extends Types\Type
 
   protected function schemaNamespace()
   {
-    return 'SchemaPublic';
+    return 'SchemaService';
   }
 }

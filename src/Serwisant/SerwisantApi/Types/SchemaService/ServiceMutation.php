@@ -92,6 +92,16 @@ Component card created via `createComponent` mutation is required before supply.
   }
 
   /**
+   * @param string $repair
+   * @param RepairSummaryInput $summary
+   * @return RepairSummaryCreationResult
+   */
+  public function createRepairSummary(string $repair, RepairSummaryInput $summary, $vars = array())
+  {
+     return $this->inputArgs('createRepairSummary', array_merge($vars, ['repair' => $repair, 'summary' => $summary]));
+  }
+
+  /**
    * Generate PDF files for repair, ticket protocols and shipping documents for parcel. ID of entity should be obtained from query. Mutation will return an URL to document. Please note: URLs have short lifetime. Document must be downloaded up to 10 minutes from mutation call.
    * @param string $type
    * @param string $ID
@@ -131,6 +141,16 @@ Component card created via `createComponent` mutation is required before supply.
   public function updateRepairStatus(string $repair, string $status, $vars = array())
   {
      return $this->inputArgs('updateRepairStatus', array_merge($vars, ['repair' => $repair, 'status' => $status]));
+  }
+
+  /**
+   * @param string $repair
+   * @param RepairSummaryInput $summary
+   * @return RepairSummaryUpdateResult
+   */
+  public function updateRepairSummary(string $repair, RepairSummaryInput $summary, $vars = array())
+  {
+     return $this->inputArgs('updateRepairSummary', array_merge($vars, ['repair' => $repair, 'summary' => $summary]));
   }
 
   protected function schemaNamespace()
