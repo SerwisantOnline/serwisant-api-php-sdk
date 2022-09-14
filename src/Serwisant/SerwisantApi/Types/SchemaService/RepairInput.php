@@ -76,6 +76,11 @@ class RepairInput extends Types\Type
    * @var CustomFieldValueInput[]
   */
   public $customFields = [];
+  /**
+   * @var string
+  */
+  public $internalRemarks;
+
   protected function schemaNamespace()
   {
     return 'SchemaService';

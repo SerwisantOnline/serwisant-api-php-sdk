@@ -10,12 +10,22 @@ class File extends Types\Type
   /**
    * @var string
   */
+  public $ID;
+
+  /**
+   * @var string
+  */
   public $contentType;
 
   /**
    * @var bool
   */
   public $image;
+
+  /**
+   * @var string
+  */
+  public $internalRemarks;
 
   /**
    * @var bool

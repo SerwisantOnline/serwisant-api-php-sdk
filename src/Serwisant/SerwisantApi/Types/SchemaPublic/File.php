@@ -20,6 +20,11 @@ class File extends Types\Type
   /**
    * @var string
   */
+  public $publicRemarks;
+
+  /**
+   * @var string
+  */
   public $url;
 
   protected function schemaNamespace()

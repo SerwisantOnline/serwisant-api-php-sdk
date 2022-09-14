@@ -13,9 +13,19 @@ class Repair extends Types\Type
   public $ID;
 
   /**
+   * @var RepairItem[]
+  */
+  public $additionalItems;
+
+  /**
    * @var Decimal
   */
   public $advanceAmount;
+
+  /**
+   * @var string
+  */
+  public $applicationUrl;
 
   /**
    * @var Address
@@ -82,6 +92,11 @@ class Repair extends Types\Type
    * Files attached to repair. For :service schema it includes private and public files, for otcher schemas only public files are included
   */
   public $files;
+
+  /**
+   * @var string
+  */
+  public $internalRemarks;
 
   /**
    * @var string

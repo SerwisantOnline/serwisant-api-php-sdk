@@ -13,6 +13,11 @@ class Component extends Types\Type
   public $ID;
 
   /**
+   * @var string
+  */
+  public $applicationUrl;
+
+  /**
    * @var ComponentDelivery[]
    * Deliveries of comppnent. Use `createComponentDelivery` mutation to create a new delivery.
   */

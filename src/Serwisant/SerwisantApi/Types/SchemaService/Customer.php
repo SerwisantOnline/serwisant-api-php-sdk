@@ -29,6 +29,11 @@ class Customer extends Types\Type
   public $agreements;
 
   /**
+   * @var string
+  */
+  public $applicationUrl;
+
+  /**
    * @var File
   */
   public $avatar;

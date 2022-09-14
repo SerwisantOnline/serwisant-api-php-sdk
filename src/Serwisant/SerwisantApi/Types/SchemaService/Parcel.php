@@ -15,6 +15,11 @@ class Parcel extends Types\Type
   /**
    * @var string
   */
+  public $applicationUrl;
+
+  /**
+   * @var string
+  */
   public $courierName;
 
   /**

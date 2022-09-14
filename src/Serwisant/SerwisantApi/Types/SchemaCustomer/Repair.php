@@ -13,6 +13,11 @@ class Repair extends Types\Type
   public $ID;
 
   /**
+   * @var RepairItem[]
+  */
+  public $additionalItems;
+
+  /**
    * @var Decimal
   */
   public $advanceAmount;

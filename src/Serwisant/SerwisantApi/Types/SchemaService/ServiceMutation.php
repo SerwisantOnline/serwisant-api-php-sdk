@@ -123,6 +123,19 @@ Component card created via `createComponent` mutation is required before supply.
   }
 
   /**
+   * @param string $ID
+   * @param string $customer
+   * @param RepairUpdateInput $repair
+   * @param RepairItemUpdateInput[] $additionalItems
+   * @param FileUpdateInput[] $files
+   * @return RepairUpdateResult
+   */
+  public function updateRepair(string $ID, string $customer = null, RepairUpdateInput $repair = null, array $additionalItems = array(), array $files = array(), $vars = array())
+  {
+     return $this->inputArgs('updateRepair', array_merge($vars, ['ID' => $ID, 'customer' => $customer, 'repair' => $repair, 'additionalItems' => $additionalItems, 'files' => $files]));
+  }
+
+  /**
    * @param string $repair
    * @param RepairDiagnosisInput $diagnosis
    * @return RepairDiagnosisUpdateResult
