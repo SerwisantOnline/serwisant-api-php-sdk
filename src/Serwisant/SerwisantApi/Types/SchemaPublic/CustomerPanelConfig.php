@@ -95,6 +95,11 @@ class CustomerPanelConfig extends Types\Type
   public $uploadOnlyImages;
 
   /**
+   * @var bool
+  */
+  public $useCustomStatusNames;
+
+  /**
    * @var string
    * Message to be shown before login - for every user
   */
