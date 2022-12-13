@@ -37,6 +37,11 @@ class CustomerPanelConfig extends Types\Type
 
   /**
    * @var bool
+  */
+  public $panelDevices;
+
+  /**
+   * @var bool
    * Is access to customer panel enables
   */
   public $panelEnabled;

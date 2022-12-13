@@ -17,7 +17,7 @@ abstract class Type
       $instances = [];
       foreach ($object as $value) {
         if (is_array($value)) {
-          $instances[] = self::spawn($schema_namespace, $value);
+          $instances[] = self::spawn($schema_namespace, $value, $id);
         } else {
           $instances[] = $value;
         }
@@ -25,7 +25,7 @@ abstract class Type
       return $instances;
     } elseif (is_array($object)) {
       if (!array_key_exists('__typename', $object)) {
-        throw new Exception("object or query {$id} in schema {$schema_namespace} has no __typename field - You must add this field to each query object");
+        throw new Exception("object or query '{$id}' in schema {$schema_namespace} has no __typename field - You must add this field to each query object");
       }
 
       $class_name = $object['__typename'];
@@ -62,7 +62,7 @@ abstract class Type
   {
     foreach ($object as $prop => $value) {
       if (is_array($value)) {
-        $this->{$prop} = self::spawn($this->schemaNamespace(), $value, __CLASS__);
+        $this->{$prop} = self::spawn($this->schemaNamespace(), $value, (get_class($this) . '->' . $prop ));
       } else {
         $this->{$prop} = $value;
       }

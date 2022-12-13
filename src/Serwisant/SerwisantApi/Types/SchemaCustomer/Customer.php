@@ -8,6 +8,11 @@ use Serwisant\SerwisantApi\Types;
 class Customer extends Types\Type
 {
   /**
+   * @var string
+  */
+  public $ID;
+
+  /**
    * @var Address
   */
   public $address;

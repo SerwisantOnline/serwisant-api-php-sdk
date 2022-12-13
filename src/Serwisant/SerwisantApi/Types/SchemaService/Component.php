@@ -64,7 +64,7 @@ Some of this quantity can be already reserved, so it's not an available quantity
   public $reservedQuantity;
 
   /**
-   * @var Money
+   * @var Decimal
    * Suggested retail price
   */
   public $srp;

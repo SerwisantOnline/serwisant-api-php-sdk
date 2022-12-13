@@ -27,6 +27,18 @@ class CustomerQuery extends Types\RootType
   }
 
   /**
+   * @param int $limit
+   * @param int $page
+   * @param DevicesFilter $filter
+   * @param string $sort
+   * @return DevicesResult
+   */
+  public function devices(int $limit = null, int $page = null, DevicesFilter $filter = null, string $sort = null, $vars = array())
+  {
+     return $this->inputArgs('devices', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]));
+  }
+
+  /**
    * @param DictionaryEntriesFilter $filter
    * @return Dictionary[]
    */

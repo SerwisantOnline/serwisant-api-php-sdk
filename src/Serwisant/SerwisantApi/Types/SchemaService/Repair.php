@@ -109,6 +109,11 @@ class Repair extends Types\Type
   public $model;
 
   /**
+   * @var Note[]
+  */
+  public $notes;
+
+  /**
    * @var RepairOffer[]
   */
   public $offers = [];

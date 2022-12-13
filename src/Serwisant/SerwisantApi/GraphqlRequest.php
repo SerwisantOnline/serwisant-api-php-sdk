@@ -10,11 +10,12 @@ class GraphqlRequest
   private $schema_path;
   private $schema_namespace;
   private $load_paths;
+  private $debug = 0;
   private $query;
   private $variables = [];
   private $results = [];
 
-  public function __construct(GraphqlClient $client, $schema_path, $schema_namespace, $load_paths = [])
+  public function __construct(GraphqlClient $client, $schema_path, $schema_namespace, array $load_paths = [], int $debug = 0)
   {
     $this->client = $client;
     $this->schema_path = $schema_path;
@@ -22,6 +23,7 @@ class GraphqlRequest
     $this->load_paths = $load_paths;
     $this->load_paths[] = __DIR__ . '/../../../queries';
     $this->load_paths[] = __DIR__ . "/../../../queries/{$schema_namespace}";
+    $this->debug = $debug;
   }
 
   /**
@@ -87,7 +89,15 @@ class GraphqlRequest
    */
   public function execute()
   {
-    $this->results = $this->client->call("{$this->url()}/{$this->schema_path}", $this->query, $this->variables);
+    $url = "{$this->url()}/{$this->schema_path}";
+
+    if ($this->debug == 1) {
+      error_log("GraphQL request: $url");
+    } elseif ($this->debug == 2) {
+      error_log("GraphQL request: $url - $this->query");
+    }
+
+    $this->results = $this->client->call($url, $this->query, $this->variables);
     return $this;
   }
 

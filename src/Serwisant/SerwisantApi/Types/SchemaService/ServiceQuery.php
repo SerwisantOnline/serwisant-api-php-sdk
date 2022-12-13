@@ -73,6 +73,15 @@ class ServiceQuery extends Types\RootType
   }
 
   /**
+   * @param NotesFilter $filter
+   * @return Note[]
+   */
+  public function notes(NotesFilter $filter = null, $vars = array())
+  {
+     return $this->inputArgs('notes', array_merge($vars, ['filter' => $filter]));
+  }
+
+  /**
    * @param int $limit
    * @param int $page
    * @param ParcelsFilter $filter

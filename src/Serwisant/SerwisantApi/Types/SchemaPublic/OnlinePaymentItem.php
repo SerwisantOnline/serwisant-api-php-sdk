@@ -8,7 +8,7 @@ use Serwisant\SerwisantApi\Types;
 class OnlinePaymentItem extends Types\Type
 {
   /**
-   * @var Money
+   * @var Decimal
   */
   public $amount;
 

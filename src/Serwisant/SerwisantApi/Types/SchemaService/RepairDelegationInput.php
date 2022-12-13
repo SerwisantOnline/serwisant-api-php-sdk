@@ -5,18 +5,8 @@ namespace Serwisant\SerwisantApi\Types\SchemaService;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class RepairDelegation extends Types\Type
+class RepairDelegationInput extends Types\Type
 {
-  /**
-   * @var Decimal
-  */
-  public $costNet;
-
-  /**
-   * @var Decimal
-  */
-  public $priceNet;
-
   /**
    * @var string
   */
@@ -28,19 +18,9 @@ class RepairDelegation extends Types\Type
   public $rma;
 
   /**
-   * @var ServiceSupplier
-  */
-  public $serviceSupplier;
-
-  /**
-   * @var string
-  */
-  public $status;
-
-  /**
    * @var Decimal
   */
-  public $vat;
+  public $costNet;
 
   protected function schemaNamespace()
   {
