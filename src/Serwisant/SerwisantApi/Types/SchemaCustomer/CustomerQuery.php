@@ -81,6 +81,15 @@ class CustomerQuery extends Types\RootType
   }
 
   /**
+   * @param ScheduleDatesFilter $filter
+   * @return ScheduleDate[]
+   */
+  public function scheduleDates(ScheduleDatesFilter $filter, $vars = array())
+  {
+     return $this->inputArgs('scheduleDates', array_merge($vars, ['filter' => $filter]));
+  }
+
+  /**
    * Return details of temporary files identified by ID passed in arguments.
    * @param string[] $ID
    * @return TemporaryFile[]

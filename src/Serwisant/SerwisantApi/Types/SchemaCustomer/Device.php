@@ -13,10 +13,25 @@ class Device extends Types\Type
   public $ID;
 
   /**
+   * @var DeviceItem[]
+  */
+  public $additionalItems;
+
+  /**
+   * @var Address
+  */
+  public $address;
+
+  /**
    * @var CustomFieldValue[]
    * Will return a list of values for custom fields
   */
   public $customFields;
+
+  /**
+   * @var string
+  */
+  public $displayName;
 
   /**
    * @var File[]
@@ -34,9 +49,24 @@ class Device extends Types\Type
   public $number;
 
   /**
+   * @var Repair[]
+  */
+  public $orders;
+
+  /**
    * @var string
   */
   public $serial;
+
+  /**
+   * @var ServiceSupplier
+  */
+  public $serviceSupplier;
+
+  /**
+   * @var Ticket[]
+  */
+  public $tickets;
 
   /**
    * @var Dictionary

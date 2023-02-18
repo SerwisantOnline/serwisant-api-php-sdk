@@ -27,6 +27,10 @@ class TicketsFilterType extends Types\Enum
   */
   const SEARCH = 'SEARCH';
 
+  /**
+  */
+  const SCHEDULED_ON = 'SCHEDULED_ON';
+
   protected function schemaNamespace()
   {
     return 'SchemaCustomer';

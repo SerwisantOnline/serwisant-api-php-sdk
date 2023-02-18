@@ -5,32 +5,32 @@ namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class TicketsFilter extends Types\Type
+class Schedule extends Types\Type
 {
   /**
    * @var string
   */
-  public $type;
+  public $concern;
+
+  /**
+   * @var Customer
+  */
+  public $customer;
 
   /**
    * @var string
   */
-  public $ID;
+  public $description;
+
+  /**
+   * @var Device
+  */
+  public $device;
 
   /**
    * @var string
   */
-  public $status;
-
-  /**
-   * @var string
-  */
-  public $q;
-
-  /**
-   * @var DateRangeInput
-  */
-  public $dateRange;
+  public $title;
 
   protected function schemaNamespace()
   {
