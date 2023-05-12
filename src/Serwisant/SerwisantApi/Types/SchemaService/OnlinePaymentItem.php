@@ -5,27 +5,22 @@ namespace Serwisant\SerwisantApi\Types\SchemaService;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class ParcelStatus extends Types\Enum
+class OnlinePaymentItem extends Types\Type
 {
   /**
+   * @var Decimal
   */
-  const NEW = 'NEW';
+  public $amount;
 
   /**
+   * @var string
   */
-  const READY_FOR_SUBMISSION = 'READY_FOR_SUBMISSION';
+  public $description;
 
   /**
+   * @var SecretToken
   */
-  const SUBMITTED = 'SUBMITTED';
-
-  /**
-  */
-  const CLOSED = 'CLOSED';
-
-  /**
-  */
-  const FAILED = 'FAILED';
+  public $secretToken;
 
   protected function schemaNamespace()
   {

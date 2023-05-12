@@ -5,27 +5,19 @@ namespace Serwisant\SerwisantApi\Types\SchemaService;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class ParcelStatus extends Types\Enum
+class OnlinePaymentStatus extends Types\Enum
 {
   /**
   */
-  const NEW = 'NEW';
+  const WAITING_FOR_PAYMENT = 'WAITING_FOR_PAYMENT';
 
   /**
   */
-  const READY_FOR_SUBMISSION = 'READY_FOR_SUBMISSION';
+  const PAID = 'PAID';
 
   /**
   */
-  const SUBMITTED = 'SUBMITTED';
-
-  /**
-  */
-  const CLOSED = 'CLOSED';
-
-  /**
-  */
-  const FAILED = 'FAILED';
+  const UNPAID = 'UNPAID';
 
   protected function schemaNamespace()
   {

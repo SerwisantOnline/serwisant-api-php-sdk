@@ -17,6 +17,10 @@ class ParcelTrackingStatus extends Types\Enum
 
   /**
   */
+  const SUBMISSION_ERROR = 'SUBMISSION_ERROR';
+
+  /**
+  */
   const CREATED = 'CREATED';
 
   /**

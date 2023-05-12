@@ -135,6 +135,18 @@ Component card created via `createComponent` mutation is required before supply.
   }
 
   /**
+   * @param string $subject
+   * @param string $subjectType
+   * @param Decimal $amount
+   * @param string $description
+   * @return OnlinePaymentRequestResult
+   */
+  public function requestOnlinePayment(string $subject, string $subjectType, Decimal $amount, string $description = null, $vars = array())
+  {
+     return $this->inputArgs('requestOnlinePayment', array_merge($vars, ['subject' => $subject, 'subjectType' => $subjectType, 'amount' => $amount, 'description' => $description]));
+  }
+
+  /**
    * @param string $note
    * @return bool
    */
