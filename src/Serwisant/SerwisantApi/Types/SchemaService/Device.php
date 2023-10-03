@@ -1,11 +1,11 @@
 <?php
 
-namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
+namespace Serwisant\SerwisantApi\Types\SchemaService;
 
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class Ticket extends Types\Type
+class Device extends Types\Type
 {
   /**
    * @var string
@@ -13,19 +13,14 @@ class Ticket extends Types\Type
   public $ID;
 
   /**
-   * @var TicketAction[]
+   * @var DeviceItem[]
   */
-  public $actions;
+  public $additionalItems;
 
   /**
    * @var Address
   */
   public $address;
-
-  /**
-   * @var string
-  */
-  public $addressRemarks;
 
   /**
    * @var CustomFieldValue[]
@@ -34,14 +29,9 @@ class Ticket extends Types\Type
   public $customFields;
 
   /**
-   * @var Device[]
+   * @var string
   */
-  public $devices;
-
-  /**
-   * @var Employee
-  */
-  public $employee;
+  public $displayName;
 
   /**
    * @var File[]
@@ -51,7 +41,7 @@ class Ticket extends Types\Type
   /**
    * @var string
   */
-  public $issue;
+  public $model;
 
   /**
    * @var string
@@ -59,27 +49,27 @@ class Ticket extends Types\Type
   public $number;
 
   /**
-   * @var TicketPayment
+   * @var string
   */
-  public $payment;
+  public $serial;
 
   /**
-   * @var Priority
+   * @var ServiceSupplier
   */
-  public $priority;
-
-  /**
-   * @var TicketStatus
-  */
-  public $status;
+  public $serviceSupplier;
 
   /**
    * @var Dictionary
   */
   public $type;
 
+  /**
+   * @var string
+  */
+  public $vendor;
+
   protected function schemaNamespace()
   {
-    return 'SchemaCustomer';
+    return 'SchemaService';
   }
 }

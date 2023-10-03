@@ -13,6 +13,10 @@ class TicketsFilterType extends Types\Enum
 
   /**
   */
+  const DEVICE = 'DEVICE';
+
+  /**
+  */
   const ALL = 'ALL';
 
   /**

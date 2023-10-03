@@ -49,11 +49,6 @@ class Device extends Types\Type
   public $number;
 
   /**
-   * @var Repair[]
-  */
-  public $orders;
-
-  /**
    * @var string
   */
   public $serial;
@@ -62,11 +57,6 @@ class Device extends Types\Type
    * @var ServiceSupplier
   */
   public $serviceSupplier;
-
-  /**
-   * @var Ticket[]
-  */
-  public $tickets;
 
   /**
    * @var Dictionary

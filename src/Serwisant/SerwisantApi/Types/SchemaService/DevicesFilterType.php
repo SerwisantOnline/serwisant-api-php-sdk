@@ -1,6 +1,6 @@
 <?php
 
-namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
+namespace Serwisant\SerwisantApi\Types\SchemaService;
 
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
@@ -17,6 +17,6 @@ class DevicesFilterType extends Types\Enum
 
   protected function schemaNamespace()
   {
-    return 'SchemaCustomer';
+    return 'SchemaService';
   }
 }

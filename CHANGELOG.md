@@ -4,9 +4,12 @@
 
 - arguments for `createRepair` in customer schema changed
 - arguments for `createTicket` in customer schema changed
+
+### other changes:
+
 - new queries related to devices in customer schema
-- notes handlinf in service schema
-- repair delegation handling in service schema
+- notes in service schema
+- repair delegation in service schema
 
 ## 3.1.0 - BREAKING CHANGES
 
