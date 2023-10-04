@@ -34,6 +34,11 @@ class Ticket extends Types\Type
   public $customFields;
 
   /**
+   * @var Device[]
+  */
+  public $devices;
+
+  /**
    * @var Employee
   */
   public $employee;

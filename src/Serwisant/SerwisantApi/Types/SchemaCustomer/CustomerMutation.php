@@ -42,11 +42,13 @@ class CustomerMutation extends Types\RootType
    * @param RepairInput $repair
    * @param RepairItemInput[] $additionalItems
    * @param string[] $temporaryFiles
+   * @param string $device
+   * @param RepairCreationOptions $options
    * @return RepairCreationResult
    */
-  public function createRepair(RepairInput $repair, array $additionalItems = array(), array $temporaryFiles = array(), $vars = array())
+  public function createRepair(RepairInput $repair, array $additionalItems = array(), array $temporaryFiles = array(), string $device = null, RepairCreationOptions $options = null, $vars = array())
   {
-     return $this->inputArgs('createRepair', array_merge($vars, ['repair' => $repair, 'additionalItems' => $additionalItems, 'temporaryFiles' => $temporaryFiles]));
+     return $this->inputArgs('createRepair', array_merge($vars, ['repair' => $repair, 'additionalItems' => $additionalItems, 'temporaryFiles' => $temporaryFiles, 'device' => $device, 'options' => $options]));
   }
 
   /**
@@ -62,11 +64,13 @@ class CustomerMutation extends Types\RootType
   /**
    * @param TicketInput $ticket
    * @param string[] $temporaryFiles
+   * @param string[] $devices
+   * @param TicketCreationOptions $options
    * @return TicketCreationResult
    */
-  public function createTicket(TicketInput $ticket, array $temporaryFiles = array(), $vars = array())
+  public function createTicket(TicketInput $ticket, array $temporaryFiles = array(), array $devices = array(), TicketCreationOptions $options = null, $vars = array())
   {
-     return $this->inputArgs('createTicket', array_merge($vars, ['ticket' => $ticket, 'temporaryFiles' => $temporaryFiles]));
+     return $this->inputArgs('createTicket', array_merge($vars, ['ticket' => $ticket, 'temporaryFiles' => $temporaryFiles, 'devices' => $devices, 'options' => $options]));
   }
 
   /**

@@ -8,6 +8,11 @@ use Serwisant\SerwisantApi\Types;
 class CustomerCreationResult extends Types\Type
 {
   /**
+   * @var Customer
+  */
+  public $customer;
+
+  /**
    * @var Error[]
   */
   public $errors = [];

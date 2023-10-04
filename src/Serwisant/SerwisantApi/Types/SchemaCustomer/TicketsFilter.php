@@ -27,6 +27,11 @@ class TicketsFilter extends Types\Type
   */
   public $q;
 
+  /**
+   * @var DateRangeInput
+  */
+  public $dateRange;
+
   protected function schemaNamespace()
   {
     return 'SchemaCustomer';

@@ -18,7 +18,7 @@ class ComponentDeliveryInput extends Types\Type
   public $serialNumber;
 
   /**
-   * @var Money
+   * @var Decimal
   */
   public $priceNet;
 

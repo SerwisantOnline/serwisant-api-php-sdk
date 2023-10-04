@@ -73,6 +73,11 @@ class Repair extends Types\Type
   public $deliveryType;
 
   /**
+   * @var Device
+  */
+  public $device;
+
+  /**
    * @var RepairDiagnosis
   */
   public $diagnosis;
@@ -107,6 +112,11 @@ class Repair extends Types\Type
    * @var string
   */
   public $model;
+
+  /**
+   * @var Note[]
+  */
+  public $notes;
 
   /**
    * @var RepairOffer[]

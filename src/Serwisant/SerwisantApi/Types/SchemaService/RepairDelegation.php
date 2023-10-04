@@ -8,6 +8,21 @@ use Serwisant\SerwisantApi\Types;
 class RepairDelegation extends Types\Type
 {
   /**
+   * @var Decimal
+  */
+  public $costNet;
+
+  /**
+   * @var Decimal
+  */
+  public $priceNet;
+
+  /**
+   * @var string
+  */
+  public $remarks;
+
+  /**
    * @var string
   */
   public $rma;
@@ -16,6 +31,16 @@ class RepairDelegation extends Types\Type
    * @var ServiceSupplier
   */
   public $serviceSupplier;
+
+  /**
+   * @var string
+  */
+  public $status;
+
+  /**
+   * @var Decimal
+  */
+  public $vat;
 
   protected function schemaNamespace()
   {

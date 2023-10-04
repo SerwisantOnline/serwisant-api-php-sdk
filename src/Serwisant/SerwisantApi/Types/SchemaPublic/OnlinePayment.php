@@ -13,13 +13,13 @@ class OnlinePayment extends Types\Type
   public $ID;
 
   /**
-   * @var Money
+   * @var Decimal
    * Full transacion amount, sum of items
   */
   public $amount;
 
   /**
-   * @var Money
+   * @var Decimal
    * Amount to pay, amount reduced by already paid amounts
   */
   public $amountToPay;

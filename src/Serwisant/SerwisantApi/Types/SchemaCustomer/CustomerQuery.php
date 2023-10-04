@@ -27,6 +27,18 @@ class CustomerQuery extends Types\RootType
   }
 
   /**
+   * @param int $limit
+   * @param int $page
+   * @param DevicesFilter $filter
+   * @param string $sort
+   * @return DevicesResult
+   */
+  public function devices(int $limit = null, int $page = null, DevicesFilter $filter = null, string $sort = null, $vars = array())
+  {
+     return $this->inputArgs('devices', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]));
+  }
+
+  /**
    * @param DictionaryEntriesFilter $filter
    * @return Dictionary[]
    */
@@ -66,6 +78,15 @@ class CustomerQuery extends Types\RootType
   public function repairs(int $limit = null, int $page = null, RepairsFilter $filter = null, string $sort = null, $vars = array())
   {
      return $this->inputArgs('repairs', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]));
+  }
+
+  /**
+   * @param ScheduleDatesFilter $filter
+   * @return ScheduleDate[]
+   */
+  public function scheduleDates(ScheduleDatesFilter $filter, $vars = array())
+  {
+     return $this->inputArgs('scheduleDates', array_merge($vars, ['filter' => $filter]));
   }
 
   /**

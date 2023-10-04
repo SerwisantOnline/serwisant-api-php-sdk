@@ -80,6 +80,11 @@ class Customer extends Types\Type
   public $login;
 
   /**
+   * @var Note[]
+  */
+  public $notes;
+
+  /**
    * @var string
   */
   public $person;

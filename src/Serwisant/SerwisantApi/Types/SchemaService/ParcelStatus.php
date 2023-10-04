@@ -23,6 +23,10 @@ class ParcelStatus extends Types\Enum
   */
   const CLOSED = 'CLOSED';
 
+  /**
+  */
+  const FAILED = 'FAILED';
+
   protected function schemaNamespace()
   {
     return 'SchemaService';

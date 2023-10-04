@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.2.0 - BREAKING CHANGES
+
+- arguments for `createRepair` in customer schema changed
+- arguments for `createTicket` in customer schema changed
+
+### other changes:
+
+- new queries related to devices in customer schema
+- notes in service schema
+- repair delegation in service schema
+
 ## 3.1.0 - BREAKING CHANGES
 
 - removed `AccessTokenContainerShm` - it's useless and possibly confusing

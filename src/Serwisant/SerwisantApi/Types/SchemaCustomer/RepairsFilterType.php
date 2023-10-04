@@ -8,14 +8,18 @@ use Serwisant\SerwisantApi\Types;
 class RepairsFilterType extends Types\Enum
 {
   /**
+   * All repairs
+  */
+  const ALL = 'ALL';
+
+  /**
    * Repair with particular ID, ID argument required
   */
   const ID = 'ID';
 
   /**
-   * All repairs
   */
-  const ALL = 'ALL';
+  const DEVICE = 'DEVICE';
 
   /**
    * Only open repairs

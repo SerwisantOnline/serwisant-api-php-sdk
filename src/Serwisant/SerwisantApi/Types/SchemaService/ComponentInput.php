@@ -49,7 +49,7 @@ class ComponentInput extends Types\Type
   public $warrantyPeriod;
 
   /**
-   * @var Money
+   * @var Decimal
   */
   public $srp;
 

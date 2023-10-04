@@ -8,12 +8,12 @@ use Serwisant\SerwisantApi\Types;
 class TicketPayment extends Types\Type
 {
   /**
-   * @var Money
+   * @var Decimal
   */
   public $amountGross;
 
   /**
-   * @var Money
+   * @var Decimal
   */
   public $amountNet;
 
@@ -28,12 +28,12 @@ class TicketPayment extends Types\Type
   public $paid;
 
   /**
-   * @var Money
+   * @var Decimal
   */
   public $paymentGross;
 
   /**
-   * @var Money
+   * @var Decimal
   */
   public $paymentNet;
 

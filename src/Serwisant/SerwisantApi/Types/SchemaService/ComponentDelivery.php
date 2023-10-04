@@ -18,7 +18,7 @@ class ComponentDelivery extends Types\Type
   public $invoiceSignature;
 
   /**
-   * @var Money
+   * @var Decimal
   */
   public $priceNet;
 

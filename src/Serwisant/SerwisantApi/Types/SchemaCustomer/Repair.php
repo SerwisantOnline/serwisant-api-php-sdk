@@ -58,6 +58,11 @@ class Repair extends Types\Type
   public $deliveryType;
 
   /**
+   * @var Device
+  */
+  public $device;
+
+  /**
    * @var RepairDiagnosis
   */
   public $diagnosis;
