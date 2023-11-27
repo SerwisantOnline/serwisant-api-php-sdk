@@ -7,12 +7,13 @@ use PDOException;
 
 class AccessTokenContainerPDO implements AccessTokenContainer
 {
-  private $namespace;
+  protected $namespace;
+
   private $connection_args;
 
   private $db;
 
-  private $loaded;
+  private $loaded = false;
   private $access_token;
   private $expiry_timestamp;
   private $refresh_token;
@@ -36,8 +37,6 @@ class AccessTokenContainerPDO implements AccessTokenContainer
 
     $this->namespace = $namespace;
     $this->connection_args = $connection_args;
-
-    $this->loaded = false;
   }
 
   protected function db()
@@ -72,7 +71,7 @@ class AccessTokenContainerPDO implements AccessTokenContainer
   public function getAccessToken()
   {
     if (!$this->loaded) {
-      $this->fetchSqlite();
+      $this->fetch();
     }
     return $this->access_token;
   }
@@ -80,7 +79,7 @@ class AccessTokenContainerPDO implements AccessTokenContainer
   public function getExpiryTimestamp()
   {
     if (!$this->loaded) {
-      $this->fetchSqlite();
+      $this->fetch();
     }
     return (int)$this->expiry_timestamp;
   }
@@ -88,12 +87,12 @@ class AccessTokenContainerPDO implements AccessTokenContainer
   public function getRefreshToken()
   {
     if (!$this->loaded) {
-      $this->fetchSqlite();
+      $this->fetch();
     }
     return $this->refresh_token;
   }
 
-  private function fetchSqlite()
+  private function fetch()
   {
     $stmt = $this->db()->prepare('SELECT token, refresh, expiry FROM access_token WHERE namespace = :namespace');
     $stmt->bindParam(':namespace', $this->namespace);
