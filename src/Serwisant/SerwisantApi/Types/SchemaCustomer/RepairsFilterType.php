@@ -22,6 +22,10 @@ class RepairsFilterType extends Types\Enum
   const DEVICE = 'DEVICE';
 
   /**
+  */
+  const CUSTOMER = 'CUSTOMER';
+
+  /**
    * Only open repairs
   */
   const OPEN = 'OPEN';

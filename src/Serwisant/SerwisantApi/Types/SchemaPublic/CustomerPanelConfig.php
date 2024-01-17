@@ -75,6 +75,16 @@ class CustomerPanelConfig extends Types\Type
   public $personalTransportEnabled;
 
   /**
+   * @var string
+  */
+  public $repairSubmitPrompt;
+
+  /**
+   * @var string
+  */
+  public $repairSubmitPromptContent;
+
+  /**
    * @var bool
   */
   public $requirePhoneNumber;
