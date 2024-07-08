@@ -23,6 +23,11 @@ class Device extends Types\Type
   public $address;
 
   /**
+   * @var File
+  */
+  public $copyOfSaleDocument;
+
+  /**
    * @var CustomFieldValue[]
    * Will return a list of values for custom fields
   */
@@ -37,6 +42,11 @@ class Device extends Types\Type
    * @var File[]
   */
   public $files;
+
+  /**
+   * @var bool
+  */
+  public $isVerified;
 
   /**
    * @var string

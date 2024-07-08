@@ -19,6 +19,17 @@ class CustomerMutation extends Types\RootType
   }
 
   /**
+   * Use this mutation to register a new device. Because we don't want trust customer's data created device will be marked as not-verified.
+   * @param DeviceInput $device
+   * @param AddressInput $address
+   * @return DeviceCreationResult
+   */
+  public function createDevice(DeviceInput $device, AddressInput $address = null, $vars = array())
+  {
+     return $this->inputArgs('createDevice', array_merge($vars, ['device' => $device, 'address' => $address]));
+  }
+
+  /**
    * @param MessageInput $message
    * @return MessageCreationResult
    */
