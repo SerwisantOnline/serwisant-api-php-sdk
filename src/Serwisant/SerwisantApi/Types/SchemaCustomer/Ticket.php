@@ -49,6 +49,11 @@ class Ticket extends Types\Type
   public $files;
 
   /**
+   * @var bool
+  */
+  public $isRateable;
+
+  /**
    * @var string
   */
   public $issue;
@@ -67,6 +72,11 @@ class Ticket extends Types\Type
    * @var Priority
   */
   public $priority;
+
+  /**
+   * @var Rating
+  */
+  public $rating;
 
   /**
    * @var TicketStatus
