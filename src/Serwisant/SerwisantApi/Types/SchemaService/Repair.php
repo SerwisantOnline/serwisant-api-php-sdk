@@ -104,6 +104,11 @@ class Repair extends Types\Type
   public $internalRemarks;
 
   /**
+   * @var bool
+  */
+  public $isRateable;
+
+  /**
    * @var string
   */
   public $issue;
@@ -135,6 +140,11 @@ class Repair extends Types\Type
    * @var Decimal
   */
   public $priceEstimatedTaxRate;
+
+  /**
+   * @var Rating
+  */
+  public $rating;
 
   /**
    * @var string

@@ -104,6 +104,17 @@ class CustomerMutation extends Types\RootType
   }
 
   /**
+   * @param string $subject
+   * @param string $subjectType
+   * @param RatingInput $rating
+   * @return RatingResult
+   */
+  public function setRating(string $subject, string $subjectType, RatingInput $rating, $vars = array())
+  {
+     return $this->inputArgs('setRating', array_merge($vars, ['subject' => $subject, 'subjectType' => $subjectType, 'rating' => $rating]));
+  }
+
+  /**
    * @param CustomerUpdateInput $customer
    * @param CustomerAgreementUpdateInput[] $agreements
    * @param AddressUpdateInput[] $addresses
