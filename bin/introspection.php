@@ -189,6 +189,7 @@ $schemas = [
   SerwisantApi\Types\RootType::SCHEMA_PUBLIC => 'public',
   SerwisantApi\Types\RootType::SCHEMA_SERVICE => 'service',
   SerwisantApi\Types\RootType::SCHEMA_CUSTOMER => 'customer',
+  SerwisantApi\Types\RootType::SCHEMA_MOBILE => 'mobile',
 ];
 
 foreach ($schemas as $ns => $schema_path) {

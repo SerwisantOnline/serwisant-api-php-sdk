@@ -10,7 +10,22 @@ class Dictionary extends Types\Type
   /**
    * @var string
   */
+  public $ID;
+
+  /**
+   * @var string
+  */
+  public $auxiliaryId;
+
+  /**
+   * @var string
+  */
   public $name;
+
+  /**
+   * @var string
+  */
+  public $type;
 
   protected function schemaNamespace()
   {

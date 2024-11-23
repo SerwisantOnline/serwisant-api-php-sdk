@@ -13,6 +13,12 @@ class Viewer extends Types\Type
   */
   public $employee;
 
+  /**
+   * @var Subscriber
+   * Information from public registry
+  */
+  public $subscriber;
+
   protected function schemaNamespace()
   {
     return 'SchemaService';

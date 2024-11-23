@@ -53,6 +53,21 @@ abstract class Type
     }
   }
 
+  /**
+   * @return array
+   */
+  public function toArray($with_id = true)
+  {
+    $result = [];
+    $reflect = new \ReflectionClass($this);
+    foreach ($reflect->getProperties(\ReflectionProperty::IS_PUBLIC) as $property) {
+      if ($with_id or $property->getName() <> 'ID') {
+        $result[$property->getName()] = $property->getValue($this);
+      }
+    }
+    return $result;
+  }
+
   public function __toString()
   {
     return print_r($this, 1);

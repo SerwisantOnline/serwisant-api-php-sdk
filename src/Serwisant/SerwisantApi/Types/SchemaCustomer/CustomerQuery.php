@@ -90,6 +90,10 @@ class CustomerQuery extends Types\RootType
   }
 
   /**
+   * @var ServiceSupplier[]
+  */
+  public $serviceSuppliers = [];
+  /**
    * Return details of temporary files identified by ID passed in arguments.
    * @param string[] $ID
    * @return TemporaryFile[]

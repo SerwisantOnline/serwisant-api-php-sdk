@@ -10,20 +10,6 @@ class TicketInput extends Types\Type
   /**
    * @var string
   */
-  public $address;
-
-  /**
-   * @var string
-  */
-  public $addressOther;
-
-  /**
-   * @var CustomFieldValueInput[]
-  */
-  public $customFields = [];
-  /**
-   * @var string
-  */
   public $issue;
 
   /**
@@ -36,6 +22,10 @@ class TicketInput extends Types\Type
   */
   public $startAt;
 
+  /**
+   * @var CustomFieldValueInput[]
+  */
+  public $customFields = [];
   /**
    * @var bool
   */

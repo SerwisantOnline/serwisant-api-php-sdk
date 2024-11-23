@@ -55,6 +55,28 @@ class PublicMutation extends Types\RootType
   }
 
   /**
+   * @param FileInput $file
+   * @return TemporaryFileCreationResult
+   */
+  public function createTemporaryFile(FileInput $file, $vars = array())
+  {
+     return $this->inputArgs('createTemporaryFile', array_merge($vars, ['file' => $file]));
+  }
+
+  /**
+   * @param AnonymousApplicantInput $applicant
+   * @param TicketInput $ticket
+   * @param string[] $temporaryFiles
+   * @param string[] $devices
+   * @param AddressInput $address
+   * @return TicketCreationResult
+   */
+  public function createTicket(AnonymousApplicantInput $applicant, TicketInput $ticket, array $temporaryFiles = array(), array $devices = array(), AddressInput $address = null, $vars = array())
+  {
+     return $this->inputArgs('createTicket', array_merge($vars, ['applicant' => $applicant, 'ticket' => $ticket, 'temporaryFiles' => $temporaryFiles, 'devices' => $devices, 'address' => $address]));
+  }
+
+  /**
    * Pay for `OnlinePayment` using any available `type` of payment. Depending on result status, payment may be queued: in that case pool for result, may be asked to redirect user to other site to complete a payment.
    * @param string $token
    * @param OnlineTransactionInput $onlineTransaction

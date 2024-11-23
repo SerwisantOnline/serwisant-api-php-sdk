@@ -1,6 +1,32 @@
 # Changelog
 
-## 3.2.0 - BREAKING CHANGES
+## 3.3.0
+
+### breaking changes
+
+Schema `customer`:
+
+- depreciation of `address` and `address_other` fields in `TicketInput` type (creating new ticket) - it's replaced
+  with `address` argument in `createTicket` mutation - each ticket now have its own address not related to customer
+  address but can be copy of customer address.
+- arguments for `createTicket` changed:
+
+```
+-  public function createTicket(TicketInput $ticket, array $temporaryFiles = array(), array $devices = array(), TicketCreationOptions $options = null, $vars = array())
++  public function createTicket(TicketInput $ticket, array $temporaryFiles = array(), array $devices = array(), AddressInput $address = null, TicketCreationOptions $options = null, $vars = array())
+```
+
+Schema `public`:
+
+- depreciation of `customerCustomFields` query - it's replaced by new `customFields` with proper filter
+
+### other changes
+
+- new schema `Mobile`
+
+## 3.2.0
+
+### breaking changes
 
 - arguments for `createRepair` in customer schema changed
 - arguments for `createTicket` in customer schema changed
@@ -11,7 +37,9 @@
 - notes in service schema
 - repair delegation in service schema
 
-## 3.1.0 - BREAKING CHANGES
+## 3.1.0
+
+### breaking changes
 
 - removed `AccessTokenContainerShm` - it's useless and possibly confusing
 - **BREAKING CHANGES** added `getRefreshToken()` to `AccessTokenContainer` interface - any custom container must be

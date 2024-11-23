@@ -76,12 +76,21 @@ class CustomerMutation extends Types\RootType
    * @param TicketInput $ticket
    * @param string[] $temporaryFiles
    * @param string[] $devices
+   * @param AddressInput $address
    * @param TicketCreationOptions $options
    * @return TicketCreationResult
    */
-  public function createTicket(TicketInput $ticket, array $temporaryFiles = array(), array $devices = array(), TicketCreationOptions $options = null, $vars = array())
+  public function createTicket(TicketInput $ticket, array $temporaryFiles = array(), array $devices = array(), AddressInput $address = null, TicketCreationOptions $options = null, $vars = array())
   {
-     return $this->inputArgs('createTicket', array_merge($vars, ['ticket' => $ticket, 'temporaryFiles' => $temporaryFiles, 'devices' => $devices, 'options' => $options]));
+     return $this->inputArgs('createTicket', array_merge($vars, ['ticket' => $ticket, 'temporaryFiles' => $temporaryFiles, 'devices' => $devices, 'address' => $address, 'options' => $options]));
+  }
+
+  /**
+   * @return ViewerDestructionResult
+   */
+  public function destroyViewer($vars = array())
+  {
+     return $this->inputArgs('destroyViewer', array_merge($vars, []));
   }
 
   /**

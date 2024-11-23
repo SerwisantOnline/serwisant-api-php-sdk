@@ -23,6 +23,10 @@ class AddressType extends Types\Enum
   */
   const BILLING = 'BILLING';
 
+  /**
+  */
+  const GPS = 'GPS';
+
   protected function schemaNamespace()
   {
     return 'SchemaService';

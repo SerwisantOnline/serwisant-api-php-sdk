@@ -14,7 +14,7 @@ class TicketStatus extends Types\Type
 
   /**
    * @var string
-   * Human readeable status
+   * Human readable status
   */
   public $displayName;
 

@@ -37,6 +37,11 @@ class AddressInput extends Types\Type
   */
   public $countryIso;
 
+  /**
+   * @var GeoPointInput
+  */
+  public $geoPoint;
+
   protected function schemaNamespace()
   {
     return 'SchemaPublic';

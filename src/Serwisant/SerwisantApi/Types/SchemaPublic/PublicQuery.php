@@ -17,6 +17,16 @@ class PublicQuery extends Types\RootType
   }
 
   /**
+   * Will return a list of custom fields for form specified in filter. In `public` schema some forms available in filter can be absent
+   * @param string $form
+   * @return CustomField[]
+   */
+  public function customFields(string $form, $vars = array())
+  {
+     return $this->inputArgs('customFields', array_merge($vars, ['form' => $form]));
+  }
+
+  /**
    * List of agreements, eg. GDPR, rules, privacy policy to show/accept during a signup
    * @param CustomerAgreementsFilter $filter
    * @return CustomerAgreement[]
@@ -27,7 +37,6 @@ class PublicQuery extends Types\RootType
   }
 
   /**
-   * Will return a list of custom fields for customer signup form - for generic list see customFields in other schemas
    * @return CustomField[]
    */
   public function customerCustomFields($vars = array())
@@ -41,6 +50,15 @@ class PublicQuery extends Types\RootType
   public function customerStatements($vars = array())
   {
      return $this->inputArgs('customerStatements', array_merge($vars, []));
+  }
+
+  /**
+   * @param string $ID
+   * @return Device
+   */
+  public function device(string $ID, $vars = array())
+  {
+     return $this->inputArgs('device', array_merge($vars, ['ID' => $ID]));
   }
 
   /**
@@ -84,6 +102,15 @@ doesn't support online payments
   }
 
   /**
+   * @param PrioritiesFilter $filter
+   * @return Priority[]
+   */
+  public function priorities(PrioritiesFilter $filter = null, $vars = array())
+  {
+     return $this->inputArgs('priorities', array_merge($vars, ['filter' => $filter]));
+  }
+
+  /**
    * Return detailed information about particular repair
    * @param string $token
    * @return Repair
@@ -103,6 +130,10 @@ doesn't support online payments
      return $this->inputArgs('secretToken', array_merge($vars, ['token' => $token]));
   }
 
+  /**
+   * @var ServiceSupplier[]
+  */
+  public $serviceSuppliers = [];
   /**
    * Information about a service, public registry name, address and branded name, address as well
    * @return Viewer

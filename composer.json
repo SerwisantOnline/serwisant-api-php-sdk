@@ -1,6 +1,6 @@
 {
   "name": "serwisant/serwisant-api",
-  "version": "3.2.3",
+  "version": "3.3.0",
   "description": "API client for https://serwisant.online service",
   "type": "library",
   "homepage": "https://github.com/SerwisantOnline/serwisant-api-php-sdk",
