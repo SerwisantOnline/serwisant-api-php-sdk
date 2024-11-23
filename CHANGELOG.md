@@ -23,6 +23,7 @@ Schema `public`:
 ### other changes
 
 - new schema `Mobile`
+- schema `public` now accept anonymous submission of ticket including all related data like files, priorities, etc.
 
 ## 3.2.0
 
