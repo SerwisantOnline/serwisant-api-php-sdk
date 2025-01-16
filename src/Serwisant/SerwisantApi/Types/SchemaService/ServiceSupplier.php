@@ -40,6 +40,11 @@ class ServiceSupplier extends Types\Type
   public $email;
 
   /**
+   * @var bool
+  */
+  public $hasCompleteData;
+
+  /**
    * @var Phone
   */
   public $phone;

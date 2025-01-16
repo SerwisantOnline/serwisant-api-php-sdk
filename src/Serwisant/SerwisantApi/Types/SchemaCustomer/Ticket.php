@@ -69,6 +69,11 @@ class Ticket extends Types\Type
   public $priority;
 
   /**
+   * @var ServiceSupplier
+  */
+  public $serviceSupplier;
+
+  /**
    * @var TicketStatus
   */
   public $status;
