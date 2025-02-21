@@ -69,6 +69,11 @@ class Ticket extends Types\Type
   public $priority;
 
   /**
+   * @var SecretToken
+  */
+  public $secretToken;
+
+  /**
    * @var ServiceSupplier
   */
   public $serviceSupplier;

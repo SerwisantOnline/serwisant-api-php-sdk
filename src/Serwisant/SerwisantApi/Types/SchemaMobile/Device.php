@@ -10,7 +10,22 @@ class Device extends Types\Type
   /**
    * @var string
   */
+  public $ID;
+
+  /**
+   * @var Address
+  */
+  public $address;
+
+  /**
+   * @var string
+  */
   public $displayName;
+
+  /**
+   * @var bool
+  */
+  public $isVerified;
 
   /**
    * @var string

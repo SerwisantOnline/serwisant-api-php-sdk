@@ -13,9 +13,19 @@ class CustomField extends Types\Type
   public $ID;
 
   /**
+   * @var Dictionary
+  */
+  public $concern;
+
+  /**
    * @var string
   */
   public $description;
+
+  /**
+   * @var string
+  */
+  public $form;
 
   /**
    * @var string

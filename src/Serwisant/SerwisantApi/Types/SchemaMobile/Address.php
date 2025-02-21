@@ -23,6 +23,11 @@ class Address extends Types\Type
   public $countryIso;
 
   /**
+   * @var GeoPoint
+  */
+  public $geoPoint;
+
+  /**
    * @var string
   */
   public $postalCode;
