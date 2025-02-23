@@ -18,15 +18,6 @@ class InternalQuery extends Types\RootType
   }
 
   /**
-   * @param string $token
-   * @return SecretToken
-   */
-  public function secretToken(string $token, $vars = array())
-  {
-     return $this->inputArgs('secretToken', array_merge($vars, ['token' => $token]));
-  }
-
-  /**
    * Agreements to accept when creating a new account
    * @param SubscriberAgreementsFilter $filter
    * @return SubscriberAgreement[]

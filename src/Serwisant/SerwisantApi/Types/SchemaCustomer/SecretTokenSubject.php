@@ -17,6 +17,10 @@ class SecretTokenSubject extends Types\Enum
 
   /**
   */
+  const TICKET = 'TICKET';
+
+  /**
+  */
   const ONLINEPAYMENT = 'ONLINEPAYMENT';
 
   /**

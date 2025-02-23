@@ -121,7 +121,7 @@ doesn't support online payments
   }
 
   /**
-   * Using this query you can lookup a token, to determine where it belongs, eg. order, or payment
+   * Using this query you can lookup a token, to determine where it belongs, eg. order, or payment. Please note: this will return proper result to tokens issued for your data. There is no point to look up other's tokens because you'll get 404 error.
    * @param string $token
    * @return SecretToken
    */
@@ -134,6 +134,24 @@ doesn't support online payments
    * @var ServiceSupplier[]
   */
   public $serviceSuppliers = [];
+  /**
+   * @param string[] $ID
+   * @return TemporaryFile[]
+   */
+  public function temporaryFiles(array $ID, $vars = array())
+  {
+     return $this->inputArgs('temporaryFiles', array_merge($vars, ['ID' => $ID]));
+  }
+
+  /**
+   * @param string $token
+   * @return Ticket
+   */
+  public function ticketByToken(string $token, $vars = array())
+  {
+     return $this->inputArgs('ticketByToken', array_merge($vars, ['token' => $token]));
+  }
+
   /**
    * Information about a service, public registry name, address and branded name, address as well
    * @return Viewer
