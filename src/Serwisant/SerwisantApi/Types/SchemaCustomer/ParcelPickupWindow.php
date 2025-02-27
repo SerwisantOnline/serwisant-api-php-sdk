@@ -5,22 +5,17 @@ namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class ParcelEdge extends Types\Type
+class ParcelPickupWindow extends Types\Type
 {
   /**
-   * @var string
+   * @var DateTime
   */
-  public $company;
+  public $from;
 
   /**
-   * @var string
+   * @var DateTime
   */
-  public $name;
-
-  /**
-   * @var string
-  */
-  public $ownerType;
+  public $to;
 
   protected function schemaNamespace()
   {

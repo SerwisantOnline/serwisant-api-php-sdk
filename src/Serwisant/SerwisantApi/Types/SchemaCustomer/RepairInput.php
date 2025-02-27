@@ -45,25 +45,25 @@ class RepairInput extends Types\Type
 
   /**
    * @var string
-   * How repair will be delivered to service
+   * Defines how repair item will be picked-up from customer and delivered to service. Pick-up address is specified in `pickUpAddress`
   */
   public $delivery;
 
   /**
    * @var string
-   * ID passed from one Address entity points to address where from repair will be picked up
+   * Address where service should pick up a repair item. Leave empty if `deliveryType` is `PERSONAL`
   */
   public $pickUpAddress;
 
   /**
    * @var string
-   * How repair will be returned from service to customer
+   * Defines how repaired item should be returned to customer. Return address is specified in `returnAddress`
   */
   public $collection;
 
   /**
    * @var string
-   * ID passed from one Address entity points to address where repair will be returned
+   * Address where repaired item should be returned. Leave empty if `collectionType` type is `PERSONAL`
   */
   public $returnAddress;
 

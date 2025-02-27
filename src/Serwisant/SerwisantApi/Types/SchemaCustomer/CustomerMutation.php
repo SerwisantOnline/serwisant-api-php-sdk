@@ -49,17 +49,18 @@ class CustomerMutation extends Types\RootType
   }
 
   /**
-   * Create new repair as customer. Field `temporaryFiles` takes IDs of temporary files create via `createTemporaryFile `. Temporary files will be attached to repair and persisted.
+   * Create new repair as customer. 
    * @param RepairInput $repair
    * @param RepairItemInput[] $additionalItems
    * @param string[] $temporaryFiles
    * @param string $device
+   * @param AddressInput $address
    * @param RepairCreationOptions $options
    * @return RepairCreationResult
    */
-  public function createRepair(RepairInput $repair, array $additionalItems = array(), array $temporaryFiles = array(), string $device = null, RepairCreationOptions $options = null, $vars = array())
+  public function createRepair(RepairInput $repair, array $additionalItems = array(), array $temporaryFiles = array(), string $device = null, AddressInput $address = null, RepairCreationOptions $options = null, $vars = array())
   {
-     return $this->inputArgs('createRepair', array_merge($vars, ['repair' => $repair, 'additionalItems' => $additionalItems, 'temporaryFiles' => $temporaryFiles, 'device' => $device, 'options' => $options]));
+     return $this->inputArgs('createRepair', array_merge($vars, ['repair' => $repair, 'additionalItems' => $additionalItems, 'temporaryFiles' => $temporaryFiles, 'device' => $device, 'address' => $address, 'options' => $options]));
   }
 
   /**

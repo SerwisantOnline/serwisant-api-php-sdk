@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.4.0
+
+### breaking changes
+
+Schema `customer`:
+
+- arguments for `createRepair` changed. New argument `address` can be utilized to set custom pick-up/return addresses
+- `Repair`: fields `collectionType`, `collectionAddress`, `deliveryType` and `deliveryAddress` has being depreciated and removed. Use new fields instead.
+Schema `service`:
+
+- `Repair`: fields `collectionType`, `collectionAddress`, `deliveryType` and `deliveryAddress` has being depreciated and removed . Use new fields instead.
+
+Schema `public`:
+
+- `Repair`: fields `collectionType`, `deliveryType`  has being depreciated and removed. Use new fields instead.
+- `Repair`: fields `collectionAddress` and `deliveryAddress` has being removed from schema (without depreciation).
+
 ## 3.3.0
 
 ### breaking changes

@@ -56,12 +56,12 @@ abstract class Type
   /**
    * @return array
    */
-  public function toArray($with_id = true)
+  public function toArray($except = [])
   {
     $result = [];
     $reflect = new \ReflectionClass($this);
     foreach ($reflect->getProperties(\ReflectionProperty::IS_PUBLIC) as $property) {
-      if ($with_id or $property->getName() <> 'ID') {
+      if (!in_array($property->getName(), $except)) {
         $result[$property->getName()] = $property->getValue($this);
       }
     }

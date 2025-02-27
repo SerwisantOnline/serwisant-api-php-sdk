@@ -29,6 +29,11 @@ class Parcel extends Types\Type
   public $pickupFrom;
 
   /**
+   * @var ParcelPickupWindow
+  */
+  public $pickupTime;
+
+  /**
    * @var string
    * Internal parcel's state.
   */

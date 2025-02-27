@@ -37,14 +37,6 @@ class PublicQuery extends Types\RootType
   }
 
   /**
-   * @return CustomField[]
-   */
-  public function customerCustomFields($vars = array())
-  {
-     return $this->inputArgs('customerCustomFields', array_merge($vars, []));
-  }
-
-  /**
    * @return CustomerStatement[]
    */
   public function customerStatements($vars = array())

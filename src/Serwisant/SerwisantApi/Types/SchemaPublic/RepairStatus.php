@@ -19,7 +19,7 @@ class RepairStatus extends Types\Type
 
   /**
    * @var DateTime
-   * Repair creation date - first apear in database
+   * Repair creation date - first appear in database
   */
   public $createdAt;
 

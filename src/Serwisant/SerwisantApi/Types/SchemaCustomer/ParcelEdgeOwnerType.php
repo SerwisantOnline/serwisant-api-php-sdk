@@ -5,22 +5,15 @@ namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class ParcelEdge extends Types\Type
+class ParcelEdgeOwnerType extends Types\Enum
 {
   /**
-   * @var string
   */
-  public $company;
+  const SERVICE_SUPPLIER = 'SERVICE_SUPPLIER';
 
   /**
-   * @var string
   */
-  public $name;
-
-  /**
-   * @var string
-  */
-  public $ownerType;
+  const CUSTOMER = 'CUSTOMER';
 
   protected function schemaNamespace()
   {
