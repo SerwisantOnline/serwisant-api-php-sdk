@@ -112,9 +112,12 @@ class GraphqlClient
     }
 
     return [
-      'http_errors' => false,
-      'connect_timeout' => ceil($timeout / 5),
+      'connect_timeout' => ceil($timeout / 2),
       'timeout' => $timeout,
+      'curl' => [
+        CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4
+      ],
+      'http_errors' => false,
       'form_params' => $params,
       'headers' => $headers,
       'verify' => parse_url($url, PHP_URL_HOST) == self::HOST // for custom API URL skip SSL verification
