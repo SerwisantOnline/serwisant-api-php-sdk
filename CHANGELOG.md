@@ -7,15 +7,30 @@
 Schema `customer`:
 
 - arguments for `createRepair` changed. New argument `address` can be utilized to set custom pick-up/return addresses
-- `Repair`: fields `collectionType`, `collectionAddress`, `deliveryType` and `deliveryAddress` has being depreciated and removed. Use new fields instead.
+- class `Repair`: fields `collectionType`, `collectionAddress`, `deliveryType` and `deliveryAddress` has being
+  depreciated and removed. Use new fields instead.
+
 Schema `service`:
 
-- `Repair`: fields `collectionType`, `collectionAddress`, `deliveryType` and `deliveryAddress` has being depreciated and removed . Use new fields instead.
+- class `Repair`: fields `collectionType`, `collectionAddress`, `deliveryType` and `deliveryAddress` has being
+  depreciated and removed. Use new fields instead.
 
 Schema `public`:
 
-- `Repair`: fields `collectionType`, `deliveryType`  has being depreciated and removed. Use new fields instead.
-- `Repair`: fields `collectionAddress` and `deliveryAddress` has being removed from schema (without depreciation).
+- query method `customerCustomFields` has being depreciated and removed.
+- class `Repair`: fields `collectionType`, `deliveryType`  has being depreciated and removed. Use new fields instead.
+- class `Repair`: fields `collectionAddress` and `deliveryAddress` has being removed from schema (without depreciation).
+
+Generic:
+
+- method `toArray` in any data object (interhited from src/Serwisant/SerwisantApi/Types/Type.php) changed its argument -
+  instead flag to exclude 'ID' it takes array of field names to exclude.
+
+- env variables `GRAPHQL_URL`, `OAUTH_URL`, `OAUTH_REVOKE_URL` has being removed. See documentation for replacement.
+
+- constant `\Serwisant\SerwisantApi\GraphqlRequest::URL` has being removed.
+- constant `\Serwisant\SerwisantApi\AccessToken::URL` has being removed.
+- constant `\Serwisant\SerwisantApi\AccessToken::REVOKE_URL` has being removed.
 
 ## 3.3.0
 

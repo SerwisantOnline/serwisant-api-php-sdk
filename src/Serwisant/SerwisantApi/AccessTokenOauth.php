@@ -86,18 +86,22 @@ class AccessTokenOauth implements AccessToken
 
   protected function url(): string
   {
-    if (trim(getenv('OAUTH_URL'))) {
-      return getenv('OAUTH_URL');
+    if (trim(getenv('SERWISANT_HOST'))) {
+      $host = getenv('SERWISANT_HOST');
+    } else {
+      $host = "https://" . AccessToken::HOST;
     }
-    return self::URL;
+    return $host . '/oauth/token';
   }
 
   protected function revokeUrl(): string
   {
-    if (trim(getenv('OAUTH_REVOKE_URL'))) {
-      return getenv('OAUTH_REVOKE_URL');
+    if (trim(getenv('SERWISANT_HOST'))) {
+      $host = getenv('SERWISANT_HOST');
+    } else {
+      $host = "https://" . AccessToken::HOST;
     }
-    return self::REVOKE_URL;
+    return $host . '/oauth/revoke';
   }
 
   /**
@@ -166,7 +170,7 @@ class AccessTokenOauth implements AccessToken
     }
 
     return [
-      'connect_timeout' => ceil($timeout / 2),
+      'connect_timeout' => $timeout,
       'timeout' => $timeout,
       'curl' => [
         CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4

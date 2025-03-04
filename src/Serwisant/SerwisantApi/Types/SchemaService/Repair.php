@@ -116,7 +116,7 @@ class Repair extends Types\Type
   public $parcels = [];
   /**
    * @var Address
-   * Address where service should pick up a repair item. Leave empty if `deliveryType` is `PERSONAL`
+   * Address where service should pick up a repair item. Leave empty if `delivery` is `PERSONAL`
   */
   public $pickUpAddress;
 
@@ -132,7 +132,7 @@ class Repair extends Types\Type
 
   /**
    * @var Address
-   * Address where repaired item should be returned. Leave empty if `collectionType` type is `PERSONAL`
+   * Address where repaired item should be returned. Leave empty if `collection` type is `PERSONAL`
   */
   public $returnAddress;
 

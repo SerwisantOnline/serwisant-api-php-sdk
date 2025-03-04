@@ -51,7 +51,7 @@ class RepairInput extends Types\Type
 
   /**
    * @var string
-   * Address where service should pick up a repair item. Leave empty if `deliveryType` is `PERSONAL`
+   * Address where service should pick up a repair item. Leave empty if `delivery` is `PERSONAL`
   */
   public $pickUpAddress;
 
@@ -63,7 +63,7 @@ class RepairInput extends Types\Type
 
   /**
    * @var string
-   * Address where repaired item should be returned. Leave empty if `collectionType` type is `PERSONAL`
+   * Address where repaired item should be returned. Leave empty if `collection` type is `PERSONAL`
   */
   public $returnAddress;
 

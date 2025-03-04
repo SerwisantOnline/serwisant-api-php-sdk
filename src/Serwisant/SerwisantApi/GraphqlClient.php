@@ -112,7 +112,7 @@ class GraphqlClient
     }
 
     return [
-      'connect_timeout' => ceil($timeout / 2),
+      'connect_timeout' => $timeout,
       'timeout' => $timeout,
       'curl' => [
         CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4
