@@ -1,4 +1,4 @@
-# Serwisant Online PHP SDK
+# Serwisant Online API PHP SDK
 
 ## Requirements:
 
