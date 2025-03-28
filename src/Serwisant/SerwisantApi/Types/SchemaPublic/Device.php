@@ -33,6 +33,11 @@ class Device extends Types\Type
   public $model;
 
   /**
+   * @var string
+  */
+  public $serial;
+
+  /**
    * @var Dictionary
   */
   public $type;

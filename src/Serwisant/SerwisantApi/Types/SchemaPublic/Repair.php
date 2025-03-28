@@ -8,6 +8,11 @@ use Serwisant\SerwisantApi\Types;
 class Repair extends Types\Type
 {
   /**
+   * @var string
+  */
+  public $ID;
+
+  /**
    * @var Decimal
   */
   public $advanceAmount;
