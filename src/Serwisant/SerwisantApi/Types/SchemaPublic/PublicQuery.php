@@ -54,6 +54,15 @@ class PublicQuery extends Types\RootType
   }
 
   /**
+   * @param DictionaryEntriesFilter $filter
+   * @return Dictionary[]
+   */
+  public function dictionaryEntries(DictionaryEntriesFilter $filter = null, $vars = array())
+  {
+     return $this->inputArgs('dictionaryEntries', array_merge($vars, ['filter' => $filter]));
+  }
+
+  /**
    * This query map given login credential, ie. email, or username itself to OAuth login. Please note: given credential can point to more than one login, so thus must be handled on frontend side. This will also return unavailability reasons if customer has no internet access enabled or account is not activated with confirmation link.
    * @param string $loginCredential
    * @return LoginResult[]

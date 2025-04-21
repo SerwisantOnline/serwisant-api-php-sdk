@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.5.0
+
+### breaking changes
+
+Schema `public`: `createTicket` argument `devices` has being replaced with `device`. Submitting multi-device ticket with
+anonymous customer is no longer possible.
+
 ## 3.4.0
 
 ### breaking changes

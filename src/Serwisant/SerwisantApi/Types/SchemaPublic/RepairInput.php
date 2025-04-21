@@ -1,6 +1,6 @@
 <?php
 
-namespace Serwisant\SerwisantApi\Types\SchemaCustomer;
+namespace Serwisant\SerwisantApi\Types\SchemaPublic;
 
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
@@ -64,20 +64,8 @@ class RepairInput extends Types\Type
    * @var CustomFieldValueInput[]
   */
   public $customFields = [];
-  /**
-   * @var string
-   * Address where service should pick up a repair item. Leave empty if `delivery` is `PERSONAL`
-  */
-  public $pickUpAddress;
-
-  /**
-   * @var string
-   * Address where repaired item should be returned. Leave empty if `collection` type is `PERSONAL`
-  */
-  public $returnAddress;
-
   protected function schemaNamespace()
   {
-    return 'SchemaCustomer';
+    return 'SchemaPublic';
   }
 }
