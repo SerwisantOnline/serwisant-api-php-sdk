@@ -17,6 +17,11 @@ class ParcelEdge extends Types\Type
   */
   public $name;
 
+  /**
+   * @var string
+  */
+  public $ownerType;
+
   protected function schemaNamespace()
   {
     return 'SchemaCustomer';

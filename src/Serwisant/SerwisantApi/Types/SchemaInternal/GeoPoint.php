@@ -5,23 +5,17 @@ namespace Serwisant\SerwisantApi\Types\SchemaInternal;
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class SecretTokenSubject extends Types\Enum
+class GeoPoint extends Types\Type
 {
   /**
+   * @var string
   */
-  const LICENCE = 'LICENCE';
+  public $lat;
 
   /**
+   * @var string
   */
-  const REPAIR = 'REPAIR';
-
-  /**
-  */
-  const ONLINEPAYMENT = 'ONLINEPAYMENT';
-
-  /**
-  */
-  const PARCEL = 'PARCEL';
+  public $lng;
 
   protected function schemaNamespace()
   {

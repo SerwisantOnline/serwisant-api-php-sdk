@@ -4,8 +4,6 @@ namespace Serwisant\SerwisantApi;
 
 class GraphqlRequest
 {
-  const URL = 'https://serwisant.online/graphql';
-
   private $client;
   private $schema_path;
   private $schema_namespace;
@@ -123,10 +121,11 @@ class GraphqlRequest
 
   protected function url()
   {
-    if (trim(getenv('GRAPHQL_URL'))) {
-      return getenv('GRAPHQL_URL');
+    if (trim(getenv('SERWISANT_HOST'))) {
+      $host = getenv('SERWISANT_HOST');
     } else {
-      return self::URL;
+      $host = "https://" . GraphqlClient::HOST;
     }
+    return $host . "/graphql";
   }
 }

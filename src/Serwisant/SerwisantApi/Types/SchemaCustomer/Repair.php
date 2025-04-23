@@ -23,16 +23,10 @@ class Repair extends Types\Type
   public $advanceAmount;
 
   /**
-   * @var Address
-   * Address where service should pick up a repair item. Empty if `collectionType` type is `PERSONAL`
-  */
-  public $collectionAddress;
-
-  /**
    * @var string
-   * Defines how repair item will be collected from customer.
+   * Defines how repaired item should be returned to customer. Return address is specified in `returnAddress`
   */
-  public $collectionType;
+  public $collection;
 
   /**
    * @var RepairCosts
@@ -46,16 +40,10 @@ class Repair extends Types\Type
   public $customFields;
 
   /**
-   * @var Address
-   * Address where repaired item should be returned. Empty if `deliveryType` type is `PERSONAL`
-  */
-  public $deliveryAddress;
-
-  /**
    * @var string
-   * Defines how repaired item should be returned to customer.
+   * Defines how repair item will be picked-up from customer and delivered to service. Pick-up address is specified in `pickUpAddress`
   */
-  public $deliveryType;
+  public $delivery;
 
   /**
    * @var Device
@@ -102,6 +90,12 @@ class Repair extends Types\Type
   */
   public $parcels = [];
   /**
+   * @var Address
+   * Address where service should pick up a repair item. Leave empty if `delivery` is `PERSONAL`
+  */
+  public $pickUpAddress;
+
+  /**
    * @var Decimal
   */
   public $priceEstimated;
@@ -110,6 +104,12 @@ class Repair extends Types\Type
    * @var Decimal
   */
   public $priceEstimatedTaxRate;
+
+  /**
+   * @var Address
+   * Address where repaired item should be returned. Leave empty if `collection` type is `PERSONAL`
+  */
+  public $returnAddress;
 
   /**
    * @var Rating

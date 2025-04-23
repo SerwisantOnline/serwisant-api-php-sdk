@@ -55,6 +55,42 @@ class PublicMutation extends Types\RootType
   }
 
   /**
+   * @param AnonymousApplicantInput $applicant
+   * @param RepairInput $repair
+   * @param RepairItemInput[] $additionalItems
+   * @param string[] $temporaryFiles
+   * @param string $device
+   * @param AddressInput $address
+   * @return RepairCreationResult
+   */
+  public function createRepair(AnonymousApplicantInput $applicant, RepairInput $repair, array $additionalItems = array(), array $temporaryFiles = array(), string $device = null, AddressInput $address = null, $vars = array())
+  {
+     return $this->inputArgs('createRepair', array_merge($vars, ['applicant' => $applicant, 'repair' => $repair, 'additionalItems' => $additionalItems, 'temporaryFiles' => $temporaryFiles, 'device' => $device, 'address' => $address]));
+  }
+
+  /**
+   * @param FileInput $file
+   * @return TemporaryFileCreationResult
+   */
+  public function createTemporaryFile(FileInput $file, $vars = array())
+  {
+     return $this->inputArgs('createTemporaryFile', array_merge($vars, ['file' => $file]));
+  }
+
+  /**
+   * @param AnonymousApplicantInput $applicant
+   * @param TicketInput $ticket
+   * @param string[] $temporaryFiles
+   * @param string $device
+   * @param AddressInput $address
+   * @return TicketCreationResult
+   */
+  public function createTicket(AnonymousApplicantInput $applicant, TicketInput $ticket, array $temporaryFiles = array(), string $device = null, AddressInput $address = null, $vars = array())
+  {
+     return $this->inputArgs('createTicket', array_merge($vars, ['applicant' => $applicant, 'ticket' => $ticket, 'temporaryFiles' => $temporaryFiles, 'device' => $device, 'address' => $address]));
+  }
+
+  /**
    * Pay for `OnlinePayment` using any available `type` of payment. Depending on result status, payment may be queued: in that case pool for result, may be asked to redirect user to other site to complete a payment.
    * @param string $token
    * @param OnlineTransactionInput $onlineTransaction

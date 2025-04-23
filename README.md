@@ -1,4 +1,4 @@
-# Serwisant Online PHP SDK
+# Serwisant Online API PHP SDK
 
 ## Requirements:
 
@@ -14,18 +14,20 @@ optional:
 
 ## Word about versioning
 
-Versioning of SDK is very important. It looks like `3.<major>.<minor>`, eg. `3.0.1`. When you're including SDK into your
+Versioning of SDK is very important. It looks like `3.<major>.<minor>`, eg. `3.4.0`. When you're including SDK into your
 composer config, it's strongly recommended to set major version as fixed, eg:
 
 ```
 "require": {
-    "serwisant/serwisant-api": "3.0.*"
+    "serwisant/serwisant-api": "3.4.*"
 },
 ```  
 
 It's important, because of typed queries and mutations. If schema will change, arguments passed to queries and mutations
 will change as well. It can be new required arguments or even order of arguments can change. In that case SDK will e
 released with incremented major version. If you'll decide to upgrade, it can break your application.
+
+Braking changes are described in [CHANGELOG](/CHANGELOG.md)
 
 ***YOU HAVE BEING WARNED.***
 
@@ -265,11 +267,12 @@ SDK available as composer package on packagist.org:
 - `git tag 3.0.x`
 - `git push origin --tags`
 
-There are two environment variables to test/develop SDK against development server. Set:
+There are environment variables to test/develop SDK against development server. Set:
 
-- `OAUTH_URL` to eg. http://127.0.0.1:3000/oauth/token to change OAuth token endpoint
-- `OAUTH_REVOKE_URL` to eg. http://127.0.0.1:3000/oauth/revoke to change OAuth token revoke endpoint
-- `GRAPHQL_URL` to eg. http://127.0.0.1:3000/graphql to change base address of GraphQL schemas.
+- set `SERWISANT_HOST` to eg. http://127.0.0.1:3000 to change base hostname for OAuth token endpoint, OAuth token revoke
+  endpoint and GraphQL schemas.
+
+- set `HTTP_TIMEOUT` to eg. 10 to set 10s connection timeout to API. Default is 30s.
 
 ## Licencing
 

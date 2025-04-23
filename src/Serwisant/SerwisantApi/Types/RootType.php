@@ -11,6 +11,7 @@ abstract class RootType
   const SCHEMA_INTERNAL = 'SchemaInternal';
   const SCHEMA_SERVICE = 'SchemaService';
   const SCHEMA_CUSTOMER = 'SchemaCustomer';
+  const SCHEMA_MOBILE = 'SchemaMobile';
 
   private $client;
   private $load_paths;

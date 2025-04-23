@@ -17,6 +17,16 @@ class PublicQuery extends Types\RootType
   }
 
   /**
+   * Will return a list of custom fields for form specified in filter. In `public` schema some forms available in filter can be absent
+   * @param string $form
+   * @return CustomField[]
+   */
+  public function customFields(string $form, $vars = array())
+  {
+     return $this->inputArgs('customFields', array_merge($vars, ['form' => $form]));
+  }
+
+  /**
    * List of agreements, eg. GDPR, rules, privacy policy to show/accept during a signup
    * @param CustomerAgreementsFilter $filter
    * @return CustomerAgreement[]
@@ -27,20 +37,29 @@ class PublicQuery extends Types\RootType
   }
 
   /**
-   * Will return a list of custom fields for customer signup form - for generic list see customFields in other schemas
-   * @return CustomField[]
-   */
-  public function customerCustomFields($vars = array())
-  {
-     return $this->inputArgs('customerCustomFields', array_merge($vars, []));
-  }
-
-  /**
    * @return CustomerStatement[]
    */
   public function customerStatements($vars = array())
   {
      return $this->inputArgs('customerStatements', array_merge($vars, []));
+  }
+
+  /**
+   * @param string $ID
+   * @return Device
+   */
+  public function device(string $ID, $vars = array())
+  {
+     return $this->inputArgs('device', array_merge($vars, ['ID' => $ID]));
+  }
+
+  /**
+   * @param DictionaryEntriesFilter $filter
+   * @return Dictionary[]
+   */
+  public function dictionaryEntries(DictionaryEntriesFilter $filter = null, $vars = array())
+  {
+     return $this->inputArgs('dictionaryEntries', array_merge($vars, ['filter' => $filter]));
   }
 
   /**
@@ -84,6 +103,15 @@ doesn't support online payments
   }
 
   /**
+   * @param PrioritiesFilter $filter
+   * @return Priority[]
+   */
+  public function priorities(PrioritiesFilter $filter = null, $vars = array())
+  {
+     return $this->inputArgs('priorities', array_merge($vars, ['filter' => $filter]));
+  }
+
+  /**
    * Return detailed information about particular repair
    * @param string $token
    * @return Repair
@@ -94,13 +122,35 @@ doesn't support online payments
   }
 
   /**
-   * Using this query you can lookup a token, to determine where it belongs, eg. order, or payment
+   * Using this query you can lookup a token, to determine where it belongs, eg. order, or payment. Please note: this will return proper result to tokens issued for your data. There is no point to look up other's tokens because you'll get 404 error.
    * @param string $token
    * @return SecretToken
    */
   public function secretToken(string $token, $vars = array())
   {
      return $this->inputArgs('secretToken', array_merge($vars, ['token' => $token]));
+  }
+
+  /**
+   * @var ServiceSupplier[]
+  */
+  public $serviceSuppliers = [];
+  /**
+   * @param string[] $ID
+   * @return TemporaryFile[]
+   */
+  public function temporaryFiles(array $ID, $vars = array())
+  {
+     return $this->inputArgs('temporaryFiles', array_merge($vars, ['ID' => $ID]));
+  }
+
+  /**
+   * @param string $token
+   * @return Ticket
+   */
+  public function ticketByToken(string $token, $vars = array())
+  {
+     return $this->inputArgs('ticketByToken', array_merge($vars, ['token' => $token]));
   }
 
   /**

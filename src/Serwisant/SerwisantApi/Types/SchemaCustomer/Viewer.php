@@ -20,6 +20,12 @@ class Viewer extends Types\Type
   public $repairsServiceSupplier;
 
   /**
+   * @var Subscriber
+   * Information from public registry
+  */
+  public $subscriber;
+
+  /**
    * @var ServiceSupplier
    * Service supplier dedicated for handling ticketing - it can be differ from main service supplier
   */

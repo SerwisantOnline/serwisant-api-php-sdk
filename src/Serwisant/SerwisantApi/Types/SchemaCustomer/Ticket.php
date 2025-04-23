@@ -79,6 +79,16 @@ class Ticket extends Types\Type
   public $rating;
 
   /**
+   * @var SecretToken
+  */
+  public $secretToken;
+
+  /**
+   * @var ServiceSupplier
+  */
+  public $serviceSupplier;
+
+  /**
    * @var TicketStatus
   */
   public $status;

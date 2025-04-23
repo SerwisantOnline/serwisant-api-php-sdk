@@ -86,18 +86,22 @@ class AccessTokenOauth implements AccessToken
 
   protected function url(): string
   {
-    if (trim(getenv('OAUTH_URL'))) {
-      return getenv('OAUTH_URL');
+    if (trim(getenv('SERWISANT_HOST'))) {
+      $host = getenv('SERWISANT_HOST');
+    } else {
+      $host = "https://" . AccessToken::HOST;
     }
-    return self::URL;
+    return $host . '/oauth/token';
   }
 
   protected function revokeUrl(): string
   {
-    if (trim(getenv('OAUTH_REVOKE_URL'))) {
-      return getenv('OAUTH_REVOKE_URL');
+    if (trim(getenv('SERWISANT_HOST'))) {
+      $host = getenv('SERWISANT_HOST');
+    } else {
+      $host = "https://" . AccessToken::HOST;
     }
-    return self::REVOKE_URL;
+    return $host . '/oauth/revoke';
   }
 
   /**
@@ -166,9 +170,12 @@ class AccessTokenOauth implements AccessToken
     }
 
     return [
-      'http_errors' => false,
-      'connect_timeout' => ceil($timeout / 5),
+      'connect_timeout' => $timeout,
       'timeout' => $timeout,
+      'curl' => [
+        CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4
+      ],
+      'http_errors' => false,
       'form_params' => $params,
       'headers' => $headers,
       'verify' => parse_url($url, PHP_URL_HOST) == self::HOST // for custom API URL skip SSL verification

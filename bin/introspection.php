@@ -150,6 +150,9 @@ function build_object($ns, $typedef)
     $content = c_header($ns, $typedef['name'], 'Type');
   }
   foreach ($typedef['fields'] as $field) {
+    if (array_key_exists('isDeprecated', $field) && $field['isDeprecated']) {
+      continue;
+    }
     if ($field['type']['kind'] == 'LIST') {
       // to jest tablica, niech ma domyślną pustą postać
       $content .= c_prop_comment($field['type'], $field['description']);
@@ -189,6 +192,7 @@ $schemas = [
   SerwisantApi\Types\RootType::SCHEMA_PUBLIC => 'public',
   SerwisantApi\Types\RootType::SCHEMA_SERVICE => 'service',
   SerwisantApi\Types\RootType::SCHEMA_CUSTOMER => 'customer',
+  SerwisantApi\Types\RootType::SCHEMA_MOBILE => 'mobile',
 ];
 
 foreach ($schemas as $ns => $schema_path) {

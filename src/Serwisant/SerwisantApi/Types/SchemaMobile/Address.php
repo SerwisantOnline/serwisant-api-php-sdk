@@ -1,44 +1,49 @@
 <?php
 
-namespace Serwisant\SerwisantApi\Types\SchemaInternal;
+namespace Serwisant\SerwisantApi\Types\SchemaMobile;
 
 use Serwisant\SerwisantApi;
 use Serwisant\SerwisantApi\Types;
 
-class SecretToken extends Types\Type
+class Address extends Types\Type
 {
   /**
    * @var string
   */
-  public $oauthClientId;
+  public $building;
 
   /**
    * @var string
   */
-  public $oauthClientSecret;
+  public $city;
 
   /**
    * @var string
   */
-  public $oauthScopes;
+  public $countryIso;
+
+  /**
+   * @var GeoPoint
+  */
+  public $geoPoint;
 
   /**
    * @var string
   */
-  public $redirectUrl;
+  public $postalCode;
 
   /**
    * @var string
   */
-  public $subjectType;
+  public $street;
 
   /**
    * @var string
   */
-  public $token;
+  public $type;
 
   protected function schemaNamespace()
   {
-    return 'SchemaInternal';
+    return 'SchemaMobile';
   }
 }

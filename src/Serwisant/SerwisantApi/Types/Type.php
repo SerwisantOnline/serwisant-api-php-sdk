@@ -53,6 +53,21 @@ abstract class Type
     }
   }
 
+  /**
+   * @return array
+   */
+  public function toArray($except = [])
+  {
+    $result = [];
+    $reflect = new \ReflectionClass($this);
+    foreach ($reflect->getProperties(\ReflectionProperty::IS_PUBLIC) as $property) {
+      if (!in_array($property->getName(), $except)) {
+        $result[$property->getName()] = $property->getValue($this);
+      }
+    }
+    return $result;
+  }
+
   public function __toString()
   {
     return print_r($this, 1);
