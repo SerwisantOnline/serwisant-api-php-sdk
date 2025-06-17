@@ -136,6 +136,16 @@ class PublicMutation extends Types\RootType
      return $this->inputArgs('setPassword', array_merge($vars, ['resetToken' => $resetToken, 'password' => $password, 'passwordConfirmation' => $passwordConfirmation]));
   }
 
+  /**
+   * @param string $token
+   * @param RatingInput $rating
+   * @return RatingResult
+   */
+  public function setRating(string $token, RatingInput $rating, $vars = array())
+  {
+     return $this->inputArgs('setRating', array_merge($vars, ['token' => $token, 'rating' => $rating]));
+  }
+
   protected function schemaNamespace()
   {
     return 'SchemaPublic';

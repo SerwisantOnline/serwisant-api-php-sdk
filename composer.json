@@ -1,6 +1,6 @@
 {
   "name": "serwisant/serwisant-api",
-  "version": "3.5.0",
+  "version": "3.5.1",
   "description": "API client for https://serwisant.online service",
   "type": "library",
   "homepage": "https://github.com/SerwisantOnline/serwisant-api-php-sdk",
@@ -19,7 +19,7 @@
   "authors": [
     {
       "name": "Arkadiusz Kuryłowicz",
-      "email": "arkadiusz.kurylowicz@serwisant-online.pl"
+      "email": "hello@sugarmice.software"
     }
   ],
   "autoload": {

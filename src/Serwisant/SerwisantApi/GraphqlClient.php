@@ -3,6 +3,7 @@
 namespace Serwisant\SerwisantApi;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 
 class GraphqlClient
 {
@@ -42,7 +43,7 @@ class GraphqlClient
     try {
       $options = $this->clientOptions($url, $query, $variables);
       $res = $this->client->request('POST', $url, $options);
-    } catch (\GuzzleHttp\Exception\GuzzleException $e) {
+    } catch (GuzzleException $e) {
       throw new Exception($e->getMessage());
     }
 

@@ -77,7 +77,7 @@ abstract class Type
   {
     foreach ($object as $prop => $value) {
       if (is_array($value)) {
-        $this->{$prop} = self::spawn($this->schemaNamespace(), $value, (get_class($this) . '->' . $prop ));
+        $this->{$prop} = self::spawn($this->schemaNamespace(), $value, (get_class($this) . '->' . $prop));
       } else {
         $this->{$prop} = $value;
       }
@@ -87,10 +87,32 @@ abstract class Type
 
   private function fillUsingArray(array $object)
   {
+    $class_reflection = new \ReflectionClass(get_class($this));
     foreach ($object as $prop => $value) {
-      $this->{$prop} = $value;
+      $this->{$prop} = $this->castFromDocComment($class_reflection, $prop, $value);
     }
     return $this;
+  }
+
+  private function castFromDocComment($class_reflection, $prop, $value)
+  {
+    $property = $class_reflection->getProperty($prop);
+    $comment_string = $property->getDocComment();
+    if ($comment_string) {
+      $comment = explode("\n", $comment_string);
+      foreach ($comment as $comment_line) {
+        if (is_string($value)) {
+          if (strpos($comment_line, '@var int') !== false) {
+            return (integer)$value;
+          } elseif (strpos($comment_line, '@var Decimal') !== false) {
+            return (float)$value;
+          } elseif (strpos($comment_line, '@var bool') !== false) {
+            return ($value == '1');
+          }
+        }
+      }
+    }
+    return $value;
   }
 
   abstract protected function schemaNamespace();

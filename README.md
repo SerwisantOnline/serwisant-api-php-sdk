@@ -24,8 +24,8 @@ composer config, it's strongly recommended to set major version as fixed, eg:
 ```  
 
 It's important, because of typed queries and mutations. If schema will change, arguments passed to queries and mutations
-will change as well. It can be new required arguments or even order of arguments can change. In that case SDK will e
-released with incremented major version. If you'll decide to upgrade, it can break your application.
+will change as well. Introduced method's arguments might be obligatory, or order of arguments can change. In that case 
+SDK will be released with incremented major version. If you'll decide to upgrade, it can break your application.
 
 Braking changes are described in [CHANGELOG](/CHANGELOG.md)
 
@@ -276,8 +276,8 @@ There are environment variables to test/develop SDK against development server. 
 
 ## Licencing
 
-Apache License See LICENCE for full licence information.
+Apache Licence See LICENCE for full licence information.
 
 ## Author
 
-Arkadiusz Kuryłowicz <sms(at)kurylowicz.info>
+Arkadiusz Kuryłowicz <hello(at)sugarmice.software>

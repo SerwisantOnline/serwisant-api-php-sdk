@@ -11,6 +11,7 @@ class GraphqlRequest
   private $debug = 0;
   private $query;
   private $variables = [];
+  private $operation_handle;
   private $results = [];
 
   public function __construct(GraphqlClient $client, $schema_path, $schema_namespace, array $load_paths = [], int $debug = 0)
@@ -38,12 +39,14 @@ class GraphqlRequest
   /**
    * @param $query
    * @param array $variables
+   * @param null $operation_handle
    * @return $this
    */
-  public function set($query, $variables = [])
+  public function set($query, $variables = [], $operation_handle = null)
   {
     $this->query = $query;
     $this->variables = $variables;
+    $this->operation_handle = $operation_handle;
     return $this;
   }
 
@@ -76,7 +79,7 @@ class GraphqlRequest
 
     $query = join(' ', file($graphql_file));
 
-    return $this->set($query, $variables);
+    return $this->set($query, $variables, str_replace('.graphql', '', basename($graphql_file)));
   }
 
   /**
@@ -88,6 +91,9 @@ class GraphqlRequest
   public function execute()
   {
     $url = "{$this->url()}/{$this->schema_path}";
+    if ($this->operation_handle) {
+      $url .= "?op={$this->operation_handle}";
+    }
 
     if ($this->debug == 1) {
       error_log("GraphQL request: $url");

@@ -57,6 +57,11 @@ class Repair extends Types\Type
   public $files;
 
   /**
+   * @var bool
+  */
+  public $isRateable;
+
+  /**
    * @var string
   */
   public $issue;
@@ -79,6 +84,11 @@ class Repair extends Types\Type
    * @var Decimal
   */
   public $priceEstimatedTaxRate;
+
+  /**
+   * @var Rating
+  */
+  public $rating;
 
   /**
    * @var string

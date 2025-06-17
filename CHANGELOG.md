@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.5.1
+
+No breaking change. Added support for repairs and tickets rating in customer and public schemas.
+
 ## 3.5.0
 
 ### breaking changes
