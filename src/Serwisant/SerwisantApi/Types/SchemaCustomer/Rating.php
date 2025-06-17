@@ -18,6 +18,11 @@ class Rating extends Types\Type
   public $date;
 
   /**
+   * @var string
+  */
+  public $response;
+
+  /**
    * @var int
   */
   public $stars;

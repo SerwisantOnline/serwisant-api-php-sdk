@@ -92,11 +92,6 @@ class Repair extends Types\Type
   public $internalRemarks;
 
   /**
-   * @var bool
-  */
-  public $isRateable;
-
-  /**
    * @var string
   */
   public $issue;
@@ -140,11 +135,6 @@ class Repair extends Types\Type
    * Address where repaired item should be returned. Leave empty if `collection` type is `PERSONAL`
   */
   public $returnAddress;
-
-  /**
-   * @var Rating
-  */
-  public $rating;
 
   /**
    * @var string

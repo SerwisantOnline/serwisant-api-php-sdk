@@ -106,15 +106,15 @@ class Repair extends Types\Type
   public $priceEstimatedTaxRate;
 
   /**
+   * @var Rating
+  */
+  public $rating;
+
+  /**
    * @var Address
    * Address where repaired item should be returned. Leave empty if `collection` type is `PERSONAL`
   */
   public $returnAddress;
-
-  /**
-   * @var Rating
-  */
-  public $rating;
 
   /**
    * @var string
