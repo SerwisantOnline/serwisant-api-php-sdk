@@ -13,6 +13,11 @@ class AnonymousApplicantInput extends Types\Type
   public $deviceUid;
 
   /**
+   * @var string
+  */
+  public $person;
+
+  /**
    * @var PhoneInput
   */
   public $phone;
