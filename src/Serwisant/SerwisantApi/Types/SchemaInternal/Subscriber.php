@@ -57,6 +57,11 @@ class Subscriber extends Types\Type
   /**
    * @var string
   */
+  public $taxFormatted;
+
+  /**
+   * @var string
+  */
   public $taxId;
 
   /**

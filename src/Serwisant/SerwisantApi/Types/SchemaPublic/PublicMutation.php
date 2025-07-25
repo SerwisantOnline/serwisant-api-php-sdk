@@ -20,6 +20,15 @@ class PublicMutation extends Types\RootType
   }
 
   /**
+   * @param string $activationToken
+   * @return AnonymousApplicantActivateResult
+   */
+  public function activateAnonymousApplicant(string $activationToken, $vars = array())
+  {
+     return $this->inputArgs('activateAnonymousApplicant', array_merge($vars, ['activationToken' => $activationToken]));
+  }
+
+  /**
    * Once customer is created via `createCustomer` he gets an email with activation URL contains a token. Token must be used against this mutation to activate an account and also customer to log-in.
    * @param string $activationToken
    * @return CustomerActivationResult
