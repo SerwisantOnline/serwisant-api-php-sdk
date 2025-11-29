@@ -80,6 +80,11 @@ class CustomerPanelConfig extends Types\Type
   public $personalTransportEnabled;
 
   /**
+   * @var bool
+  */
+  public $ratings;
+
+  /**
    * @var string
   */
   public $repairSubmitPrompt;
