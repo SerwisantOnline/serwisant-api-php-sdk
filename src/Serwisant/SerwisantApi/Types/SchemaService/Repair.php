@@ -51,8 +51,15 @@ class Repair extends Types\Type
 
   /**
    * @var RepairDelegation
+   * Current, pending delegation of repair to external supplier. If null, repair is not delegated or external repair has being ended. All delegations are available at `delegations` field.
   */
   public $delegation;
+
+  /**
+   * @var RepairDelegation[]
+   * All delegations of repair to external suppliers, including current, canceled, resolved.
+  */
+  public $delegations;
 
   /**
    * @var string

@@ -125,6 +125,11 @@ class CustomerPanelConfig extends Types\Type
   public $useCustomStatusNames;
 
   /**
+   * @var bool
+  */
+  public $wallpaper;
+
+  /**
    * @var string
    * Message to be shown before login - for every user
   */
