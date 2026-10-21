@@ -2,6 +2,7 @@
 
 namespace Serwisant\SerwisantApi\Types;
 
+#[\AllowDynamicProperties]
 abstract class Type
 {
   /**
