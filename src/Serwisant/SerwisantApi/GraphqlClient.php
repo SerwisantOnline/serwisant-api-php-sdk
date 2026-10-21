@@ -115,9 +115,7 @@ class GraphqlClient
     return [
       'connect_timeout' => $timeout,
       'timeout' => $timeout,
-      'curl' => [
-        CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4
-      ],
+      'force_ip_resolve' => 'v4',
       'http_errors' => false,
       'form_params' => $params,
       'headers' => $headers,

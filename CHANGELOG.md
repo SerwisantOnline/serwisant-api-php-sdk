@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.5.6
+
+No breaking change. Replaced raw `CURLOPT_IPRESOLVE` curl option (deprecated since `guzzlehttp/guzzle` 7.11, rejected
+by 8.0) with Guzzle `force_ip_resolve` request option.
+
 ## 3.5.4
 
 No breaking change. Added support for `guzzlehttp/guzzle` 7.x (6.x is still supported). Guzzle 6 depends on
