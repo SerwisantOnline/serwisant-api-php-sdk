@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.5.4
+
+No breaking change. Added support for `guzzlehttp/guzzle` 7.x (6.x is still supported). Guzzle 6 depends on
+`guzzlehttp/psr7` 1.x, which is affected by security advisories, so Composer refuses to install it by default.
+
 ## 3.5.1
 
 No breaking change. Added support for repairs and tickets rating in customer and public schemas.

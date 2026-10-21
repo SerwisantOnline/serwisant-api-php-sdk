@@ -1,12 +1,12 @@
 {
   "name": "serwisant/serwisant-api",
-  "version": "3.5.3",
+  "version": "3.5.4",
   "description": "API client for https://serwisant.online service",
   "type": "library",
   "homepage": "https://github.com/SerwisantOnline/serwisant-api-php-sdk",
   "license": "Apache-2.0",
   "require": {
-    "guzzlehttp/guzzle": "^6.5",
+    "guzzlehttp/guzzle": "^6.5 || ^7.0",
     "php": ">=7.2",
     "ext-json": "*",
     "ext-curl": "*",
