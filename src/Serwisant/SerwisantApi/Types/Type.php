@@ -104,7 +104,7 @@ abstract class Type
       foreach ($comment as $comment_line) {
         if (is_string($value)) {
           if (strpos($comment_line, '@var int') !== false) {
-            return (integer)$value;
+            return (int)$value;
           } elseif (strpos($comment_line, '@var Decimal') !== false) {
             return (float)$value;
           } elseif (strpos($comment_line, '@var bool') !== false) {

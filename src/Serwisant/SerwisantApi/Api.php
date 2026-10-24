@@ -2,9 +2,12 @@
 
 namespace Serwisant\SerwisantApi;
 
+use GuzzleHttp\ClientInterface;
+
 class Api
 {
   private $http_headers = [];
+  private $http_client;
   private $load_paths = [];
   private $client;
   private $access_token;
@@ -27,6 +30,17 @@ class Api
   public function setHttpHeaders(array $http_headers)
   {
     $this->http_headers = $http_headers;
+    return $this;
+  }
+
+  /**
+   * Custom Guzzle client for GraphQL calls, eg. with a mock handler in tests. Must be set before the first schema call.
+   * @param ClientInterface $http_client
+   * @return $this
+   */
+  public function setHttpClient(ClientInterface $http_client)
+  {
+    $this->http_client = $http_client;
     return $this;
   }
 
@@ -101,7 +115,7 @@ class Api
   private function client(): GraphqlClient
   {
     if (!$this->client) {
-      $this->client = new GraphqlClient($this->accessToken());
+      $this->client = new GraphqlClient($this->accessToken(), $this->http_client);
     }
     return $this->client->setHttpHeaders($this->http_headers);
   }

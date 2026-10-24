@@ -31,7 +31,7 @@ class PublicQuery extends Types\RootType
    * @param CustomerAgreementsFilter $filter
    * @return CustomerAgreement[]
    */
-  public function customerAgreements(CustomerAgreementsFilter $filter = null, $vars = array())
+  public function customerAgreements(?CustomerAgreementsFilter $filter = null, $vars = array())
   {
      return $this->inputArgs('customerAgreements', array_merge($vars, ['filter' => $filter]));
   }
@@ -57,7 +57,7 @@ class PublicQuery extends Types\RootType
    * @param DictionaryEntriesFilter $filter
    * @return Dictionary[]
    */
-  public function dictionaryEntries(DictionaryEntriesFilter $filter = null, $vars = array())
+  public function dictionaryEntries(?DictionaryEntriesFilter $filter = null, $vars = array())
   {
      return $this->inputArgs('dictionaryEntries', array_merge($vars, ['filter' => $filter]));
   }
@@ -106,7 +106,7 @@ doesn't support online payments
    * @param PrioritiesFilter $filter
    * @return Priority[]
    */
-  public function priorities(PrioritiesFilter $filter = null, $vars = array())
+  public function priorities(?PrioritiesFilter $filter = null, $vars = array())
   {
      return $this->inputArgs('priorities', array_merge($vars, ['filter' => $filter]));
   }

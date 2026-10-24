@@ -61,7 +61,7 @@ Component card created via `createComponent` mutation is required before supply.
    * @param NoteInput $note
    * @return NoteCreationResult
    */
-  public function createNote(NoteInput $note, string $subject = null, string $subjectType = null, $vars = array())
+  public function createNote(NoteInput $note, ?string $subject = null, ?string $subjectType = null, $vars = array())
   {
      return $this->inputArgs('createNote', array_merge($vars, ['subject' => $subject, 'subjectType' => $subjectType, 'note' => $note]));
   }
@@ -88,7 +88,7 @@ Component card created via `createComponent` mutation is required before supply.
    * @param string $device
    * @return RepairCreationResult
    */
-  public function createRepair(string $customer, RepairInput $repair, array $additionalItems = array(), array $files = array(), string $device = null, $vars = array())
+  public function createRepair(string $customer, RepairInput $repair, array $additionalItems = array(), array $files = array(), ?string $device = null, $vars = array())
   {
      return $this->inputArgs('createRepair', array_merge($vars, ['customer' => $customer, 'repair' => $repair, 'additionalItems' => $additionalItems, 'files' => $files, 'device' => $device]));
   }
@@ -142,7 +142,7 @@ Component card created via `createComponent` mutation is required before supply.
    * @param string $description
    * @return OnlinePaymentRequestResult
    */
-  public function requestOnlinePayment(string $subject, string $subjectType, Decimal $amount, string $description = null, $vars = array())
+  public function requestOnlinePayment(string $subject, string $subjectType, Decimal $amount, ?string $description = null, $vars = array())
   {
      return $this->inputArgs('requestOnlinePayment', array_merge($vars, ['subject' => $subject, 'subjectType' => $subjectType, 'amount' => $amount, 'description' => $description]));
   }
@@ -184,7 +184,7 @@ Component card created via `createComponent` mutation is required before supply.
    * @param FileUpdateInput[] $files
    * @return RepairUpdateResult
    */
-  public function updateRepair(string $ID, string $customer = null, RepairUpdateInput $repair = null, array $additionalItems = array(), array $files = array(), $vars = array())
+  public function updateRepair(string $ID, ?string $customer = null, ?RepairUpdateInput $repair = null, array $additionalItems = array(), array $files = array(), $vars = array())
   {
      return $this->inputArgs('updateRepair', array_merge($vars, ['ID' => $ID, 'customer' => $customer, 'repair' => $repair, 'additionalItems' => $additionalItems, 'files' => $files]));
   }

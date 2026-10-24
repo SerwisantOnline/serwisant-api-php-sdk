@@ -3,6 +3,7 @@
 namespace Serwisant\SerwisantApi;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 
 class GraphqlClient
@@ -13,10 +14,14 @@ class GraphqlClient
   private $client;
   private $http_headers;
 
-  public function __construct(AccessToken $access_token = null)
+  /**
+   * @param AccessToken|null $access_token
+   * @param ClientInterface|null $http_client custom Guzzle client, eg. with a mock handler in tests; default is a plain Client
+   */
+  public function __construct(?AccessToken $access_token = null, ?ClientInterface $http_client = null)
   {
     $this->access_token = $access_token;
-    $this->client = new Client();
+    $this->client = $http_client ?? new Client();
   }
 
   /**

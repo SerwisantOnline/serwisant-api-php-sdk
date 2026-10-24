@@ -12,7 +12,7 @@ class InternalQuery extends Types\RootType
    * @param string $cookie
    * @return CredentialsCookie
    */
-  public function credentialsCookie(string $cookie = null, $vars = array())
+  public function credentialsCookie(?string $cookie = null, $vars = array())
   {
      return $this->inputArgs('credentialsCookie', array_merge($vars, ['cookie' => $cookie]));
   }
@@ -22,7 +22,7 @@ class InternalQuery extends Types\RootType
    * @param SubscriberAgreementsFilter $filter
    * @return SubscriberAgreement[]
    */
-  public function subscriberAgreements(SubscriberAgreementsFilter $filter = null, $vars = array())
+  public function subscriberAgreements(?SubscriberAgreementsFilter $filter = null, $vars = array())
   {
      return $this->inputArgs('subscriberAgreements', array_merge($vars, ['filter' => $filter]));
   }

@@ -125,7 +125,11 @@ function build_root_type_method($field)
     $null = c_detect_null($arg['type']);
     $type_args_comment[] = c_detect_name($arg['type'], 'comment') . ' $' . $arg['name'];
     if ($null) {
-      $type_args_null[] = c_detect_name($arg['type'], 'arg') . ' $' . $arg['name'] . ' = ' . $null;
+      $arg_type = c_detect_name($arg['type'], 'arg');
+      if ($null === 'null' && $arg_type !== '') {
+        $arg_type = '?' . $arg_type; // explicit nullable - implicit nullable is deprecated since PHP 8.4
+      }
+      $type_args_null[] = $arg_type . ' $' . $arg['name'] . ' = ' . $null;
     } else {
       $type_args_not_null[] = c_detect_name($arg['type'], 'arg') . ' $' . $arg['name'];
     }

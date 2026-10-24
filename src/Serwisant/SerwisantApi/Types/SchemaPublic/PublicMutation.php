@@ -14,7 +14,7 @@ class PublicMutation extends Types\RootType
    * @param string $offer
    * @return AcceptOrRejectRepairResult
    */
-  public function acceptOrRejectRepair(string $token, string $decision, string $offer = null, $vars = array())
+  public function acceptOrRejectRepair(string $token, string $decision, ?string $offer = null, $vars = array())
   {
      return $this->inputArgs('acceptOrRejectRepair', array_merge($vars, ['token' => $token, 'decision' => $decision, 'offer' => $offer]));
   }
@@ -72,7 +72,7 @@ class PublicMutation extends Types\RootType
    * @param AddressInput $address
    * @return RepairCreationResult
    */
-  public function createRepair(AnonymousApplicantInput $applicant, RepairInput $repair, array $additionalItems = array(), array $temporaryFiles = array(), string $device = null, AddressInput $address = null, $vars = array())
+  public function createRepair(AnonymousApplicantInput $applicant, RepairInput $repair, array $additionalItems = array(), array $temporaryFiles = array(), ?string $device = null, ?AddressInput $address = null, $vars = array())
   {
      return $this->inputArgs('createRepair', array_merge($vars, ['applicant' => $applicant, 'repair' => $repair, 'additionalItems' => $additionalItems, 'temporaryFiles' => $temporaryFiles, 'device' => $device, 'address' => $address]));
   }
@@ -94,7 +94,7 @@ class PublicMutation extends Types\RootType
    * @param AddressInput $address
    * @return TicketCreationResult
    */
-  public function createTicket(AnonymousApplicantInput $applicant, TicketInput $ticket, array $temporaryFiles = array(), string $device = null, AddressInput $address = null, $vars = array())
+  public function createTicket(AnonymousApplicantInput $applicant, TicketInput $ticket, array $temporaryFiles = array(), ?string $device = null, ?AddressInput $address = null, $vars = array())
   {
      return $this->inputArgs('createTicket', array_merge($vars, ['applicant' => $applicant, 'ticket' => $ticket, 'temporaryFiles' => $temporaryFiles, 'device' => $device, 'address' => $address]));
   }

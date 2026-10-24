@@ -16,7 +16,7 @@ class MobileQuery extends Types\RootType
    * @param string $sort
    * @return TicketsResult
    */
-  public function tickets(string $deviceUid, int $limit = null, int $page = null, TicketsFilter $filter = null, string $sort = null, $vars = array())
+  public function tickets(string $deviceUid, ?int $limit = null, ?int $page = null, ?TicketsFilter $filter = null, ?string $sort = null, $vars = array())
   {
      return $this->inputArgs('tickets', array_merge($vars, ['deviceUid' => $deviceUid, 'limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]));
   }

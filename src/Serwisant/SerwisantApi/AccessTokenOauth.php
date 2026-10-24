@@ -13,8 +13,9 @@ class AccessTokenOauth implements AccessToken
   protected $access_token;
 
   private $http_headers = [];
+  private $http_client;
 
-  public function __construct(string $client_id, string $client_secret, string $scope = '', AccessTokenContainer $container = null)
+  public function __construct(string $client_id, string $client_secret, string $scope = '', ?AccessTokenContainer $container = null)
   {
     $this->client_id = $client_id;
     $this->client_secret = $client_secret;
@@ -25,6 +26,17 @@ class AccessTokenOauth implements AccessToken
   public function setHttpHeaders(array $http_headers)
   {
     $this->http_headers = $http_headers;
+    return $this;
+  }
+
+  /**
+   * Custom Guzzle client used for token and revoke requests, eg. with a mock handler in tests.
+   * @param GuzzleHttp\ClientInterface $http_client
+   * @return $this
+   */
+  public function setHttpClient(GuzzleHttp\ClientInterface $http_client)
+  {
+    $this->http_client = $http_client;
     return $this;
   }
 
@@ -65,7 +77,7 @@ class AccessTokenOauth implements AccessToken
     ];
 
     try {
-      $client = new GuzzleHttp\Client();
+      $client = $this->httpClient();
       $client->request('POST', $this->revokeUrl(), $this->clientOptions($this->revokeUrl(), $params));
       return true;
     } catch (\GuzzleHttp\Exception\GuzzleException $e) {
@@ -115,7 +127,7 @@ class AccessTokenOauth implements AccessToken
   protected function http($params): array
   {
     try {
-      $client = new GuzzleHttp\Client();
+      $client = $this->httpClient();
       $options = $this->clientOptions($this->url(), $params);
       $res = $client->request('POST', $this->url(), $options);
     } catch (\GuzzleHttp\Exception\GuzzleException $e) {
@@ -158,6 +170,14 @@ class AccessTokenOauth implements AccessToken
       default:
         throw new Exception("Unable to fetch an access token, HTTP code was '{$http_code}'");
     }
+  }
+
+  private function httpClient(): GuzzleHttp\ClientInterface
+  {
+    if ($this->http_client === null) {
+      $this->http_client = new GuzzleHttp\Client();
+    }
+    return $this->http_client;
   }
 
   private function clientOptions($url, $params)

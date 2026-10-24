@@ -13,7 +13,7 @@ class InternalMutation extends Types\RootType
    * @param string $salesPartnerCookie
    * @return SubscriberActivationResult
    */
-  public function activateSubscriber(string $activationToken, string $salesPartnerCookie = null, $vars = array())
+  public function activateSubscriber(string $activationToken, ?string $salesPartnerCookie = null, $vars = array())
   {
      return $this->inputArgs('activateSubscriber', array_merge($vars, ['activationToken' => $activationToken, 'salesPartnerCookie' => $salesPartnerCookie]));
   }

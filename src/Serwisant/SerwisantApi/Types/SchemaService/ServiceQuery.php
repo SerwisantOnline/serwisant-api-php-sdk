@@ -12,7 +12,7 @@ class ServiceQuery extends Types\RootType
    * @param int $page
    * @return ComponentWarehousesResult
    */
-  public function componentWarehouses(int $limit = null, int $page = null, $vars = array())
+  public function componentWarehouses(?int $limit = null, ?int $page = null, $vars = array())
   {
      return $this->inputArgs('componentWarehouses', array_merge($vars, ['limit' => $limit, 'page' => $page]));
   }
@@ -24,7 +24,7 @@ class ServiceQuery extends Types\RootType
    * @param ComponentsFilter $filter
    * @return ComponentsResult
    */
-  public function components(int $limit = null, int $page = null, ComponentsFilter $filter = null, $vars = array())
+  public function components(?int $limit = null, ?int $page = null, ?ComponentsFilter $filter = null, $vars = array())
   {
      return $this->inputArgs('components', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter]));
   }
@@ -44,7 +44,7 @@ class ServiceQuery extends Types\RootType
    * @param CustomerAgreementsFilter $filter
    * @return CustomerAgreement[]
    */
-  public function customerAgreements(CustomerAgreementsFilter $filter = null, $vars = array())
+  public function customerAgreements(?CustomerAgreementsFilter $filter = null, $vars = array())
   {
      return $this->inputArgs('customerAgreements', array_merge($vars, ['filter' => $filter]));
   }
@@ -57,7 +57,7 @@ class ServiceQuery extends Types\RootType
    * @param string $sort
    * @return CustomersResult
    */
-  public function customers(int $limit = null, int $page = null, CustomersFilter $filter = null, string $sort = null, $vars = array())
+  public function customers(?int $limit = null, ?int $page = null, ?CustomersFilter $filter = null, ?string $sort = null, $vars = array())
   {
      return $this->inputArgs('customers', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]));
   }
@@ -69,7 +69,7 @@ class ServiceQuery extends Types\RootType
    * @param string $sort
    * @return DevicesResult
    */
-  public function devices(int $limit = null, int $page = null, DevicesFilter $filter = null, string $sort = null, $vars = array())
+  public function devices(?int $limit = null, ?int $page = null, ?DevicesFilter $filter = null, ?string $sort = null, $vars = array())
   {
      return $this->inputArgs('devices', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]));
   }
@@ -79,7 +79,7 @@ class ServiceQuery extends Types\RootType
    * @param DictionaryEntriesFilter $filter
    * @return Dictionary[]
    */
-  public function dictionaryEntries(DictionaryEntriesFilter $filter = null, $vars = array())
+  public function dictionaryEntries(?DictionaryEntriesFilter $filter = null, $vars = array())
   {
      return $this->inputArgs('dictionaryEntries', array_merge($vars, ['filter' => $filter]));
   }
@@ -88,7 +88,7 @@ class ServiceQuery extends Types\RootType
    * @param NotesFilter $filter
    * @return Note[]
    */
-  public function notes(NotesFilter $filter = null, $vars = array())
+  public function notes(?NotesFilter $filter = null, $vars = array())
   {
      return $this->inputArgs('notes', array_merge($vars, ['filter' => $filter]));
   }
@@ -100,7 +100,7 @@ class ServiceQuery extends Types\RootType
    * @param string $sort
    * @return ParcelsResult
    */
-  public function parcels(int $limit = null, int $page = null, ParcelsFilter $filter = null, string $sort = null, $vars = array())
+  public function parcels(?int $limit = null, ?int $page = null, ?ParcelsFilter $filter = null, ?string $sort = null, $vars = array())
   {
      return $this->inputArgs('parcels', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]));
   }
@@ -113,7 +113,7 @@ class ServiceQuery extends Types\RootType
    * @param string $sort
    * @return RepairsResult
    */
-  public function repairs(int $limit = null, int $page = null, RepairsFilter $filter = null, string $sort = null, $vars = array())
+  public function repairs(?int $limit = null, ?int $page = null, ?RepairsFilter $filter = null, ?string $sort = null, $vars = array())
   {
      return $this->inputArgs('repairs', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]));
   }

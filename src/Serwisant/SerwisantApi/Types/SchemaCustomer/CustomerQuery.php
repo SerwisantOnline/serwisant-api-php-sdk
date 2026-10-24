@@ -33,7 +33,7 @@ class CustomerQuery extends Types\RootType
    * @param string $sort
    * @return DevicesResult
    */
-  public function devices(int $limit = null, int $page = null, DevicesFilter $filter = null, string $sort = null, $vars = array())
+  public function devices(?int $limit = null, ?int $page = null, ?DevicesFilter $filter = null, ?string $sort = null, $vars = array())
   {
      return $this->inputArgs('devices', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]));
   }
@@ -42,7 +42,7 @@ class CustomerQuery extends Types\RootType
    * @param DictionaryEntriesFilter $filter
    * @return Dictionary[]
    */
-  public function dictionaryEntries(DictionaryEntriesFilter $filter = null, $vars = array())
+  public function dictionaryEntries(?DictionaryEntriesFilter $filter = null, $vars = array())
   {
      return $this->inputArgs('dictionaryEntries', array_merge($vars, ['filter' => $filter]));
   }
@@ -54,7 +54,7 @@ class CustomerQuery extends Types\RootType
    * @param string $sort
    * @return MessagesResult
    */
-  public function messages(int $limit = null, int $page = null, MessagesFilter $filter = null, string $sort = null, $vars = array())
+  public function messages(?int $limit = null, ?int $page = null, ?MessagesFilter $filter = null, ?string $sort = null, $vars = array())
   {
      return $this->inputArgs('messages', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]));
   }
@@ -63,7 +63,7 @@ class CustomerQuery extends Types\RootType
    * @param PrioritiesFilter $filter
    * @return Priority[]
    */
-  public function priorities(PrioritiesFilter $filter = null, $vars = array())
+  public function priorities(?PrioritiesFilter $filter = null, $vars = array())
   {
      return $this->inputArgs('priorities', array_merge($vars, ['filter' => $filter]));
   }
@@ -75,7 +75,7 @@ class CustomerQuery extends Types\RootType
    * @param string $sort
    * @return RepairsResult
    */
-  public function repairs(int $limit = null, int $page = null, RepairsFilter $filter = null, string $sort = null, $vars = array())
+  public function repairs(?int $limit = null, ?int $page = null, ?RepairsFilter $filter = null, ?string $sort = null, $vars = array())
   {
      return $this->inputArgs('repairs', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]));
   }
@@ -110,7 +110,7 @@ class CustomerQuery extends Types\RootType
    * @param string $sort
    * @return TicketsResult
    */
-  public function tickets(int $limit = null, int $page = null, TicketsFilter $filter = null, string $sort = null, $vars = array())
+  public function tickets(?int $limit = null, ?int $page = null, ?TicketsFilter $filter = null, ?string $sort = null, $vars = array())
   {
      return $this->inputArgs('tickets', array_merge($vars, ['limit' => $limit, 'page' => $page, 'filter' => $filter, 'sort' => $sort]));
   }

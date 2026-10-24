@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.6.0
+
+No breaking change. PHP 8.4/8.5 compatibility: implicitly nullable parameters (`Type $x = null`) replaced with explicit
+nullable types (`?Type $x = null`) in generated schema types, `GraphqlClient` and `AccessTokenOauth`; deprecated
+`(integer)` cast replaced with `(int)`. Generator (`bin/introspection.php`) emits explicit nullable types.
+
+Added optional injection of a Guzzle `ClientInterface` (eg. with `MockHandler` in tests): `Api::setHttpClient()`,
+`AccessTokenOauth::setHttpClient()` and second argument of `GraphqlClient::__construct()`.
+
 ## 3.5.6
 
 No breaking change. Replaced raw `CURLOPT_IPRESOLVE` curl option (deprecated since `guzzlehttp/guzzle` 7.11, rejected
