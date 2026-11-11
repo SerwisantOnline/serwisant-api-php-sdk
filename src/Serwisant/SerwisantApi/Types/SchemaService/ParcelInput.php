@@ -33,9 +33,15 @@ class ParcelInput extends Types\Type
 
   /**
    * @var Decimal
-   * Unit: application's currency, eg.: zł. Value of parcel contents, it will be used to create parcel insurance and will affect a cost.
+   * Unit: application's currency, eg.: zł. Value of parcel contents, it will be used to create parcel insurance and will affect a cost. Default value is 0.
   */
   public $declaredValue;
+
+  /**
+   * @var string
+   * Parcel type, default value is `BOX`.
+  */
+  public $type;
 
   protected function schemaNamespace()
   {

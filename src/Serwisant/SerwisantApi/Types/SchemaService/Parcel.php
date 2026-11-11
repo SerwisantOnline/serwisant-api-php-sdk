@@ -94,6 +94,11 @@ class Parcel extends Types\Type
   public $trackingNumber;
 
   /**
+   * @var string
+  */
+  public $type;
+
+  /**
    * @var Decimal
   */
   public $weight;
