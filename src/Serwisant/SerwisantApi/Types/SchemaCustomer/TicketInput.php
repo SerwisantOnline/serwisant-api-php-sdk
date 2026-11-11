@@ -18,6 +18,11 @@ class TicketInput extends Types\Type
   public $priority;
 
   /**
+   * @var string
+  */
+  public $group;
+
+  /**
    * @var DateTime
   */
   public $startAt;

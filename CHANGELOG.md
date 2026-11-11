@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.6.1
+
+No breaking change. Schema types regenerated from current API:
+
+- `Dictionary` (customer, public, service): `asMenuItem` (entry offered as a menu shortcut, eg. adding a ticket with
+  preselected category) and `priority` (ticket priority assigned to `TICKET_CATEGORY` entry).
+- `TicketInput` (customer, public): `group` - ticket group (`TICKET_CATEGORY` dictionary entry ID).
+- Service schema: `Parcel.type` and `ParcelInput.type` with new `ParcelType` enum (`ENVELOPE`, `BOX`, `PALETTE`,
+  `BOX_OVERSIZED`), new `Priority` and `PriorityType` types.
+
 ## 3.6.0
 
 No breaking change. PHP 8.4/8.5 compatibility: implicitly nullable parameters (`Type $x = null`) replaced with explicit
