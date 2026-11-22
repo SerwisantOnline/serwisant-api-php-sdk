@@ -20,7 +20,7 @@ Optional:
 ## Installation
 
 ```
-composer require serwisant/serwisant-api "3.5.*"
+composer require serwisant/serwisant-api "3.7.*"
 ```
 
 ## A word about versioning
