@@ -30,13 +30,21 @@ class AccessTokenOauthUserCredentials extends AccessTokenOauth
     }
   }
 
+  /**
+   * Logs the user out: revokes the stored token on the server and always clears the token locally (container
+   * and memory), even when the server refused the revocation.
+   *
+   * @param string|null $access_token ignored, the token from the container (or memory) is revoked
+   * @return bool true when the server confirmed the revocation, false when it refused it or the request failed
+   */
   public function revoke($access_token = null): bool
   {
-    if ($this->container instanceof AccessTokenContainer) {
-      parent::revoke($this->container->getAccessToken());
-    }
-    $this->container->store(null, 0, null);
-    return true;
+    $token = $this->container instanceof AccessTokenContainer ? $this->container->getAccessToken() : $this->access_token;
+
+    $revoked = $token ? parent::revoke($token) : true;
+
+    $this->clear();
+    return $revoked;
   }
 
   /**
@@ -68,7 +76,13 @@ class AccessTokenOauthUserCredentials extends AccessTokenOauth
         'refresh_token' => $this->container->getRefreshToken()
       ];
 
-      $token_data = $this->http($params);
+      try {
+        $token_data = $this->http($params);
+      } catch (ExceptionUnauthorized $e) {
+        // refresh token no longer valid (invalid_grant) - forget the tokens, the user must log in again
+        $this->clear();
+        throw $e;
+      }
 
       if ($token_data !== null) {
         $this->access_token = $token_data['access_token'];
@@ -82,5 +96,13 @@ class AccessTokenOauthUserCredentials extends AccessTokenOauth
     }
 
     throw new ExceptionUserCredentialsRequired;
+  }
+
+  private function clear(): void
+  {
+    $this->access_token = null;
+    if ($this->container instanceof AccessTokenContainer) {
+      $this->container->store(null, 0, null);
+    }
   }
 }

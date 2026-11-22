@@ -13,6 +13,12 @@ class Dictionary extends Types\Type
   public $ID;
 
   /**
+   * @var bool
+   * Entry should be offered as a shortcut in menus, e.g. adding a ticket with preselected category
+  */
+  public $asMenuItem;
+
+  /**
    * @var string
   */
   public $auxiliaryId;
@@ -21,6 +27,12 @@ class Dictionary extends Types\Type
    * @var string
   */
   public $name;
+
+  /**
+   * @var Priority
+   * Ticket priority assigned to TICKET_CATEGORY entry
+  */
+  public $priority;
 
   /**
    * @var string

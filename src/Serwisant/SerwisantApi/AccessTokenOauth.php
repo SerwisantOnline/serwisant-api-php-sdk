@@ -68,6 +68,13 @@ class AccessTokenOauth implements AccessToken
     }
   }
 
+  /**
+   * Revokes the token on the server (RFC 7009).
+   *
+   * @param string|null $access_token
+   * @return bool true when the server confirmed the revocation (HTTP 2xx), false when it refused it (eg. HTTP 403
+   *   - client authentication failed) or the request failed
+   */
   public function revoke($access_token = null): bool
   {
     $params = [
@@ -78,11 +85,13 @@ class AccessTokenOauth implements AccessToken
 
     try {
       $client = $this->httpClient();
-      $client->request('POST', $this->revokeUrl(), $this->clientOptions($this->revokeUrl(), $params));
-      return true;
+      $res = $client->request('POST', $this->revokeUrl(), $this->clientOptions($this->revokeUrl(), $params));
     } catch (\GuzzleHttp\Exception\GuzzleException $e) {
       return false;
     }
+
+    $http_code = $res->getStatusCode();
+    return $http_code >= 200 && $http_code < 300;
   }
 
   protected function fetch()

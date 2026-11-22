@@ -1,5 +1,30 @@
 # Changelog
 
+## 3.7.0
+
+No breaking change in the public API. Behavior changes for OAuth 2 / RFC 6750 and RFC 7009 compliance
+(eg. Doorkeeper 5.9):
+
+- `GraphqlClient::call()`: when the API rejects the access token (HTTP 401 or GraphQL error with code 401), the token
+  is refreshed with `AccessToken::refresh()` and the request is retried once. A token rejected again throws
+  `ExceptionAccessDenied` with handle `invalid_token` (previously HTTP 401 threw a generic `Exception`). For
+  `AccessTokenOauthUserCredentials` the refresh may throw `ExceptionUserCredentialsRequired` (no refresh token) or
+  `ExceptionUnauthorized` (refresh token no longer valid) - the user must log in again.
+- `AccessTokenOauth::revoke()` returns `false` when the server refuses the revocation (non-2xx response, eg. HTTP 403
+  when client authentication fails); previously it returned `true` for any HTTP response.
+- `AccessTokenOauthUserCredentials::revoke()` returns the server result (previously always `true`), still always
+  clears the token locally; no longer fails when used without a token container.
+- `AccessTokenOauthUserCredentials::refresh()` clears stored tokens when the refresh token is rejected
+  (`invalid_grant`), so the user is no longer treated as authenticated until the next login.
+
+Schema types regenerated from current API:
+
+- `Dictionary` (customer, public, service): `asMenuItem` (entry offered as a menu shortcut, eg. adding a ticket with
+  preselected category) and `priority` (ticket priority assigned to `TICKET_CATEGORY` entry).
+- `TicketInput` (customer, public): `group` - ticket group (`TICKET_CATEGORY` dictionary entry ID).
+- Service schema: `Parcel.type` and `ParcelInput.type` with new `ParcelType` enum (`ENVELOPE`, `BOX`, `PALETTE`,
+  `BOX_OVERSIZED`), new `Priority` and `PriorityType` types.
+
 ## 3.6.0
 
 No breaking change. PHP 8.4/8.5 compatibility: implicitly nullable parameters (`Type $x = null`) replaced with explicit
