@@ -332,7 +332,8 @@ if (!$access_token->isAuthenticated()) {
 
 // ... use $api->customerQuery() / $api->customerMutation()
 
-// on logout: revokes the token on the server and clears the container
+// on logout: revokes the token on the server and clears the container; returns false when the server refused the
+// revocation (the token is cleared locally anyway, but stays valid on the server until it expires)
 $access_token->revoke();
 ```
 
@@ -340,12 +341,17 @@ Once logged in, the token is refreshed automatically using the refresh token sto
 token is missing or no longer valid, `SerwisantApi\ExceptionUserCredentialsRequired` is thrown and the user must log in
 again.
 
+When the API rejects an access token (HTTP 401, eg. the token was revoked on the server), the SDK refreshes the token
+and retries the request once; if the new token is rejected as well, `ExceptionAccessDenied` with handle
+`invalid_token` is thrown.
+
 ### 6. Error handling
 
 All exceptions thrown by the SDK extend `SerwisantApi\Exception`:
 
-- `ExceptionAccessDenied` - invalid client ID/secret, insufficient scope, or the API returned error code 403,
-- `ExceptionUnauthorized` - invalid user login or password,
+- `ExceptionAccessDenied` - invalid client ID/secret, insufficient scope, the API returned error code 403, or the
+  access token was rejected again after a refresh (handle `invalid_token`),
+- `ExceptionUnauthorized` - invalid user login or password, or the refresh token is no longer valid,
 - `ExceptionUserCredentialsRequired` - a user token is required, but the user is not logged in,
 - `ExceptionNotFound` - the API returned error code 404 (e.g. an object with the given ID or token does not exist),
 - `ExceptionSubscriberGone` - the API returned error code 410 (subscriber account no longer exists),

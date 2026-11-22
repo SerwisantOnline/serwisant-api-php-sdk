@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.7.0
+
+No breaking change in the public API, behavior changes listed below (OAuth 2 / RFC 6750 and RFC 7009 compliance,
+eg. Doorkeeper 5.9):
+
+- `GraphqlClient::call()`: when the API rejects the access token (HTTP 401 or GraphQL error with code 401), the token
+  is refreshed with `AccessToken::refresh()` and the request is retried once. A token rejected again throws
+  `ExceptionAccessDenied` with handle `invalid_token` (previously HTTP 401 threw a generic `Exception`). For
+  `AccessTokenOauthUserCredentials` the refresh may throw `ExceptionUserCredentialsRequired` (no refresh token) or
+  `ExceptionUnauthorized` (refresh token no longer valid) - the user must log in again.
+- `AccessTokenOauth::revoke()` returns `false` when the server refuses the revocation (non-2xx response, eg. HTTP 403
+  when client authentication fails); previously it returned `true` for any HTTP response.
+- `AccessTokenOauthUserCredentials::revoke()` returns the server result (previously always `true`), still always
+  clears the token locally; no longer fails when used without a token container.
+- `AccessTokenOauthUserCredentials::refresh()` clears stored tokens when the refresh token is rejected
+  (`invalid_grant`), so the user is no longer treated as authenticated until the next login.
+
 ## 3.6.1
 
 No breaking change. Schema types regenerated from current API:

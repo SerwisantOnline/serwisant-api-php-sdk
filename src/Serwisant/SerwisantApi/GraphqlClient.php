@@ -35,6 +35,10 @@ class GraphqlClient
   }
 
   /**
+   * Executes a query or mutation. When the API rejects the access token (HTTP 401 or GraphQL error code 401), the token
+   * is refreshed with AccessToken::refresh() and the request is retried once; a token rejected again results
+   * in ExceptionAccessDenied with handle 'invalid_token'.
+   *
    * @param $url
    * @param $query
    * @param $variables
@@ -42,8 +46,33 @@ class GraphqlClient
    * @throws Exception
    * @throws ExceptionAccessDenied
    * @throws ExceptionNotFound
+   * @throws ExceptionUnauthorized refreshing a rejected user token failed (eg. refresh token no longer valid)
+   * @throws ExceptionUserCredentialsRequired a rejected user token cannot be refreshed, the user must log in again
    */
   public function call($url, $query, $variables)
+  {
+    try {
+      return $this->execute($url, $query, $variables);
+    } catch (ExceptionTokenRejected $e) {
+      if (!$this->access_token) {
+        throw new ExceptionAccessDenied($e->getMessage(), 'invalid_token');
+      }
+    }
+
+    $this->access_token->refresh();
+
+    try {
+      return $this->execute($url, $query, $variables);
+    } catch (ExceptionTokenRejected $e) {
+      throw new ExceptionAccessDenied($e->getMessage(), 'invalid_token');
+    }
+  }
+
+  /**
+   * @throws Exception
+   * @throws ExceptionTokenRejected
+   */
+  private function execute($url, $query, $variables)
   {
     try {
       $options = $this->clientOptions($url, $query, $variables);
@@ -60,6 +89,8 @@ class GraphqlClient
         $this->handleErrors($result['errors']);
       }
       return $result['data'];
+    } elseif ($http_code === 401) {
+      throw new ExceptionTokenRejected("Access token was rejected by the API, HTTP code was '401'");
     } elseif ($http_code === 429) {
       throw new ExceptionTooManyRequests();
     } else {
@@ -72,6 +103,7 @@ class GraphqlClient
    * @throws Exception
    * @throws ExceptionAccessDenied
    * @throws ExceptionNotFound
+   * @throws ExceptionTokenRejected
    */
   private function handleErrors(array $errors)
   {
@@ -87,6 +119,8 @@ class GraphqlClient
     }
 
     switch ($error_code) {
+      case 401:
+        throw new ExceptionTokenRejected("Access token was rejected by the API: {$error_message}");
       case 403:
         throw new ExceptionAccessDenied($error_message, "{$error_code}");
       case 404:
